@@ -2,22 +2,21 @@
 
 :root {
   --background: #000126;
-  --background: linear-gradient(36deg, rgb(5, 60, 95, 1) -50%, rgba(0, 1, 38, 1) 50%, rgb(90, 5, 100) 130%);
+  --background: linear-gradient(36deg, rgb(5, 60, 95, 1) -40%, rgba(0, 1, 38, 1) 50%, rgb(90, 5, 100) 130%);
   --foreground: #fff;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --input-background: rgba(0, 1, 38, 0.8);
+  --input-foreground: rgba(255, 255, 255, 0.8);
+  --accent: rgb(240, 15, 150);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000126;
-    --background: linear-gradient(36deg, rgb(5, 60, 95, 1) -30%, rgba(0, 1, 38, 1) 50%, rgb(90, 5, 100) 130%);
+    --background: linear-gradient(36deg, rgb(5, 60, 95, 1) -40%, rgba(0, 1, 38, 1) 50%, rgb(90, 5, 100) 130%);
     --foreground: #fff;
+    --input-background: rgba(0, 1, 38, 0.8);
+    --input-foreground: rgba(255, 255, 255, 0.8);
+    --accent: rgb(240, 15, 150);
   }
 }
 
@@ -26,4 +25,203 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 100px;
+}
+
+.input-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-item {
+  background-color: var(--input-background);
+  color: var(--input-foreground);
+  border-radius: 10px;
+  padding: 0 12px;
+  height: 54px;
+}
+
+.date-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.date-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.input-box {
+  font-size: 32px;
+}
+
+.input-box:focus {
+  outline: 2px solid var(--accent);
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  padding: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 35px;
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  
+  box-shadow:
+    inset -0.5px  -0.5px 0px rgba(255, 255, 255, 0.3),
+    inset 0.5px  0.5px 0px rgba(255, 255, 255, 0.3),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.7),
+    inset -2px  -2px 5px rgba(255, 255, 255, 0.2); 
+}
+
+.card {
+  position: relative;
+  border-radius: 12px;
+
+  height: 170px;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card h1 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 64px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.balance {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 1px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.date-selection {
+  position: absolute;
+  padding: 12px;
+  font-size: 48px;
+  max-height: 300px;
+  overflow: scroll;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  border-radius: 12px;
+}
+
+.cards li {
+  list-style: none;
+}
+
+.month-list-item {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000126;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.table-row:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 0.3s ease-out;
+}
+
+/* tablet */
+@media only screen and (max-width: 950px) {
+  .logo {
+    font-size: 84px;
+  }
+  
+  .input-container {
+    width: auto;
+    margin: 10px;
+    flex-direction: column;
+  }
+
+  .input-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .conainter {
+    width: auto;
+    margin: 10px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-height: 100%;
+  }
+
+  .card {
+    height: 200px;
+  }
+}
+
+/* Smartphone */
+@media only screen and (max-width: 450px) {
+  .logo {
+    font-size: 64px;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+  }
 }
