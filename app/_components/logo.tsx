@@ -6,10 +6,8 @@ const libre = Libre_Barcode_128_Text({
     display: "swap",
 })
 
-type LogoProps = {
-    size?: number;
-}
-
-export default function Logo({ size = 100 }: LogoProps) {
-    return <h1 className={libre.className} style={{ fontSize: size }}>kassenzettel</h1>
+export default function Logo() {
+    return (
+        <h1 className={`${libre.className} logo`}>kassenzettel</h1>
+    );
 }
