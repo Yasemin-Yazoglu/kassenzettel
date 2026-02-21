@@ -17,7 +17,7 @@ export default function InputContainer({
         month: today_date.getMonth() + 1,
         day: today_date.getDate(),
         store: "",
-        amount: 0,
+        amount: 0.0,
     });
 
     function handleSubmit(newItem: Spending) {
@@ -55,6 +55,7 @@ export default function InputContainer({
                     onChange={(e) => setCostItem({...costItem, amount: Number(e.target.value)})} 
                     className="input-item input-box w-48" 
                     type="number" 
+                    step="any"
                     placeholder="Ausgabe"
                 />
                 <button type="submit" hidden />
