@@ -36,6 +36,8 @@ export default function MonthsView({
                     (entry) => entry.month === month
                 );
 
+                monthSpendings.sort((a, b) => b.day - a.day);
+
                 return (
                     <div className="p-2 my-2 rounded glass" key={month}>
                         <button title="Zeige Details" onClick={() => handleViewDetails(month)} className="w-full flex flex-row justify-between">
