@@ -3,7 +3,7 @@ import { Date_Enum } from "../utility/enum";
 import DateComponent from "./DateComponent";
 import { Spending } from "../utility/type";
 
-type Props = {
+interface Props {
     setSpendings: React.Dispatch<React.SetStateAction<Spending[]>>;
 };
 
