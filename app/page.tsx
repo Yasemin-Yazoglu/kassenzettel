@@ -49,7 +49,7 @@ export default function Home() {
         {/* Cards Container */}
         {monthView ? (
           <div className="w-full">
-            <MonthsView selected_year={selectedYear} onClose={() => setMonthView(false)} spending={spendings.filter((spending) => spending.year === selectedYear)} />
+            <MonthsView setSpendings={setSpendings} selected_year={selectedYear} onClose={() => setMonthView(false)} spending={spendings.filter((spending) => spending.year === selectedYear)} />
           </div>
         ) : (
           <div className="mx-auto w-full">
