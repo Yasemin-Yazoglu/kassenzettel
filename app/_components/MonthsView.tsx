@@ -67,7 +67,7 @@ export default function MonthsView({
                     <div className="p-2 my-2 rounded glass" key={month}>
                         <button title="Zeige Details" onClick={() => handleViewDetails(month)} className="w-full flex flex-row justify-between">
                             <h1>{month_to_string(month)}</h1>
-                            <h1>{total}€</h1>
+                            <h1>{total / 100}€</h1>
                         </button>
                         {openMonths[month] && (
                             <table className="w-full">

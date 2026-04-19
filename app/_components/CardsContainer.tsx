@@ -17,9 +17,9 @@ export default function CardsContainer({
     return (
         <div className="container cards">
             {sorted.map(([year, total]) => (
-                <button title={`${year} hast du ${total}€ ausgegeben`} className="glass card" onClick={() => onSelect(year)} key={year}>
+                <button title={`${year} hast du ${total / 100}€ ausgegeben`} className="glass card" onClick={() => onSelect(year)} key={year}>
                     <h1>{year}</h1>
-                    <p className="balance">{total}&euro;</p>
+                    <p className="balance">{total / 100}&euro;</p>
                 </button>
             ))}
         </div>
