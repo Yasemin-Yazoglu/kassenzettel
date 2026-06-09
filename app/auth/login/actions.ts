@@ -5,8 +5,11 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/app/lib/supabase/server'
 import { loginSchema } from '@/app/lib/validation/auth';
+import { FormState } from './types';
 
-export async function login(formData: FormData) {
+// import { z } from "zod";
+
+export async function login(initialState: FormState, formData: FormData): Promise<FormState> {
   const supabase = await createClient()
 
   const data = {
@@ -18,7 +21,10 @@ export async function login(formData: FormData) {
 
   // TODO: Handle error
   if (!result.success) {
-    redirect('/error');
+    //redirect('/error');
+    // const flattened = z.flattenError(result.error);
+    // return { message: flattened.fieldErrors.email?.toString() ?? 'error' }
+    return { message: result.error.message }
   }
 
   const { error } = await supabase.auth.signInWithPassword(data)
@@ -26,11 +32,13 @@ export async function login(formData: FormData) {
   // TODO: Handle error and success
 
   if (error) {
-    redirect("/error");
+    //redirect("/error");
+    return { message: error.message }
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/account');
+  // revalidatePath('/', 'layout');
+  // redirect('/account');
+  return { message: 'success' }
 }
 
 export async function signup(formData: FormData) {
