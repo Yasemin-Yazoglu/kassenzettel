@@ -9,7 +9,7 @@ const initialState = {
 export function LoginForm() {
     const [state, formAction, pending] = useActionState(login, initialState)
     return (
-        <form action={formAction} >
+        <form action={formAction} className="space-y-5" >
             {/* Email field */}
             <label htmlFor="email">Email</label>
             <input 
