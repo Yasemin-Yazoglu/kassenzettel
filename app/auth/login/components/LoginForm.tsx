@@ -9,14 +9,30 @@ const initialState = {
 export function LoginForm() {
     const [state, formAction, pending] = useActionState(login, initialState)
     return (
-        <form action={formAction}>
+        <form action={formAction} >
             {/* Email field */}
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" />
-            
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="deine@email.com"
+                className="authInput"
+                required
+            />
+
             {/* Password field */}
             <label htmlFor="password">Passwort</label>
-            <input type="password" id="password" name="password" />
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="Passwort"
+                className="authInput"
+                required
+                minLength={8}
+                maxLength={72}
+            />
             <SubmitButton />
         </form>
     );
