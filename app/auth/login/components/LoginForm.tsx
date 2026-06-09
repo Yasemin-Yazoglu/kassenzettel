@@ -12,6 +12,11 @@ export function LoginForm() {
 
     return (
         <form action={formAction} className="space-y-5" >
+            {/* Error message */}
+            {state.message && (
+                <p className="block text-red-400 px-4 py-3 rounded-xl bg-red-400/5 border border-red-400">{state.message}</p>
+            )}
+
             {/* Email field */}
             <label htmlFor="email" className="authLabel" >
                 Email
