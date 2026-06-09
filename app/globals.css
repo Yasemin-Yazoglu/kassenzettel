@@ -299,6 +299,16 @@ tr {
     transition
 }
 
+.authLabel {
+  @apply
+    text-sm
+    text-slate-300
+}
+
+.inputAutofillWrapper:has(input:-webkit-autofill) button {
+  color: #000;
+}
+
 /* tablet */
 @media only screen and (max-width: 950px) {
   .logo {
