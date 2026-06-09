@@ -11,7 +11,9 @@ export function LoginForm() {
     return (
         <form action={formAction} className="space-y-5" >
             {/* Email field */}
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className="authLabel" >
+                Email
+            </label>
             <input 
                 type="email" 
                 id="email" 
@@ -22,7 +24,9 @@ export function LoginForm() {
             />
 
             {/* Password field */}
-            <label htmlFor="password">Passwort</label>
+            <label htmlFor="password" className="authLabel">
+                Passwort
+            </label>
             <input 
                 type="password" 
                 id="password" 
