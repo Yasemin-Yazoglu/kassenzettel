@@ -7,7 +7,7 @@ import { createClient } from '@/app/lib/supabase/server'
 import { loginSchema } from '@/app/lib/validation/auth';
 import { FormState } from './types';
 
-// import { z } from "zod";
+import { z } from "zod";
 
 export async function login(initialState: FormState, formData: FormData): Promise<FormState> {
   const supabase = await createClient()
@@ -19,26 +19,21 @@ export async function login(initialState: FormState, formData: FormData): Promis
 
   const result = loginSchema.safeParse(data);
 
-  // TODO: Handle error
   if (!result.success) {
-    //redirect('/error');
-    // const flattened = z.flattenError(result.error);
-    // return { message: flattened.fieldErrors.email?.toString() ?? 'error' }
-    return { message: result.error.message }
+    const pretty = z.prettifyError(result.error);
+    return { message: pretty }
   }
 
   const { error } = await supabase.auth.signInWithPassword(data)
 
-  // TODO: Handle error and success
-
   if (error) {
-    //redirect("/error");
     return { message: error.message }
   }
 
+  // TODO: Handle success
   // revalidatePath('/', 'layout');
   // redirect('/account');
-  return { message: 'success' }
+  return { message: '' }
 }
 
 export async function signup(formData: FormData) {
