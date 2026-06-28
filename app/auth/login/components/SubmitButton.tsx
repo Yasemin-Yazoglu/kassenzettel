@@ -2,7 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 
-export function SubmitButton() {
+export function SubmitButton(props: any) {
     const { pending } = useFormStatus();
 
     return (
@@ -20,7 +20,7 @@ export function SubmitButton() {
                 transition
             "
         >
-        Login
+        {props.name}
         </button>
     );
 }
