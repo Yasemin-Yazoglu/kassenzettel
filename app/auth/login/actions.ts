@@ -33,9 +33,8 @@ export async function login(initialState: FormState, formData: FormData): Promis
   }
 
   // TODO: Handle success
-  // revalidatePath('/', 'layout');
-  // redirect('/account');
-  return { message: '' }
+  revalidatePath('/', 'layout');
+  redirect('/account');
 }
 
 export async function signup(initialState: FormState, formData: FormData): Promise<FormState> {
