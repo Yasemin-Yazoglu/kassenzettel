@@ -5,6 +5,8 @@ import Logo from '@/public/logo/kassenzettel.svg';
 import Link from "next/link";
 import { LoginForm } from "./components/LoginForm";
 import { LoginWithGoogle } from "./components/LoginWithGoogle";
+import { SignupForm } from "./components/SignupForm";
+import FormStateToggle from "./components/FormStateToggle";
 
 export default function LoginPage() {
     const [formState, setFormState] = useState<'login' | 'signup'>('login')
@@ -24,9 +26,15 @@ export default function LoginPage() {
                 <p className="text-sm text-white/60 my-4 text-center">
                     Verfolge und analysiere Deine Ausgaben
                 </p>
-    
+
+                <FormStateToggle value={formState} onChange={setFormState} />
+                
                 {formState === 'login' && (
                     <LoginForm />
+                )}
+
+                {formState == 'signup' && (
+                    <SignupForm />
                 )}
         
                 {/*
@@ -55,12 +63,30 @@ export default function LoginPage() {
             </div>
             
             <LoginWithGoogle />
+            {/* 
+            {formState == 'login' && (
                 <p className="text-center text-slate-400 text-sm mt-8">
-                    Du hast noch keinen Account?{" "}
-                    <button className="text-indigo-400 hover:text-indigo-300">
+                Du hast noch keinen Account?{" "}
+                <button 
+                    className="text-indigo-400 hover:text-indigo-300" 
+                    onClick={() => setFormState('signup')}
+                >
                     Sign Up
-                    </button>
-                </p>
+                </button>
+            </p>
+            )}
+            {formState == 'signup' && (
+                <p className="text-center text-slate-400 text-sm mt-8">
+                Du hast einen Account?{" "}
+                <button 
+                    className="text-indigo-400 hover:text-indigo-300" 
+                    onClick={() => setFormState('login')}
+                >
+                    Log in
+                </button>
+            </p>
+            )}
+            */}
                 <p className="text-xs text-center text-white/40 mt-6">
                     Mit der Nutzung stimmst du unseren{" "}
                     <a
