@@ -1,11 +1,10 @@
-'use client'
+"use client"
 
 import { useEffect, useState } from "react";
 import CardsContainer from "./_components/CardsContainer";
 import InputContainer from "./_components/InputContainer";
 import Logo from "./_components/logo";
 import MonthsView from "./_components/MonthsView";
-import Footer from "./_components/Footer";
 import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
 
@@ -33,9 +32,10 @@ export default function Home() {
     setSelectedYear(year);
   }
 
+
   return (
     <div className="flex items-center justify-center">
-      <main className="flex flex-col items-center justify-between w-full gap-16">
+      <main className="flex flex-col items-center justify-between w-full gap-14">
         {/* Logo container */}
         <div className="mx-auto pt-32">
           <Logo />
@@ -56,11 +56,6 @@ export default function Home() {
             <CardsContainer type={Date_Enum.YEAR} spendings={spendings} onSelect={(year: number) => handleSelection(year)} />
           </div>
         )}
-
-        {/* Footer Section */}
-        <div className="mx-auto pb-8">
-          <Footer />
-        </div>
       </main>
     </div>
   );
