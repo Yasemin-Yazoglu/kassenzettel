@@ -55,38 +55,12 @@ export default function LoginPage() {
                     </button>
                 </div>
                 */}
-                    
-
     
-            <div className="relative my-6">
-                <hr className="w-full border-t border-white/10" />
-            </div>
+                <div className="relative my-6">
+                    <hr className="w-full border-t border-white/10" />
+                </div>
             
-            <LoginWithGoogle />
-            {/* 
-            {formState == 'login' && (
-                <p className="text-center text-slate-400 text-sm mt-8">
-                Du hast noch keinen Account?{" "}
-                <button 
-                    className="text-indigo-400 hover:text-indigo-300" 
-                    onClick={() => setFormState('signup')}
-                >
-                    Sign Up
-                </button>
-            </p>
-            )}
-            {formState == 'signup' && (
-                <p className="text-center text-slate-400 text-sm mt-8">
-                Du hast einen Account?{" "}
-                <button 
-                    className="text-indigo-400 hover:text-indigo-300" 
-                    onClick={() => setFormState('login')}
-                >
-                    Log in
-                </button>
-            </p>
-            )}
-            */}
+                <LoginWithGoogle />
                 <p className="text-xs text-center text-white/40 mt-6">
                     Mit der Nutzung stimmst du unseren{" "}
                     <a
