@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { logout } from "@/app/actions";
+import { logout } from "../lib/services/auth";
 
 type Props = {
   email?: string | null;
