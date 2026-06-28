@@ -1,20 +1,29 @@
 import { useActionState, useState } from "react";
 import { login } from "../actions";
 import { SubmitButton } from "./SubmitButton";
+import { FormState } from "../types";
 
-const initialState = {
+const initialState: FormState = {
     message: '',
 }
 
 export function LoginForm() {
-    const [state, formAction, pending] = useActionState(login, initialState)
+    const [state, formAction, pending] = useActionState(login, initialState);
     const [visible, setVisible] = useState(false);
 
     return (
         <form action={formAction} className="space-y-5" >
             {/* Error message */}
             {state.message && (
-                <p className="block text-red-400 px-4 py-3 rounded-xl bg-red-400/5 border border-red-400">{state.message}</p>
+                <p
+                    className={`block px-4 py-3 rounded-xl border ${
+                        state.type === 'success'
+                            ? 'text-green-400 bg-green-400/5 border-green-400'
+                            : 'text-red-400 bg-red-400/5 border-red-400'
+                    }`}
+                >
+                    {state.message}
+                </p>
             )}
 
             {/* Email field */}
@@ -66,7 +75,7 @@ export function LoginForm() {
                     )}
                 </button>
             </div>
-            <SubmitButton />
+            <SubmitButton name="Login" />
         </form>
     );
 }
