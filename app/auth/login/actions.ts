@@ -21,13 +21,13 @@ export async function login(initialState: FormState, formData: FormData): Promis
 
   if (!result.success) {
     const pretty = z.prettifyError(result.error);
-    return { message: pretty }
+    return { message: pretty, type: 'error' }
   }
 
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    return { message: error.message }
+    return { message: error.message, type: 'error' }
   }
 
   // TODO: Handle success
@@ -36,24 +36,34 @@ export async function login(initialState: FormState, formData: FormData): Promis
   return { message: '' }
 }
 
-export async function signup(formData: FormData) {
+export async function signup(initialState: FormState, formData: FormData): Promise<FormState> {
   const supabase = await createClient()
 
-  // TODO: Validate inputs
   const data = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const result = loginSchema.safeParse(data);
 
-  // TODO: Handle error and success
-  if (error) {
-    redirect('/error');
+  if (!result.success) {
+    const pretty = z.prettifyError(result.error);
+    return { message: pretty, type: 'error' }
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/account');
+  const { error } = await supabase.auth.signUp(data)
+
+  if (error) {
+    if (error.message.toLowerCase().includes('rate limit')) {
+      return { message: 'Zu viele Versuche. Bitte warte einen Moment.', type: 'error' };
+    }
+    return { message: error.message, type: 'error' };
+  }
+
+  return {
+    message: 'Fast geschafft! Bitte bestätige deine Email-Adresse über den Link, den wir dir geschickt haben.',
+    type: 'success',
+  };
 }
 
 export async function loginWithGoogle() {
