@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { getLanguage } from "@/public/locales";
+import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "kassenzettel",
@@ -15,7 +17,15 @@ export default function RootLayout({
   return (
     <html lang={getLanguage()}>
       <body>
+        {/* Navbar */}
+        <div>
+          <Navbar />
+        </div>
         {children}
+        {/* Footer Section */}
+        <div className="text-center pb-8">
+          <Footer />
+        </div>
       </body>
     </html>
   );
