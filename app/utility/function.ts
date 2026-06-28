@@ -2,11 +2,9 @@ import { DateKey, Sort, Spending } from "./type";
 
 export function group_spendings(type: DateKey, spendings: Spending[], order_by: Sort): [number, number][] {
     const grouped = new Map<number, number>();
-    console.log("Spendings", spendings);
 
     for(const entry of spendings) {
         const key = entry[type] as number;
-        console.log(`Grouped key ${key}: `, grouped.get(key));
 
         grouped.set(
             key,
