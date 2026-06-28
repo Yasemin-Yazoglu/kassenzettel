@@ -9,6 +9,8 @@ import { FormState } from './types';
 
 import { z } from "zod";
 
+// TODO: Move action to lib/services/auth
+
 export async function login(initialState: FormState, formData: FormData): Promise<FormState> {
   const supabase = await createClient()
 
