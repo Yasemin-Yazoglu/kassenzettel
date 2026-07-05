@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { createClient } from "../lib/supabase/client";
+import { supabase } from "../lib/supabase/client";
 import UserMenu from "./UserMenu";
 
 export default function Navbar() {
-  const supabase = createClient();
-
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
