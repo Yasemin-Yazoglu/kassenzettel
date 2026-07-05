@@ -43,7 +43,7 @@ export default function Home() {
 
         {/* Input container */}
         <div className="mx-auto">
-          <InputContainer setSpendings={setSpendings} />
+          <InputContainer />
         </div>
 
         {/* Cards Container */}
