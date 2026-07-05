@@ -33,14 +33,14 @@ export default function DeleteModal({
                 <div className="modal-footer">
                     <button 
                         onClick={onClose} 
-                        className="cancel-button" 
+                        className="action-button" 
                         title="Ausgabe behalten"
                     >
                         Behalten
                     </button>
                     <button 
                         onClick={deleteItem} 
-                        className="action-button" 
+                        className="cancel-button" 
                         title="Ausgabe löschen"
                     >
                         Löschen
