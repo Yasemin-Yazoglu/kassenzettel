@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Spending } from "../utility/type";
 import Icon from "../_ui/Icon";
+import { useUpdateExpense } from "@/app/lib/hooks/useUpdateExpense";
 
 interface Prop {
     spending: Spending;
-    setSpendings: React.Dispatch<React.SetStateAction<Spending[]>>;
     onClose: () => void;
 }
 
-export default function EditModal({spending, setSpendings, onClose }: Prop) {
+export default function EditModal({ spending, onClose }: Prop) {
     const [costItem, setCostItem] = useState<Spending>(spending);
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
+    const { mutate: updateExpense } = useUpdateExpense();
 
     useEffect(() => {
         if(costItem.store !== spending.store || costItem.amount !== spending.amount) {
@@ -22,13 +23,11 @@ export default function EditModal({spending, setSpendings, onClose }: Prop) {
     }, [costItem]);
 
     function saveChanges() {
-        setSpendings(prev =>
-            prev.map(item =>
-                item.id === costItem.id
-                ? costItem
-                : item
-            )
-        );
+        updateExpense({
+            id: costItem.id,
+            store: costItem.store,
+            amount: costItem.amount,
+        });
 
         onClose();
     }

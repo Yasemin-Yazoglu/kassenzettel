@@ -10,14 +10,12 @@ type Props = {
     selected_year: number;
     spending: Spending[];
     onClose: () => void;
-    setSpendings: React.Dispatch<React.SetStateAction<Spending[]>>;
 }
 
 export default function MonthsView({
     selected_year,
     spending,
     onClose,
-    setSpendings,
 }: Props) {
     const [openMonths, setOpenMonths] = useState<Record<string, boolean>>({});
     const [editModal, setEditModal] = useState<boolean>(false);
@@ -102,11 +100,11 @@ export default function MonthsView({
                 );
             })}
             {editModal && (
-                <EditModal setSpendings={setSpendings} spending={selectedSpending} onClose={() => setEditModal(false)} />
+                <EditModal spending={selectedSpending} onClose={() => setEditModal(false)} />
             )}
 
             {deleteModal && (
-                <DeleteModal setSpendings={setSpendings} spending={selectedSpending} onClose={() => setDeleteModal(false)} />
+                <DeleteModal spending={selectedSpending} onClose={() => setDeleteModal(false)} />
             )}
         </div>
     );

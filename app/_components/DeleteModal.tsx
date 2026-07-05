@@ -1,23 +1,20 @@
 import Icon from "../_ui/Icon";
 import { Spending } from "../utility/type";
+import { useDeleteExpense } from "@/app/lib/hooks/useDeleteExpense";
 
 interface Prop {
     spending: Spending;
-    setSpendings: React.Dispatch<React.SetStateAction<Spending[]>>;
     onClose: () => void;
 }
 
 export default function DeleteModal({
     spending,
-    setSpendings,
     onClose
 }: Prop) {
+    const { mutate: deleteExpense } = useDeleteExpense();
 
     function deleteItem() {
-        setSpendings(prev =>
-            prev.filter(item => item.id !== spending.id)
-        );
-
+        deleteExpense(spending.id);
         onClose();
     }
 
