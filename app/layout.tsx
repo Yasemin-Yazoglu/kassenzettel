@@ -3,6 +3,7 @@ import "./globals.css";
 import { getLanguage } from "@/public/locales";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "kassenzettel",
@@ -21,7 +22,7 @@ export default function RootLayout({
         <div>
           <Navbar />
         </div>
-        {children}
+        <Providers>{children}</Providers>
         {/* Footer Section */}
         <div className="text-center pb-8">
           <Footer />
