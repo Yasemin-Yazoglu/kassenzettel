@@ -10,6 +10,7 @@ export function useExpenses() {
             .from('expense')
             .select('*')
             .order('spend_at', { ascending: false })
+            .order('created_at', { ascending: false })
 
         if (error) throw error
         return data
