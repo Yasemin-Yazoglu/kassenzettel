@@ -7,8 +7,8 @@ import Logo from "./_components/logo";
 import MonthsView from "./_components/MonthsView";
 import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
-import { useExpenses } from "@/app/lib/hooks/useExpenses";
-import { fromDbDate } from "@/app/lib/date";
+import { useExpenses } from "@/lib/hooks/useExpenses";
+import { fromDbDate } from "@/lib/date";
 
 export default function Home() {
   const { data: expenses = [] } = useExpenses();

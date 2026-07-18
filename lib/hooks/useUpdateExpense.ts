@@ -1,42 +1,44 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { supabase } from '@/app/lib/supabase/client'
-import type { Expense, NewExpense } from '@/app/lib/types'
+import { supabase } from '@/lib/supabase/client'
+import type { Expense } from '@/lib/types'
 
-export function useAddExpense() {
+type UpdateExpenseInput = {
+    id: string
+    store?: string
+    amount?: number
+    spend_at?: string
+}
+
+export function useUpdateExpense() {
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: async (input: NewExpense) => {
+        mutationFn: async ({ id, ...changes }: UpdateExpenseInput) => {
         const { data, error } = await supabase
             .from('expense')
-            .insert(input)
+            .update(changes)
+            .eq('id', id)
             .select()
             .single()
 
         if (error) throw error
-            return data as Expense
+        return data as Expense
         },
 
-        onMutate: async (input) => {
+        onMutate: async ({ id, ...changes }) => {
             await queryClient.cancelQueries({ queryKey: ['expenses'] })
             const previous = queryClient.getQueryData<Expense[]>(['expenses'])
 
-            const optimisticExpense: Expense = {
-                id: crypto.randomUUID(),
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
-                user_id: '',
-                ...input,
-            }
-
             queryClient.setQueryData<Expense[]>(['expenses'], (old = []) =>
-                [optimisticExpense, ...old].sort((a, b) => b.spend_at.localeCompare(a.spend_at))
+                old.map((expense) =>
+                expense.id === id ? { ...expense, ...changes } : expense
+                )
             )
 
             return { previous }
         },
 
-        onError: (_err, _input, context) => {
+        onError: (_err, _vars, context) => {
             if (context?.previous) {
                 queryClient.setQueryData(['expenses'], context.previous)
             }

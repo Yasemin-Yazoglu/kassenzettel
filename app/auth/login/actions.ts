@@ -3,8 +3,8 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-import { createClient } from '@/app/lib/supabase/server'
-import { loginSchema } from '@/app/lib/validation/auth';
+import { createClient } from '@/lib/supabase/server'
+import { loginSchema } from '@/lib/validation/auth';
 import { FormState } from './types';
 
 import { z } from "zod";

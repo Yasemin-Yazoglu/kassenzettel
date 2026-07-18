@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { supabase } from '@/app/lib/supabase/client'
-import type { Expense } from '@/app/lib/types'
+import { supabase } from '@/lib/supabase/client'
+import type { Expense } from '@/lib/types'
 
 export function useExpenses() {
     return useQuery<Expense[]>({

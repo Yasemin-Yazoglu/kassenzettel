@@ -1,6 +1,6 @@
 import Icon from "../_ui/Icon";
 import { Spending } from "../utility/type";
-import { useDeleteExpense } from "@/app/lib/hooks/useDeleteExpense";
+import { useDeleteExpense } from "@/lib/hooks/useDeleteExpense";
 
 interface Prop {
     spending: Spending;

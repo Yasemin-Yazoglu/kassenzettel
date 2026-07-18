@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { Date_Enum } from "../utility/enum";
 import DateComponent from "./DateComponent";
-import { useAddExpense } from "@/app/lib/hooks/useAddExpense";
-import { toDbDate } from "@/app/lib/date";
+import { useAddExpense } from "@/lib/hooks/useAddExpense";
+import { toDbDate } from "@/lib/date";
 
 type DraftExpense = {
     year: number;

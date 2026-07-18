@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Spending } from "../utility/type";
 import Icon from "../_ui/Icon";
-import { useUpdateExpense } from "@/app/lib/hooks/useUpdateExpense";
+import { useUpdateExpense } from "@/lib/hooks/useUpdateExpense";
 
 interface Prop {
     spending: Spending;
