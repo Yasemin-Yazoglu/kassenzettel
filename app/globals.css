@@ -326,6 +326,51 @@ tr {
   color: #000;
 }
 
+.passwordFieldWrapper {
+  position: relative;
+}
+
+.passwordToggleButton {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.15s ease;
+}
+.passwordToggleButton:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.passwordToggleButtonLight {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(148 163 184); /* slate-400 */
+  transition: color 0.15s ease;
+}
+.passwordToggleButtonLight:hover {
+  color: rgb(51 65 85); /* slate-700 */
+}
+
+.lightInput {
+  width: 100%;
+  padding: 0.75rem 2.75rem 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background-color: rgb(241 245 249); /* slate-100 */
+  border: 1px solid rgb(226 232 240); /* slate-200 */
+  color: rgb(15 23 42); /* slate-900 */
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.lightInput::placeholder {
+  color: rgb(148 163 184);
+}
+.lightInput:focus {
+  border-color: rgb(129 140 248); /* indigo-400 */
+}
+
 /* tablet */
 @media only screen and (max-width: 950px) {
   .logo {
