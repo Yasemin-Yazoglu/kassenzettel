@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { logout } from "../lib/services/auth";
+import { logout } from "../../lib/services/auth";
+import Avatar from "../_ui/Avatar";
 
 type Props = {
   email?: string | null;
@@ -28,20 +29,8 @@ export default function UserMenu({ email, avatar }: Props) {
       {/* ICON */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition"
       >
-        {avatar ? (
-          <img
-            src={avatar}
-            alt="avatar"
-            className="w-full h-full object-cover rounded-full"
-            referrerPolicy="no-referrer"
-            />
-        ) : (
-          <span className="text-white">
-            {email ? email[0].toUpperCase() : "U"}
-          </span>
-        )}
+        <Avatar src={avatar} fallbackText={email ? email[0].toUpperCase() : "U"} size="md" />
       </button>
 
       {/* DROPDOWN */}
@@ -50,6 +39,13 @@ export default function UserMenu({ email, avatar }: Props) {
           <div className="px-3 py-2 text-xs text-white/50 border-b border-white/10">
             {email ?? "Guest"}
           </div>
+
+          <a
+            href="/account"
+            className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-lg"
+          >
+            Account
+          </a>
 
           <a
             href="/dashboard"
