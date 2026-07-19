@@ -13,3 +13,8 @@ export type NewExpense = {
     amount: number
     spend_at: string
 }
+
+export type FormState = {
+    message: string;
+    type?: "success" | "error";
+};
