@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useExpenses } from "@/lib/hooks/useExpenses";
-import SpendOverTimeChart from "./_components/SpendOverTimeChart";
-import ShoppingFrequencyChart from "./_components/ShoppingFrequencyChart";
+import TimeSeriesChart from "./_components/TimeSeriesChart";
 
 export default function DashboardPage() {
     const { data: expenses = [], isLoading } = useExpenses();
@@ -28,8 +27,7 @@ export default function DashboardPage() {
                 <p className="text-slate-400 text-sm">Lädt...</p>
                 ) : (
                     <>
-                        <SpendOverTimeChart expenses={expenses} />
-                        <ShoppingFrequencyChart expenses={expenses} />
+                        <TimeSeriesChart expenses={expenses} />
                     </>
                 )}
             </main>
