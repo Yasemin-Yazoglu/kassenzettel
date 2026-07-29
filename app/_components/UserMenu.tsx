@@ -44,14 +44,14 @@ export default function UserMenu({ email, avatar }: Props) {
             href="/account"
             className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-lg"
           >
-            Account
+            Konto
           </a>
 
           <a
-            href="/dashboard"
+            href="/analytics"
             className="block px-3 py-2 text-sm text-white hover:bg-white/10 rounded-lg"
           >
-            Dashboard
+            Analytics
           </a>
 
           <form action={logout}>
