@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Logo from '@/public/logo/kassenzettel.svg';
 import Link from "next/link";
 import { LoginForm } from "./components/LoginForm";
@@ -11,16 +12,13 @@ import FormStateToggle from "./components/FormStateToggle";
 export default function LoginPage() {
     const [formState, setFormState] = useState<'login' | 'signup'>('login')
 
-    // TODO: Solve reusability of Logo
-    const LogoComponent = Logo;
-
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
             <div className="glass w-full max-w-md rounded-3xl p-8">
                 <div className="mt-6 text-center">
                     {/* TODO: Remove Link */}
                     <Link href="/">
-                        <LogoComponent className="w-64 mx-auto" />
+                        <Image src={Logo} alt="Kassenzettel" className="w-64 mx-auto" />
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">
