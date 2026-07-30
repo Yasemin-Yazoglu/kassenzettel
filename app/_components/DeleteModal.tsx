@@ -1,4 +1,4 @@
-import Icon from "../_ui/Icon";
+import { X } from "lucide-react";
 import { Spending } from "../utility/type";
 import { useDeleteExpense } from "@/lib/hooks/useDeleteExpense";
 
@@ -24,7 +24,7 @@ export default function DeleteModal({
                 <div className="modal-header">
                     <h1>Bist Du Dir sicher?</h1>
                     <button onClick={onClose}>
-                        <Icon name="closeIcon" className="w-8 h-8" />
+                        <X />
                     </button>
                 </div>
                 <div className="modal-content">

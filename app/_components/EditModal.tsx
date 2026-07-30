@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Spending } from "../utility/type";
-import Icon from "../_ui/Icon";
 import { useUpdateExpense } from "@/lib/hooks/useUpdateExpense";
+import { X } from "lucide-react";
 
 interface Prop {
     spending: Spending;
@@ -37,7 +37,7 @@ export default function EditModal({ spending, onClose }: Prop) {
             <div className="modal">
                 <div className="modal-header">
                     <h1>Ausgabe bearbeiten</h1>
-                    <button title="Fenster schließen" onClick={onClose}><Icon name="closeIcon" className="w-8 h-8" /></button>
+                    <button title="Fenster schließen" onClick={onClose}><X /></button>
                 </div>
                 <div className="modal-content">
                     <label htmlFor="laden">Laden</label><br />

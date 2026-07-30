@@ -3,8 +3,8 @@ import { group_spendings, month_to_string } from "../utility/function";
 import { Spending } from "../utility/type";
 import { Date_Enum } from "../utility/enum";
 import EditModal from "./EditModal";
-import Icon from "../_ui/Icon";
 import DeleteModal from "./DeleteModal";
+import { PenIcon, X } from "lucide-react";
 
 type Props = {
     selected_year: number;
@@ -82,11 +82,11 @@ export default function MonthsView({
                                             <td>{entry.store}</td>
                                             <td>{entry.amount}&euro;</td>
                                             <td className="flex items-center justify-end gap-2">
-                                                <button title="Bearbeiten" className="m-1" onClick={() => handleEditSpending(entry, "edit")}>
-                                                    <Icon name="editIcon" className="w-5 h-5" />
+                                                <button title="Bearbeiten" onClick={() => handleEditSpending(entry, "edit")}>
+                                                    <PenIcon className="w-4 h-4" />
                                                 </button>
                                                 <button title="Eintrag löschen" onClick={() => handleEditSpending(entry, "delete")}>
-                                                    <Icon name="closeIcon" className="w-5 h-5" />
+                                                    <X className="w-6 h-6" />
                                                 </button>
                                             </td>
                                         </tr>
