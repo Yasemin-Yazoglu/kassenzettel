@@ -3,9 +3,11 @@ import type { User } from "@supabase/supabase-js";
 interface Props {
     user: User;
     onChangePassword: () => void;
+    onDeleteAccount: () => void;
+    onLogout: () => void;
 }
 
-export default function SettingsList({ user, onChangePassword }: Props) {
+export default function SettingsList({ user, onChangePassword, onDeleteAccount, onLogout }: Props) {
     const hasPasswordAuth = user.app_metadata?.providers?.includes("email") ?? false;
 
     return (
@@ -23,6 +25,23 @@ export default function SettingsList({ user, onChangePassword }: Props) {
                     </button>
                 </>
             )}
+
+            <button
+                onClick={onLogout}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition"
+            >
+                <span>Abmelden</span>
+            </button>
+
+            <div className="h-px bg-white/10 my-2" />
+
+            <button
+                onClick={onDeleteAccount}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl border text-red-400 bg-red-400/5 border-red-400 hover:bg-red-400/10 transition"
+            >
+                <span>Konto löschen</span>
+            </button>
+
         </section>
     );
 }

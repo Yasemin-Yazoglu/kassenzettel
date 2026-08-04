@@ -10,12 +10,14 @@ import PasswordModal from "./_components/PasswordModal";
 import { ArrowLeft } from "lucide-react";
 import SettingsList from "./_components/SettingsList";
 import { formatMemberSince } from "@/lib/formatMemberSince";
+import DeleteAccountModal from "./_components/DeleteAccountModal";
 
 export default function AccountPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -67,20 +69,16 @@ export default function AccountPage() {
         <SettingsList
           user={user}
           onChangePassword={() => setPasswordModalOpen(true)}
+          onDeleteAccount={() => setDeleteModalOpen(true)}
+          onLogout={handleLogout}
         />
-
-        <section className="flex flex-col gap-3">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center justify-between px-4 py-3 rounded-xl border text-red-400 bg-red-400/5 border-red-400 hover:bg-red-400/10 transition"
-          >
-            <span>Abmelden</span>
-          </button>
-        </section>
       </main>
 
       {passwordModalOpen && (
         <PasswordModal onClose={() => setPasswordModalOpen(false)} />
+      )}
+      {deleteModalOpen && (
+        <DeleteAccountModal onClose={() => setDeleteModalOpen(false)} />
       )}
     </div>
   );
