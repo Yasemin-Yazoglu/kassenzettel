@@ -62,7 +62,7 @@ export default function LoginPage() {
                 <p className="text-xs text-center text-white/40 mt-6">
                     Mit der Nutzung stimmst du unseren{" "}
                     <a
-                        href="/legal/terms"
+                        href="/legal/nutzungsbedingungen"
                         className="underline underline-offset-2 hover:text-white/60 transition"
                     >
                         Nutzungsbedingungen
