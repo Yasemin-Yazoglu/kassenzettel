@@ -150,9 +150,32 @@ export default function DatenschutzPage() {
                             hinausgehende Verarbeitung stattfindet.
                         </p>
                     </section>
+                    <section className="flex flex-col gap-2">
+                        <h2 className="text-white font-semibold text-lg">
+                            8. Vercel Analytics
+                        </h2>
+                        <p>
+                            Wir nutzen Vercel Analytics, einen Webanalysedienst der Vercel Inc.,
+                            340 S Lemon Ave #4133, Walnut, CA 91789, USA, zur Auswertung
+                            allgemeiner Zugriffsstatistiken (z.B. Seitenaufrufe, Herkunft der
+                            Zugriffe). Der Dienst verwendet keine Cookies und keine
+                            personenbezogenen Identifikatoren zur Wiedererkennung einzelner
+                            Besucher über mehrere Sitzungen hinweg. Zur technischen Auswertung
+                            wird ein aus der jeweiligen Anfrage gebildeter Hash-Wert verwendet,
+                            der nach 24 Stunden automatisch gelöscht wird.
+                        </p>
+                        <p>
+                            Da Vercel Inc. ein US-amerikanisches Unternehmen ist, kann es im
+                            Rahmen der Datenverarbeitung zu einer Übermittlung von Daten in die
+                            USA kommen. Vercel stützt sich hierbei auf die EU-Standardvertragsklauseln
+                            gemäß Art. 46 DSGVO. Rechtsgrundlage der Verarbeitung ist unser
+                            berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO) an der
+                            Analyse und Verbesserung unseres Angebots.
+                        </p>
+                        </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">8. Speicherdauer</h2>
+                        <h2 className="text-white font-semibold text-lg">9. Speicherdauer</h2>
                         <p>
                             Wir speichern personenbezogene Daten so lange, wie Ihr
                             Nutzerkonto besteht. Nach Löschung Ihres Nutzerkontos werden
@@ -162,7 +185,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">9. Ihre Rechte</h2>
+                        <h2 className="text-white font-semibold text-lg">10. Ihre Rechte</h2>
                         <p>Ihnen stehen folgende Rechte zu:</p>
                         <ul className="list-disc list-inside flex flex-col gap-1">
                             <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -183,7 +206,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">10. Kontakt</h2>
+                        <h2 className="text-white font-semibold text-lg">11. Kontakt</h2>
                         <p>
                             Bei Fragen zum Datenschutz erreichen Sie uns unter:{" "}
                             info@my-semmy.com

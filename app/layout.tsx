@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 import { getLanguage } from "@/public/locales";
 import Navbar from "./_components/Navbar";
@@ -27,6 +28,7 @@ export default function RootLayout({
         <div className="text-center pb-8">
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
