@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { ArrowLeft, ChevronDown, PenIcon, X } from "lucide-react";
 import { group_spendings, month_to_string } from "../utility/function";
 import { Spending } from "../utility/type";
 import { Date_Enum } from "../utility/enum";
+import { formatCurrency } from "@/lib/formatCurrency";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
-import { PenIcon, X } from "lucide-react";
 
 type Props = {
     selected_year: number;
@@ -40,63 +41,92 @@ export default function MonthsView({
 
     function handleEditSpending(spending: Spending, action: "edit" | "delete") {
         setSelectedSpending(spending);
-        if(action === "edit") {
+        if (action === "edit") {
             setEditModal(true);
-        }
-        else if (action === "delete") {
+        } else if (action === "delete") {
             setDeleteModal(true);
         }
     }
 
     return (
-        <div className="container mx-auto">
-            <div className="flex flex-row items-center justify-between">
-                <button className="hover:underline" onClick={onClose}>Zurück</button>
-                <p className="font-bold">{selected_year}</p>
+        <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+                <button
+                    onClick={onClose}
+                    aria-label="Zurück"
+                    className="flex items-center gap-2 text-slate-300 hover:text-white transition"
+                >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span className="text-sm">Zurück</span>
+                </button>
+                <p className="font-semibold text-white">{selected_year}</p>
             </div>
-            {sorted.map(([month, total]) => {
-                const monthSpendings = spending.filter(
-                    (entry) => entry.month === month
-                );
 
-                return (
-                    <div className="p-2 my-2 rounded glass" key={month}>
-                        <button title="Zeige Details" onClick={() => handleViewDetails(month)} className="w-full flex flex-row justify-between">
-                            <h1>{month_to_string(month)}</h1>
-                            <h1>{total / 100}€</h1>
-                        </button>
-                        {openMonths[month] && (
-                            <table className="w-full">
-                                <thead>
-                                    <tr className="bg-white text-black">
-                                        <th>Tag</th>
-                                        <th>Laden</th>
-                                        <th>Ausgaben</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+            <div className="flex flex-col gap-2">
+                {sorted.map(([month, total]) => {
+                    const monthSpendings = spending
+                        .filter((entry) => entry.month === month)
+                        .sort((a, b) => b.day - a.day);
+
+                    const isOpen = openMonths[month];
+
+                    return (
+                        <div key={month} className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
+                            <button
+                                title="Details anzeigen"
+                                onClick={() => handleViewDetails(month)}
+                                className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition"
+                            >
+                                <span className="text-white">{month_to_string(month)}</span>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-indigo-400 font-medium">
+                                        {formatCurrency(total / 100)}
+                                    </span>
+                                    <ChevronDown
+                                        className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                                    />
+                                </div>
+                            </button>
+
+                            {isOpen && (
+                                <div className="border-t border-white/10 flex flex-col">
                                     {monthSpendings.map((entry) => (
-                                        <tr className="table-row" key={entry.id}>
-                                            <td>{entry.day}</td>
-                                            <td>{entry.store}</td>
-                                            <td>{entry.amount}&euro;</td>
-                                            <td className="flex items-center justify-end gap-2">
-                                                <button title="Bearbeiten" onClick={() => handleEditSpending(entry, "edit")}>
+                                        <div
+                                            key={entry.id}
+                                            className="flex items-center justify-between px-4 py-3 border-b border-white/5 last:border-b-0"
+                                        >
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <span className="text-slate-400 text-sm w-6 shrink-0">{entry.day}.</span>
+                                                <span className="text-white truncate">{entry.store}</span>
+                                            </div>
+                                            <div className="flex items-center gap-3 shrink-0">
+                                                <span className="text-slate-200 text-sm">
+                                                    {formatCurrency(entry.amount)}
+                                                </span>
+                                                <button
+                                                    title="Bearbeiten"
+                                                    onClick={() => handleEditSpending(entry, "edit")}
+                                                    className="text-slate-400 hover:text-white transition"
+                                                >
                                                     <PenIcon className="w-4 h-4" />
                                                 </button>
-                                                <button title="Eintrag löschen" onClick={() => handleEditSpending(entry, "delete")}>
-                                                    <X className="w-6 h-6" />
+                                                <button
+                                                    title="Eintrag löschen"
+                                                    onClick={() => handleEditSpending(entry, "delete")}
+                                                    className="text-slate-400 hover:text-red-400 transition"
+                                                >
+                                                    <X className="w-4 h-4" />
                                                 </button>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </div>
                                     ))}
-                                </tbody>
-                            </table>
-                        )}
-                    </div>
-                );
-            })}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+
             {editModal && (
                 <EditModal spending={selectedSpending} onClose={() => setEditModal(false)} />
             )}
