@@ -32,7 +32,7 @@ export default function DateSelection(props: Props) {
     }
 
     return (
-        <div className="date-selection glass">
+        <div className="date-selection backdrop-blur-sm main-bg">
             {date_list.map((date) => (
                 <li key={date}>
                     <button type="button" className="w-full" onClick={() => props.onSelect(date)}>{date}</button>

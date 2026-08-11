@@ -35,7 +35,7 @@ export default function UserMenu({ email, avatar }: Props) {
 
       {/* DROPDOWN */}
       {open && (
-        <div className="absolute right-0 mt-2 min-w-48 glass rounded-xl p-2 shadow-xl z-50">
+        <div className="absolute right-0 mt-2 min-w-48 main-bg rounded-xl p-2 shadow-xl z-50">
           <div className="px-3 py-2 text-xs text-white/50 border-b border-white/10">
             {email ?? "Guest"}
           </div>
