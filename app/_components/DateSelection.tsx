@@ -1,6 +1,6 @@
 import { DateKey } from "../utility/type";
 
-type Props = {
+interface Props {
     type: DateKey;
     value: number;
     onSelect: (date: number) => void;
@@ -32,7 +32,7 @@ export default function DateSelection(props: Props) {
     }
 
     return (
-        <div className="date-selection backdrop-blur-sm main-bg">
+        <div className="date-selection backdrop-blur-sm bg-white/5 border border-white/10">
             {date_list.map((date) => (
                 <li key={date}>
                     <button type="button" className="w-full" onClick={() => props.onSelect(date)}>{date}</button>
