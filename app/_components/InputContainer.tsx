@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Date_Enum } from "../utility/enum";
 import DateComponent from "./DateComponent";
 import { useAddExpense } from "@/lib/hooks/useAddExpense";
 import { toDbDate } from "@/lib/date";
 
-type DraftExpense = {
+interface DraftExpense {
     year: number;
     month: number;
     day: number;
@@ -37,42 +37,40 @@ export default function InputContainer() {
     }
 
     return (
-        <div>
-            <form className="input-container text-white" action={() => handleSubmit(draft)}>
-                <div className="date-row">
-                    <div className="input-item date-item">
-                        <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, year: date}))} date_type={Date_Enum.YEAR} today={draft.year} />
-                    </div>
-                    <div className="input-item date-item">
-                        <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, month: date}))} date_type={Date_Enum.MONTH} today={draft.month} />
-                    </div>
-                    <div className="input-item date-item">
-                        <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, day: date}))} date_type={Date_Enum.DAY} today={draft.day} />
-                    </div>
+        <form className="bg-white/20 p-1.5 rounded-2xl text-white/90 font-mono flex flex-row justify-between items-center gap-1.5" action={() => handleSubmit(draft)}>
+            <div className="flex flex-row gap-2">
+                <div className="input-item date-item">
+                    <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, year: date}))} date_type={Date_Enum.YEAR} today={draft.year} />
                 </div>
-                <input 
-                    title="Eingeben in welchem Laden eingekauft wurde"
-                    name="store"
-                    required 
-                    value={draft.store}
-                    onChange={(e) => setDraft({...draft, store: e.target.value})} 
-                    className="input-item input-box" 
-                    type="text" 
-                    placeholder="Laden"
-                />
-                <input 
-                    title="Angeben wie viel ausgegeben wurde"
-                    name="amount"
-                    required 
-                    value={draft.amount === 0 ? "" : draft.amount}
-                    onChange={(e) => setDraft({...draft, amount: Number(e.target.value)})} 
-                    className="input-item input-box w-48" 
-                    type="number" 
-                    step="any"
-                    placeholder="Ausgabe"
-                />
-                <button type="submit" hidden />
-            </form>
-        </div>
+                <div className="input-item date-item">
+                    <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, month: date}))} date_type={Date_Enum.MONTH} today={draft.month} />
+                </div>
+                <div className="input-item date-item">
+                    <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, day: date}))} date_type={Date_Enum.DAY} today={draft.day} />
+                </div>
+            </div>
+            <input 
+                title="Eingeben in welchem Laden eingekauft wurde"
+                name="store"
+                required 
+                value={draft.store}
+                onChange={(e) => setDraft({...draft, store: e.target.value})} 
+                className="input-item text-3xl focus:outline focus:outline-indigo-400 w-2xs" 
+                type="text" 
+                placeholder="Laden"
+            />
+            <input 
+                title="Betrag eingeben"
+                name="amount"
+                required 
+                value={draft.amount === 0 ? "" : draft.amount}
+                onChange={(e) => setDraft({...draft, amount: Number(e.target.value)})} 
+                className="input-item text-3xl focus:outline focus:outline-indigo-400 w-48" 
+                type="number" 
+                step="any"
+                placeholder="Ausgabe"
+            />
+            <button type="submit" hidden />
+        </form>
     );
 }

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { logout } from "../../lib/services/auth";
 import Avatar from "../_ui/Avatar";
 
-type Props = {
+interface Props {
   email?: string | null;
   avatar?: string | null;
 };
@@ -35,7 +35,7 @@ export default function UserMenu({ email, avatar }: Props) {
 
       {/* DROPDOWN */}
       {open && (
-        <div className="absolute right-0 mt-2 min-w-48 main-bg rounded-xl p-2 shadow-xl z-50">
+        <div className="absolute right-0 mt-2 min-w-48 bg-white/5 border border-white/10 backdrop-blur-xs rounded-xl p-2 shadow-xl z-50">
           <div className="px-3 py-2 text-xs text-white/50 border-b border-white/10">
             {email ?? "Guest"}
           </div>
