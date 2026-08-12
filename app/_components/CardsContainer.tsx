@@ -2,7 +2,7 @@ import { formatCurrency } from "@/lib/formatCurrency";
 import { group_spendings } from "../utility/function";
 import { DateKey, Spending } from "../utility/type";
 
-type Props = {
+interface Props {
     type: DateKey;
     spendings: Spending[];
     onSelect: (year: number) => void;
