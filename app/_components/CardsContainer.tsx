@@ -16,7 +16,7 @@ export default function CardsContainer({
     const sorted = group_spendings(type, spendings, "desc");
 
     return (
-        <div className="max-w-5xl m-4 grid grid-cols-3 gap-4">
+        <div className="max-w-5xl m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {sorted.map(([year, total]) => (
                 <button
                     key={year}

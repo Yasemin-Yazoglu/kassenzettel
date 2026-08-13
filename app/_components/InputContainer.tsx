@@ -37,7 +37,7 @@ export default function InputContainer() {
     }
 
     return (
-        <form className="bg-white/20 p-1.5 rounded-2xl text-white/90 font-mono flex flex-row justify-between items-center gap-1.5" action={() => handleSubmit(draft)}>
+        <form className="bg-white/20 p-1.5 rounded-2xl text-white/90 font-mono flex flex-col mx-4 lg:mx-0 sm:flex-row justify-between items-center gap-1.5" action={() => handleSubmit(draft)}>
             <div className="flex flex-row gap-2">
                 <div className="input-item date-item">
                     <DateComponent getSelected={(date: number) => setDraft((prev) => ({...prev, year: date}))} date_type={Date_Enum.YEAR} today={draft.year} />
