@@ -3,15 +3,15 @@
 import { useMemo, useState } from "react";
 import CardsContainer from "./_components/CardsContainer";
 import InputContainer from "./_components/InputContainer";
-import Logo from "./_components/logo";
 import MonthsView from "./_components/MonthsView";
 import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
 import { useExpenses } from "@/lib/hooks/useExpenses";
 import { fromDbDate } from "@/lib/date";
+import Logo from "./_components/logo";
 
 export default function Home() {
-  const { data: expenses = [] } = useExpenses();
+  const { data: expenses = [], isLoading } = useExpenses();
   const [monthView, setMonthView] = useState<boolean>(false);
   const [selectedYear, setSelectedYear] = useState<number>(0);
 
@@ -36,27 +36,38 @@ export default function Home() {
 
   return (
     <div className="flex items-center justify-center">
-      <main className="flex flex-col items-center justify-between w-full gap-14">
-        {/* Logo container */}
-        <div className="mx-auto pt-32">
+      <main className="flex flex-col items-center justify-between w-full max-w-4xl gap-14">
+        {/* Header */}
+        <header className="mt-18">
           <Logo />
-        </div>
+        </header>
 
         {/* Input container */}
         <div className="mx-auto">
           <InputContainer />
         </div>
 
-        {/* Cards Container */}
-        {monthView ? (
-          <div className="w-full">
-            <MonthsView selected_year={selectedYear} onClose={() => setMonthView(false)} spending={spendings.filter((spending) => spending.year === selectedYear)} />
-          </div>
-        ) : (
-          <div className="mx-auto w-full">
-            <CardsContainer type={Date_Enum.YEAR} spendings={spendings} onSelect={(year: number) => handleSelection(year)} />
-          </div>
-        )}
+        <div className="mx-auto w-full max-w-3xl">
+          {isLoading ? (
+            <p className="text-slate-400 text-sm">Lädt...</p>
+          ) : monthView ? (
+            <MonthsView
+              selected_year={selectedYear}
+              onClose={() => setMonthView(false)}
+              spending={spendings.filter((s) => s.year === selectedYear)}
+            />
+          ) : spendings.length === 0 ? (
+            <p className="text-slate-400 text-sm">
+              Noch keine Ausgaben erfasst. Trage deine erste Ausgabe ein.
+            </p>
+          ) : (
+            <CardsContainer
+              type={Date_Enum.YEAR}
+              spendings={spendings}
+              onSelect={(year) => handleSelection(year)}
+            />
+          )}
+        </div>
       </main>
     </div>
   );
