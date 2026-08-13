@@ -14,7 +14,7 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
-            <div className="glass w-full max-w-md rounded-3xl p-8">
+            <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md p-8">
                 <div className="mt-6 text-center">
                     {/* TODO: Remove Link */}
                     <Link href="/">
