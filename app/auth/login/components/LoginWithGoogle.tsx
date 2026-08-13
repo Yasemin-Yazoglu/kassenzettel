@@ -3,7 +3,21 @@ import { loginWithGoogle } from "../actions";
 export function LoginWithGoogle() {
     return (
         <button
-            className="externalLogin"
+            className="
+                w-full
+                flex
+                items-center
+                justify-center
+                gap-3
+                py-3
+                rounded-xl
+                border
+                border-white/10
+                bg-white/10
+                hover:bg-white/15
+                text-white
+                transition
+            "
             onClick={loginWithGoogle}
         >
             <svg width="20" height="20" viewBox="0 0 48 48">

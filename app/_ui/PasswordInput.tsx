@@ -34,8 +34,8 @@ export default function PasswordInput({
 }: Props) {
     const [visible, setVisible] = useState(false);
 
-    const inputClass = variant === "dark" ? "authInput" : "lightInput";
-    const labelClass = variant === "dark" ? "authLabel" : "text-sm text-slate-600";
+    const inputClass = variant === "dark" ? "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-indigo-400 transition" : "lightInput";
+    const labelClass = variant === "dark" ? "text-sm text-slate-300" : "text-sm text-slate-600";
     const toggleClass = variant === "dark" ? "passwordToggleButton" : "passwordToggleButtonLight";
 
     const controlledProps =
@@ -48,7 +48,7 @@ export default function PasswordInput({
             <label htmlFor={id} className={labelClass}>
                 {label}
             </label>
-            <div className="passwordFieldWrapper">
+            <div className="relative">
                 <input
                     id={id}
                     name={name}

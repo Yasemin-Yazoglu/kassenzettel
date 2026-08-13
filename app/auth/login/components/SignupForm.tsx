@@ -27,7 +27,7 @@ export function SignupForm() {
             )}
 
             {/* Email field */}
-            <label htmlFor="email" className="authLabel" >
+            <label htmlFor="email" className="text-sm text-slate-300" >
                 Email
             </label>
             <input 
@@ -35,12 +35,25 @@ export function SignupForm() {
                 id="email" 
                 name="email" 
                 placeholder="deine@email.com"
-                className="authInput"
+                className="
+                    w-full
+                    px-4
+                    py-3
+                    rounded-xl
+                    bg-white/5
+                    border
+                    border-white/10
+                    text-white
+                    placeholder:text-slate-400
+                    outline-none
+                    focus:border-indigo-400
+                    transition
+                "
                 required
             />
 
             {/* Password field */}
-            <label htmlFor="password" className="authLabel">
+            <label htmlFor="password" className="text-sm text-slate-300">
                 Passwort
             </label>
             <div className="relative inputAutofillWrapper">
@@ -49,7 +62,20 @@ export function SignupForm() {
                     id="password" 
                     name="password" 
                     placeholder="Passwort"
-                    className="authInput"
+                    className="
+                        w-full
+                        px-4
+                        py-3
+                        rounded-xl
+                        bg-white/5
+                        border
+                        border-white/10
+                        text-white
+                        placeholder:text-slate-400
+                        outline-none
+                        focus:border-indigo-400
+                        transition
+                    "
                     required
                     minLength={8}
                     maxLength={72}
