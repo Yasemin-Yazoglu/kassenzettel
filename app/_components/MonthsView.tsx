@@ -49,7 +49,7 @@ export default function MonthsView({
     }
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mx-4 lg:mx-0">
             <div className="flex items-center justify-between">
                 <button
                     onClick={onClose}
