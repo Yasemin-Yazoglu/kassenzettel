@@ -30,7 +30,7 @@ export default function MonthsView({
         amount: 0,
     });
 
-    const sorted = group_spendings(Date_Enum.MONTH, spending, "asc");
+    const sorted = group_spendings(Date_Enum.MONTH, spending, "desc");
 
     const handleViewDetails = (month: number) => {
         setOpenMonths((prev) => ({
