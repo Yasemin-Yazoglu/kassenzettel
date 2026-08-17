@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { FormState } from "@/lib/types";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
+import { mapAuthError } from "@/lib/mapAuthError";
 
 export async function changePassword(
     prevState: FormState,
@@ -22,27 +23,13 @@ export async function changePassword(
 
     const supabase = await createClient();
 
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user?.email) {
-        return { message: "Nicht angemeldet. Bitte melde dich erneut an.", type: "error" };
-    }
-
-    // verify the current password by re-authenticating with it
-    const { error: reauthError } = await supabase.auth.signInWithPassword({
-        email: user.email,
-        password: result.data.currentPassword,
-    });
-
-    if (reauthError) {
-        return { message: "Das aktuelle Passwort ist falsch.", type: "error" };
-    }
-
     const { error } = await supabase.auth.updateUser({
+        current_password: result.data.currentPassword,
         password: result.data.newPassword,
     });
 
     if (error) {
-        return { message: error.message, type: "error" };
+        return { message: mapAuthError(error.message), type: "error" };
     }
 
     return { message: "Passwort erfolgreich geändert.", type: "success" };
