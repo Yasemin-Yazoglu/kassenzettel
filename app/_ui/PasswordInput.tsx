@@ -48,7 +48,7 @@ export default function PasswordInput({
             <label htmlFor={id} className={labelClass}>
                 {label}
             </label>
-            <div className="relative">
+            <div className="relative inputAutofillWrapper">
                 <input
                     id={id}
                     name={name}
