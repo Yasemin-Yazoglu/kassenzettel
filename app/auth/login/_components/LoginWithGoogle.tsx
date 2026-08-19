@@ -1,24 +1,17 @@
+"use client";
+
+import { useTransition } from "react";
 import { loginWithGoogle } from "../actions";
 
 export function LoginWithGoogle() {
+    const [isPending, startTransition] = useTransition();
+
     return (
         <button
-            className="
-                w-full
-                flex
-                items-center
-                justify-center
-                gap-3
-                py-3
-                rounded-xl
-                border
-                border-white/10
-                bg-white/10
-                hover:bg-white/15
-                text-white
-                transition
-            "
-            onClick={loginWithGoogle}
+            type="button"
+            disabled={isPending}
+            onClick={() => startTransition(() => loginWithGoogle())}
+            className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-white/10 bg-white/10 hover:bg-white/15 disabled:opacity-50 disabled:cursor-not-allowed text-white transition"
         >
             <svg width="20" height="20" viewBox="0 0 48 48">
                 <path
@@ -38,7 +31,7 @@ export function LoginWithGoogle() {
                     d="M43.611 20.083H42V20H24v8h11.303a12.046 12.046 0 01-4.084 5.57h.003l6.19 5.238C36.971 38.482 44 33 44 24c0-1.341-.138-2.651-.389-3.917z"
                 />
             </svg>
-            Mit Google fortfahren
+            {isPending ? "Weiterleiten..." : "Mit Google fortfahren"}
         </button>
     );
 }
