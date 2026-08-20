@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function CheckEmailPage() {
     return (
         <div className="min-h-screen flex justify-center items-start pt-24">
-            <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 text-center">
+            <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 text-center mx-4">
                 <h1 className="text-lg font-medium text-white">Bestätige deine Email-Adresse</h1>
                 <p className="text-sm text-white/60 mt-2">
                     Wir haben dir einen Bestätigungslink geschickt. Bitte klicke auf den Link
