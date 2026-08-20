@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/lib/services/auth";
-import Avatar from "@/app/_ui/Avatar";
+import Avatar from "@/components/ui/Avatar";
 
 interface Props {
     email?: string | null;

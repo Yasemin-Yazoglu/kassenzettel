@@ -1,7 +1,7 @@
 "use client";
 
 import type { User } from "@supabase/supabase-js";
-import Avatar from "@/app/_ui/Avatar";
+import Avatar from "@/components/ui/Avatar";
 
 interface Props {
     user: User;
