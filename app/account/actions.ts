@@ -29,7 +29,7 @@ export async function changePassword(
     });
 
     if (error) {
-        return { message: mapAuthError(error.message), type: "error" };
+        return { message: mapAuthError(error), type: "error" };
     }
 
     return { message: "Passwort erfolgreich geändert.", type: "success" };

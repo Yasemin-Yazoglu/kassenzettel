@@ -35,7 +35,7 @@ export async function login(prevState: FormState, formData: FormData): Promise<F
     const { error } = await supabase.auth.signInWithPassword(result.data);
 
     if (error) {
-        return { message: mapAuthError(error.message), type: 'error' };
+        return { message: mapAuthError(error), type: 'error' };
     }
 
     revalidatePath('/', 'layout');
@@ -57,7 +57,7 @@ export async function signup(prevState: FormState, formData: FormData): Promise<
     const { error } = await supabase.auth.signUp(result.data);
 
     if (error) {
-        return { message: mapAuthError(error.message), type: 'error' };
+        return { message: mapAuthError(error), type: 'error' };
     }
 
     return {
@@ -109,7 +109,7 @@ export async function requestPasswordReset(
     });
 
     if (error) {
-      return { message: mapAuthError(error.message), type: 'error' };
+      return { message: mapAuthError(error), type: 'error' };
     }
 
     return {
@@ -136,7 +136,7 @@ export async function updatePassword(
     const { error } = await supabase.auth.updateUser({ password: result.data.password });
 
     if (error) {
-        return { message: mapAuthError(error.message), type: 'error' };
+        return { message: mapAuthError(error), type: 'error' };
     }
 
     redirect('/');
