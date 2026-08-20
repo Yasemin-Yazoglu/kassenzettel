@@ -6,6 +6,10 @@ const KNOWN_ERROR_CODES: Record<string, string> = {
     user_already_exists: "Für diese Email-Adresse existiert bereits ein Konto.",
     current_password_required: "Aktuelles Passwort erforderlich beim Festlegen eines neuen Passworts.",
     current_password_invalid: "Aktuelles Passwort erforderlich beim Festlegen eines neuen Passworts.",
+    weak_password: "Das Passwort ist zu schwach. Bitte wähle ein stärkeres Passwort.",
+    same_password: "Das neue Passwort muss sich vom aktuellen unterscheiden.",
+    over_email_send_rate_limit: "Zu viele Anfragen. Bitte warte kurz, bevor du es erneut versuchst.",
+    otp_expired: "Der Link ist abgelaufen. Bitte fordere einen neuen an.",
 };
 
 export function mapAuthError(error: unknown): string {
