@@ -3,7 +3,7 @@ import { updateSession } from "@/lib/supabase/proxy";
 
 const PROTECTED_PATHS = ["/auth/update-password", "/analytics", "/account"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const { supabaseResponse, claims } = await updateSession(request);
 
     const isProtectedRoute = PROTECTED_PATHS.some((path) =>
@@ -21,7 +21,14 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: [
-        "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-    ],
-};
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}
