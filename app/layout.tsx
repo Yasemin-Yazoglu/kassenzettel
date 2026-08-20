@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { getLanguage } from "@/public/locales";
 import Navbar from "@/components/Navbar";
-import Footer from "./_components/Footer";
+import Footer from "@/components/Footer";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
