@@ -10,7 +10,10 @@ const KNOWN_ERROR_CODES: Record<string, string> = {
 
 export function mapAuthError(error: unknown): string {
     if (isAuthApiError(error) && error.code) {
-        return KNOWN_ERROR_CODES[error.code] ?? "Etwas ist schief gelaufen. Bitte versuche es erneut.";
+        const message = KNOWN_ERROR_CODES[error.code];
+        if (message) return message;
+
+        console.error("Unmapped Supabase auth error code:", error.code);
     }
 
     return "Etwas ist schief gelaufen. Bitte versuche es erneut.";
