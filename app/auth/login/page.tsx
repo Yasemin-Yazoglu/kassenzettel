@@ -16,7 +16,7 @@ export default function LoginPage() {
     const oauthError = searchParams.get("error");
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex justify-center items-start pt-16">
             <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 mx-4">
                 <div className="text-center">
                     <Link href="/">

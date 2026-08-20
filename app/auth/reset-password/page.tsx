@@ -14,7 +14,7 @@ export default function ResetPasswordPage() {
     const [state, formAction] = useActionState(requestPasswordReset, initialState);
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex justify-center items-start pt-24">
             <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 m-4">
                 <div className="text-center">
                     <Link href="/">
