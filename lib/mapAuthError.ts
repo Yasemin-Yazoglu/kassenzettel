@@ -12,13 +12,22 @@ const KNOWN_ERROR_CODES: Record<string, string> = {
     otp_expired: "Der Link ist abgelaufen. Bitte fordere einen neuen an.",
 };
 
+const FALLBACK_MESSAGE = "Etwas ist schief gelaufen. Bitte versuche es erneut.";
+
+export function mapErrorCode(code: string | null | undefined): string {
+    if (!code) return FALLBACK_MESSAGE;
+
+    const message = KNOWN_ERROR_CODES[code];
+    if (message) return message;
+
+    console.error("Unmapped Supabase auth error code:", code);
+    return FALLBACK_MESSAGE;
+}
+
 export function mapAuthError(error: unknown): string {
     if (isAuthApiError(error) && error.code) {
-        const message = KNOWN_ERROR_CODES[error.code];
-        if (message) return message;
-
-        console.error("Unmapped Supabase auth error code:", error.code);
+        return mapErrorCode(error.code);
     }
 
-    return "Etwas ist schief gelaufen. Bitte versuche es erneut.";
+    return FALLBACK_MESSAGE;
 }
