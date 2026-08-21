@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo/kassenzettel.svg";
@@ -9,11 +8,10 @@ import { LoginForm } from "./_components/LoginForm";
 import { SignupForm } from "./_components/SignupForm";
 import { LoginWithGoogle } from "./_components/LoginWithGoogle";
 import FormStateToggle from "./_components/FormStateToggle";
+import { LoginError } from "./_components/LoginError";
 
 export default function LoginPage() {
     const [formState, setFormState] = useState<"login" | "signup">("login");
-    const searchParams = useSearchParams();
-    const oauthError = searchParams.get("error");
 
     return (
         <div className="min-h-screen flex justify-center items-start pt-16">
@@ -29,11 +27,9 @@ export default function LoginPage() {
 
                 <FormStateToggle value={formState} onChange={setFormState} />
 
-                {oauthError && (
-                    <p className="mb-5 block px-4 py-3 rounded-xl border text-red-400 bg-red-400/5 border-red-400">
-                        {oauthError}
-                    </p>
-                )}
+                <Suspense fallback={null}>
+                    <LoginError />
+                </Suspense>
 
                 {formState === "login" ? <LoginForm /> : <SignupForm />}
 
