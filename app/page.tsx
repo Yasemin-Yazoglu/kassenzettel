@@ -57,7 +57,7 @@ export default function Home() {
               spending={spendings.filter((s) => s.year === selectedYear)}
             />
           ) : spendings.length === 0 ? (
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-400 text-sm mx-4">
               Noch keine Ausgaben erfasst. Trage deine erste Ausgabe ein.
             </p>
           ) : (
