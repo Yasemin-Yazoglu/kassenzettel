@@ -55,6 +55,7 @@ export default function Graph({
                 tickFormatter={valueFormatter}
             />
                 <Tooltip
+                    labelFormatter={(_label, payload) => payload?.[0]?.payload?.range ?? _label}
                     formatter={(value) =>
                         typeof value === "number" && valueFormatter ? valueFormatter(value) : value
                     }
@@ -83,6 +84,7 @@ export default function Graph({
                 tickFormatter={valueFormatter}
             />
                 <Tooltip
+                    labelFormatter={(_label, payload) => payload?.[0]?.payload?.range ?? _label}
                     formatter={(value) =>
                         typeof value === "number" && valueFormatter ? valueFormatter(value) : value
                     }
