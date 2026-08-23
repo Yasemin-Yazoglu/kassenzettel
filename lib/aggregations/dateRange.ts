@@ -1,4 +1,4 @@
-import { getISOWeek, type Period } from "./period";
+import { getWeekStart, addDays, formatDayMonth, type Period } from "./period";
 
 export type PeriodRange = {
     start: Date;
@@ -11,8 +11,8 @@ export function getPeriodRange(period: Period, anchor: Date): PeriodRange {
         case "week": {
             const start = getWeekStart(anchor);
             const end = addDays(start, 6);
-            const { year, week } = getISOWeek(start);
-            return { start, end, label: `KW ${week} · ${year}` };
+            const range = `${formatDayMonth(start)} - ${formatDayMonth(end)}`;
+            return { start, end, label: range };
         }
         case "month": {
             const start = new Date(anchor.getFullYear(), anchor.getMonth(), 1);
@@ -34,18 +34,4 @@ export function shiftAnchor(period: Period, anchor: Date, direction: 1 | -1): Da
     if (period === "month") next.setMonth(next.getMonth() + direction);
     if (period === "year") next.setFullYear(next.getFullYear() + direction);
     return next;
-}
-
-function getWeekStart(date: Date): Date {
-    const d = new Date(date);
-    const day = (d.getDay() + 6) % 7;
-    d.setDate(d.getDate() - day);
-    d.setHours(0, 0, 0, 0);
-    return d;
-}
-
-function addDays(date: Date, days: number): Date {
-    const d = new Date(date);
-    d.setDate(d.getDate() + days);
-    return d;
 }
