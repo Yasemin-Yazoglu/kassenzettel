@@ -8,7 +8,7 @@ import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
 import { useExpenses } from "@/lib/hooks/useExpenses";
 import { fromDbDate } from "@/lib/date";
-import Logo from "./_components/logo";
+import Logo from "@/components/ui/Logo";
 
 export default function Home() {
   const { data: expenses = [], isLoading } = useExpenses();
@@ -36,14 +36,14 @@ export default function Home() {
 
   return (
     <div className="flex items-center justify-center">
-      <main className="flex flex-col items-center justify-between w-full max-w-4xl gap-14">
+      <main className="flex flex-col items-center justify-between w-full max-w-4xl gap-16">
         {/* Header */}
-        <header className="mt-18">
-          <Logo />
+        <header className="mt-26 flex gap-4">
+          <Logo variant="full" color="light" className="w-64 lg:w-90 mx-auto" />
         </header>
 
         {/* Input container */}
-        <div className="mx-auto">
+        <div className="mx-auto mt-4">
           <InputContainer />
         </div>
 

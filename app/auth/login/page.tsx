@@ -1,14 +1,13 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/logo/kassenzettel.svg";
 import { LoginForm } from "./_components/LoginForm";
 import { SignupForm } from "./_components/SignupForm";
 import { LoginWithGoogle } from "./_components/LoginWithGoogle";
 import FormStateToggle from "./_components/FormStateToggle";
 import { LoginError } from "./_components/LoginError";
+import Logo from "@/components/ui/Logo";
 
 export default function LoginPage() {
     const [formState, setFormState] = useState<"login" | "signup">("login");
@@ -16,9 +15,9 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex justify-center items-start pt-16">
             <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 mx-4">
-                <div className="text-center">
+                <div className="text-center text-white">
                     <Link href="/">
-                        <Image src={Logo} alt="Kassenzettel" className="w-64 mx-auto" />
+                        <Logo variant="full" color="light" className="w-64 mx-auto" />
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">
