@@ -1,11 +1,8 @@
 import Image, { StaticImageData } from "next/image";
-// TODO: Create dark-colored variants of the full and mark logos,
-// and update the imports below to point at the new files
-// (currently FullLight and MarkLight both reuse the light SVGs as placeholders).
-import FullDark from "@/public/logo/kassenzettel-full.svg";
-import FullLight from "@/public/logo/kassenzettel-full.svg";
-import MarkDark from "@/public/logo/kassenzettel-mark.svg";
-import MarkLight from "@/public/logo/kassenzettel-mark.svg";
+import FullDark from "@/public/logo/kassenzettel-full-dark.svg";
+import FullLight from "@/public/logo/kassenzettel-full-light.svg";
+import MarkDark from "@/public/logo/kassenzettel-mark-dark.svg";
+import MarkLight from "@/public/logo/kassenzettel-mark-light.svg";
 
 type LogoVariant = "full" | "mark";
 type LogoColor = "dark" | "light";
