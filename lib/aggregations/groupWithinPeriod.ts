@@ -1,14 +1,7 @@
 import type { Expense } from "@/lib/types";
 import { toDbDate } from "@/lib/date";
-import { getPeriodBucket, type Period } from "./period";
+import { getPeriodBucket, type Period, type PeriodDataPoint } from "./period";
 import { getPeriodRange } from "./dateRange";
-
-export type PeriodDataPoint = {
-    key: string;
-    label: string;
-    total: number;
-    count: number;
-};
 
 export function groupWithinPeriod(expenses: Expense[], period: Period, anchor: Date): PeriodDataPoint[] {
     const { start, end } = getPeriodRange(period, anchor);
@@ -26,7 +19,7 @@ export function groupWithinPeriod(expenses: Expense[], period: Period, anchor: D
         }
     }
 
-  return Array.from(buckets.values());
+    return Array.from(buckets.values());
 }
 
 function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, PeriodDataPoint> {
@@ -38,13 +31,13 @@ function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, 
             const d = new Date(start);
             d.setDate(d.getDate() + i);
             const key = toIsoDate(d);
-            buckets.set(key, { key, label: dayLabels[i], total: 0, count: 0 });
+            buckets.set(key, { key, label: dayLabels[i], range: dayLabels[i], total: 0, count: 0 });
         }
     } else if (period === "month") {
         const cursor = new Date(start);
         while (cursor <= end) {
-            const { key, label } = getPeriodBucket(toIsoDate(cursor), "week");
-            if (!buckets.has(key)) buckets.set(key, { key, label, total: 0, count: 0 });
+            const { key, label, range } = getPeriodBucket(toIsoDate(cursor), "week");
+            if (!buckets.has(key)) buckets.set(key, { key, label, range, total: 0, count: 0 });
             cursor.setDate(cursor.getDate() + 1);
         }
     } else {
@@ -52,7 +45,8 @@ function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, 
         for (let m = 0; m < 12; m++) {
             const d = new Date(start.getFullYear(), m, 1);
             const key = `${start.getFullYear()}-${String(m + 1).padStart(2, "0")}`;
-            buckets.set(key, { key, label: monthLabel.format(d), total: 0, count: 0 });
+            const label = monthLabel.format(d);
+            buckets.set(key, { key, label, range: label, total: 0, count: 0 });
         }
     }
 
