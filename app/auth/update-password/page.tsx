@@ -1,13 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/logo/kassenzettel.svg";
 import PasswordInput from "@/app/_ui/PasswordInput";
 import { updatePassword } from "../login/actions";
 import { SubmitButton } from "../login/_components/SubmitButton";
 import type { FormState } from "../login/types";
+import Logo from "@/components/ui/Logo";
 
 const initialState: FormState = { message: "" };
 
@@ -19,7 +18,7 @@ export default function UpdatePasswordPage() {
             <div className="rounded-2xl bg-white/5 border border-white/10 w-full max-w-md py-8 px-6 mx-4">
                 <div className="text-center">
                     <Link href="/">
-                        <Image src={Logo} alt="Kassenzettel" className="w-64 mx-auto" />
+                        <Logo variant="full" color="light" className="w-64 mx-auto" />
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">

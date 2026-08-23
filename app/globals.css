@@ -33,10 +33,6 @@ button {
   cursor: pointer;
 }
 
-.logo {
-  font-size: 90px;
-}
-
 .input-item {
   background-color: var(--input-background);
   color: var(--input-foreground);
