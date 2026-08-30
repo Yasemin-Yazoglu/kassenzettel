@@ -16,12 +16,21 @@ export default function HeroTitle() {
     const [user, setUser] = useState<User | null | undefined>(undefined);
     const [displayed, setDisplayed] = useState("");
     const [phase, setPhase] = useState<Phase>("typing1");
+    const [isSmallPhone, setIsSmallPhone] = useState(false);
 
     useEffect(() => {
         supabase.auth.getUser().then(({ data }) => setUser(data.user));
+
+        const updateSize = () => {
+            setIsSmallPhone(window.innerWidth < 430);
+        };
+
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        return () => window.removeEventListener("resize", updateSize);
     }, []);
 
-    const line1 = user ? `${getGreeting()}, ${getName(user)}` : getGreeting();
+    const line1 = user && !isSmallPhone ? `${getGreeting()}, ${getName(user)}` : getGreeting();
     const line2 = "Was hast du heute ausgegeben?";
     const loading = user === undefined;
 
@@ -33,6 +42,12 @@ export default function HeroTitle() {
                 const t = setTimeout(() => setDisplayed(line1.slice(0, displayed.length + 1)), TYPE_SPEED);
                 return () => clearTimeout(t);
             }
+
+            if (isSmallPhone) {
+                setPhase("idle");
+                return;
+            }
+
             const t = setTimeout(() => setPhase("pausing"), HOLD_BEFORE_DELETE);
             return () => clearTimeout(t);
         }
@@ -58,19 +73,42 @@ export default function HeroTitle() {
             }
             setPhase("idle");
         }
-    }, [displayed, phase, loading, line1, line2]);
+    }, [displayed, phase, loading, line1, line2, isSmallPhone]);
 
     const cursorBlinks = phase === "pausing" || phase === "idle" || loading;
 
     return (
-        <h1 className="flex items-center justify-center gap-3 text-4xl tracking-tight text-white/90 sm:text-4xl">
+        <h1 className="flex w-full justify-center text-4xl tracking-tight text-white/90 py-4 px-8">
             <span className="sr-only">{line2}</span>
-            <span aria-hidden="true" className="h-[1.5em] w-[2px] bg-white/50" />
-            <span aria-hidden="true">{displayed}</span>
-            <span
-                aria-hidden="true"
-                className={`h-[1.5em] w-[4px] bg-indigo-400 ${cursorBlinks ? "animate-blink transition" : "opacity-100"}`}
-            />
+    
+            <span className="flex max-w-full items-center gap-3">
+                {/* Left bar */}
+                <span
+                    aria-hidden="true"
+                    className="h-[1.5em] w-[2px] shrink-0 bg-white/50"
+                />
+    
+                {/* Text viewport */}
+                <span
+                    aria-hidden="true"
+                    className="relative overflow-hidden whitespace-nowrap "
+                    style={{ direction: "rtl" }}
+                >
+                    <span className="inline-block min-w-full text-center" style={{ direction: "ltr" }}>
+                        {displayed}
+                    </span>
+                </span>
+    
+                {/* Right bar */}
+                <span
+                    aria-hidden="true"
+                    className={`h-[1.5em] w-[4px] shrink-0 bg-indigo-400 ${
+                        cursorBlinks
+                            ? "animate-blink transition"
+                            : "opacity-100"
+                    }`}
+                />
+            </span>
         </h1>
     );
 }
