@@ -4,7 +4,7 @@ import { getGreeting } from "@/lib/getGreeting";
 import { getName } from "@/lib/getName";
 import { supabase } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const TYPE_SPEED = 60;
 const DELETE_SPEED = 35;
@@ -33,6 +33,16 @@ export default function HeroTitle() {
     const line1 = user && !isSmallPhone ? `${getGreeting()}, ${getName(user)}` : getGreeting();
     const line2 = "Was hast du heute ausgegeben?";
     const loading = user === undefined;
+
+    const prevLine1 = useRef(line1);
+    useEffect(() => {
+        if (loading) return;
+        if (prevLine1.current === line1) return;
+
+        prevLine1.current = line1;
+        setDisplayed("");
+        setPhase("typing1");
+    }, [line1, loading]);
 
     useEffect(() => {
         if (loading) return;
