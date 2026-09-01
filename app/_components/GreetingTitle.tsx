@@ -12,7 +12,7 @@ const HOLD_BEFORE_DELETE = 1400;
 
 type Phase = "typing1" | "pausing" | "deleting" | "typing2" | "idle";
 
-export default function HeroTitle() {
+export default function GreetingTitle() {
     const [user, setUser] = useState<User | null | undefined>(undefined);
     const [displayed, setDisplayed] = useState("");
     const [phase, setPhase] = useState<Phase>("typing1");
