@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { LoginForm } from "./_components/LoginForm";
 import { SignupForm } from "./_components/SignupForm";
@@ -9,8 +10,21 @@ import FormStateToggle from "./_components/FormStateToggle";
 import { LoginError } from "./_components/LoginError";
 import Logo from "@/components/ui/Logo";
 
-export default function LoginPage() {
-    const [formState, setFormState] = useState<"login" | "signup">("login");
+function LoginPageContent() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const initialState = searchParams.get("mode") === "signup" ? "signup" : "login";
+    const [formState, setFormState] = useState<"login" | "signup">(initialState);
+
+    const handleFormStateChange = (next: "login" | "signup") => {
+        setFormState(next);
+
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("mode", next);
+
+        router.replace(`/auth/login?${params.toString()}`, { scroll: false });
+    };
 
     return (
         <div className="min-h-screen flex justify-center items-start pt-16">
@@ -24,11 +38,9 @@ export default function LoginPage() {
                     Verfolge und analysiere Deine Ausgaben
                 </p>
 
-                <FormStateToggle value={formState} onChange={setFormState} />
+                <FormStateToggle value={formState} onChange={handleFormStateChange} />
 
-                <Suspense fallback={null}>
-                    <LoginError />
-                </Suspense>
+                <LoginError />
 
                 {formState === "login" ? <LoginForm /> : <SignupForm />}
 
@@ -50,5 +62,13 @@ export default function LoginPage() {
                 </p>
             </div>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={null}>
+            <LoginPageContent />
+        </Suspense>
     );
 }
