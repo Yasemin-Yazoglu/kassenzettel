@@ -2,9 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase/client'
 import type { Expense } from '@/lib/types'
 
-export function useExpenses() {
+interface Options {
+    enabled?: boolean
+}
+
+export function useExpenses({ enabled = true }: Options = {}) {
     return useQuery<Expense[]>({
         queryKey: ['expenses'],
+        enabled,
         queryFn: async () => {
         const { data, error } = await supabase
             .from('expense')
