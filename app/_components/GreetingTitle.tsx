@@ -2,8 +2,7 @@
 
 import { getGreeting } from "@/lib/getGreeting";
 import { getName } from "@/lib/getName";
-import { supabase } from "@/lib/supabase/client";
-import { User } from "@supabase/supabase-js";
+import { useUser } from "@/lib/hooks/useUser";
 import { useEffect, useState, useRef } from "react";
 
 const TYPE_SPEED = 60;
@@ -13,14 +12,12 @@ const HOLD_BEFORE_DELETE = 1400;
 type Phase = "typing1" | "pausing" | "deleting" | "typing2" | "idle";
 
 export default function GreetingTitle() {
-    const [user, setUser] = useState<User | null | undefined>(undefined);
+    const user = useUser();
     const [displayed, setDisplayed] = useState("");
     const [phase, setPhase] = useState<Phase>("typing1");
     const [isSmallPhone, setIsSmallPhone] = useState(false);
 
     useEffect(() => {
-        supabase.auth.getUser().then(({ data }) => setUser(data.user));
-
         const updateSize = () => {
             setIsSmallPhone(window.innerWidth < 430);
         };
