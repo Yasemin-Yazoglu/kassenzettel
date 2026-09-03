@@ -120,6 +120,14 @@ button {
   border-color: rgb(129 140 248); /* indigo-400 */
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
 /* tablet */
 @media only screen and (max-width: 950px) {
   .logo {

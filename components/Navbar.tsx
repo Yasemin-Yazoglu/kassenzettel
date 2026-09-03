@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import UserMenu from "./UserMenu";
+import Logo from "./ui/Logo";
 
 export default async function Navbar() {
     const supabase = await createClient();
@@ -8,15 +9,17 @@ export default async function Navbar() {
     const claims = data?.claims;
 
     return (
-        <nav className="flex flex-row justify-end p-4">
+        <nav className="flex flex-row justify-between py-4 px-4 sm:px-8">
+            <Link href="/" aria-label="Zur Startseite" className="shrink-0">
+                <Logo variant="full" color="light" className="hidden w-36 sm:block" />
+                <Logo variant="mark" color="light" className="w-9 sm:hidden" />
+            </Link>
             {claims ? (
-                <div className="mr-4">
-                    <UserMenu
-                        email={claims.email as string}
-                        avatar={claims.user_metadata?.avatar_url as string | undefined}
-                        name={claims.user_metadata?.full_name as string | undefined}
-                    />
-                </div>
+                <UserMenu
+                    email={claims.email as string}
+                    avatar={claims.user_metadata?.avatar_url as string | undefined}
+                    name={claims.user_metadata?.full_name as string | undefined}
+                />
             ) : (
                 <Link
                     href="/auth/login"
