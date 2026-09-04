@@ -16,20 +16,21 @@ export default function DatenschutzPage() {
                     </Link>
                     <h1 className="text-white text-2xl font-semibold">Datenschutzerklärung</h1>
                 </div>
-                <div>
-                    <p>
-                        Diese Datenschutzerklärung gilt für die Nutzung der App „Kassenzettel", 
-                        mit der Nutzer ihre Lebensmittelausgaben erfassen und auswerten können.
-                    </p>
-                </div>
 
                 <article className="rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col gap-6 text-slate-200 leading-relaxed">
                     <p className="text-sm text-slate-400">
                         Stand: 04. September 2026
                     </p>
 
+                    <p>
+                        Diese Datenschutzerklärung gilt für die Nutzung der Anwendung 
+                        &bdquo;Kassenzettel&ldquo; (nachfolgend &bdquo;App&ldquo; oder &bdquo;wir&ldquo;), erreichbar unter 
+                        kassenzettel.my-semmy.com, mit der Nutzer ihre Lebensmittelausgaben 
+                        erfassen und auswerten können.
+                    </p>
+
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">1. Verantwortlicher</h2>
+                        <h2 id="verantwortlicher" className="text-white font-semibold text-lg">1. Verantwortlicher</h2>
                         <p>
                             Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
                         </p>
@@ -42,7 +43,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">2. Allgemeines zur Datenverarbeitung</h2>
+                        <h2 id="allgemeines" className="text-white font-semibold text-lg">2. Allgemeines zur Datenverarbeitung</h2>
                         <p>
                             Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich
                             nur, soweit dies zur Bereitstellung einer funktionsfähigen
@@ -54,7 +55,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">3. Registrierung und Nutzerkonto</h2>
+                        <h2 id="registrierung" className="text-white font-semibold text-lg">3. Registrierung und Nutzerkonto</h2>
                         <p>
                             Zur Nutzung der App ist die Erstellung eines Nutzerkontos
                             erforderlich. Dabei erheben wir folgende Daten:
@@ -72,7 +73,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">4. Anmeldung über Google (OAuth)</h2>
+                        <h2 id="google-oauth" className="text-white font-semibold text-lg">4. Anmeldung über Google (OAuth)</h2>
                         <p>
                             Kassenzettel bietet die Möglichkeit, sich mit einem bestehenden 
                             Google-Konto anzumelden. Anbieter ist Google Ireland Limited, 
@@ -85,11 +86,23 @@ export default function DatenschutzPage() {
                             Ihnen freigegebenen Kontoinformationen (E-Mail-Adresse, Name und 
                             ggf. Profilbild). Diese Daten werden ausschließlich zur Erstellung 
                             und Verwaltung Ihres Nutzerkontos sowie zur Personalisierung der 
-                            App-Oberfläche (z. B. Begrüßung mit Ihrem Namen) verwendet.
+                            App-Oberfläche (z. B. Begrüßung mit Ihrem Namen) verwendet. Eine 
+                            Nutzung für Werbezwecke findet nicht statt.
                         </p>
                         <p>
-                            Wir geben die über Google erhaltenen Daten nicht an Dritte weiter 
-                            und nutzen sie nicht für Werbezwecke.
+                            Wir geben die über Google erhaltenen Daten 
+                            nicht an Dritte weiter und verkaufen sie nicht. Eine Weitergabe 
+                            erfolgt ausschließlich an unsere in dieser Erklärung genannten 
+                            Auftragsverarbeiter (Supabase, Vercel), soweit dies für den Betrieb 
+                            der App technisch erforderlich ist.
+                        </p>
+                        <p>
+                            Die von Google übermittelten Daten (E-Mail-
+                            Adresse, Name, Profilbild-URL) werden in unserer Datenbank bei 
+                            Supabase auf Servern innerhalb der Europäischen Union gespeichert 
+                            (siehe Abschnitt 6). Die Speicherung erfolgt für die Dauer des 
+                            Bestehens Ihres Nutzerkontos. Nach Löschung Ihres Nutzerkontos 
+                            werden diese Daten unverzüglich gelöscht (siehe Abschnitt 9).
                         </p>
                         <p>
                             Sie können den Zugriff von Kassenzettel auf Ihr Google-Konto 
@@ -122,7 +135,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">5. Ausgabendaten</h2>
+                        <h2 id="ausgabendaten" className="text-white font-semibold text-lg">5. Ausgabendaten</h2>
                         <p>
                             Zur Kernfunktion der App gehört die Erfassung persönlicher
                             Ausgaben. Hierbei speichern wir die von Ihnen eingegebenen
@@ -143,7 +156,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">6. Hosting und Infrastruktur</h2>
+                        <h2 id="hosting" className="text-white font-semibold text-lg">6. Hosting und Infrastruktur</h2>
                         <p>
                             <strong>Datenbank und Authentifizierung:</strong> Wir nutzen für
                             die Speicherung von Nutzer- und Ausgabendaten sowie für die
@@ -163,7 +176,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">7. Cookies</h2>
+                        <h2 id="cookies" className="text-white font-semibold text-lg">7. Cookies</h2>
                         <p>
                             Wir setzen technisch notwendige Cookies ein, um Sie über Ihre
                             Sitzung hinweg angemeldet zu halten (Session-Cookies zur
@@ -174,7 +187,7 @@ export default function DatenschutzPage() {
                         </p>
                     </section>
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">
+                        <h2 id="vercel-analytics" className="text-white font-semibold text-lg">
                             8. Vercel Analytics
                         </h2>
                         <p>
@@ -198,7 +211,7 @@ export default function DatenschutzPage() {
                         </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">9. Speicherdauer</h2>
+                        <h2 id="speicherdauer" className="text-white font-semibold text-lg">9. Speicherdauer</h2>
                         <p>
                             Wir speichern personenbezogene Daten so lange, wie Ihr
                             Nutzerkonto besteht. Nach Löschung Ihres Nutzerkontos werden
@@ -208,7 +221,7 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">10. Ihre Rechte</h2>
+                        <h2 id="rechte" className="text-white font-semibold text-lg">10. Ihre Rechte</h2>
                         <p>Ihnen stehen folgende Rechte zu:</p>
                         <ul className="list-disc list-inside flex flex-col gap-1">
                             <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -229,7 +242,20 @@ export default function DatenschutzPage() {
                     </section>
 
                     <section className="flex flex-col gap-2">
-                        <h2 className="text-white font-semibold text-lg">11. Kontakt</h2>
+                        <h2 id="aenderungen" className="text-white font-semibold text-lg">11. Änderung dieser Datenschutzerklärung</h2>
+                        <p>
+                            Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit 
+                            sie stets den aktuellen rechtlichen Anforderungen entspricht oder 
+                            um Änderungen unserer Leistungen in der Datenschutzerklärung 
+                            umzusetzen. Über wesentliche Änderungen, insbesondere im Hinblick 
+                            auf Art, Umfang oder Zweck der Verarbeitung von über Google 
+                            erhaltenen Nutzerdaten, informieren wir Sie per E-Mail an die bei 
+                            uns hinterlegte Adresse, bevor die Änderungen wirksam werden.
+                        </p>
+                    </section>
+
+                    <section className="flex flex-col gap-2">
+                        <h2 id="kontakt" className="text-white font-semibold text-lg">12. Kontakt</h2>
                         <p>
                             Bei Fragen zum Datenschutz erreichen Sie uns unter:{" "}
                             info@my-semmy.com
