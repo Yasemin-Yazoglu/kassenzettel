@@ -2,16 +2,18 @@
 
 import { useMemo, useState } from "react";
 import CardsContainer from "./_components/CardsContainer";
-import InputContainer from "./_components/InputContainer";
 import MonthsView from "./_components/MonthsView";
 import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
 import { useExpenses } from "@/lib/hooks/useExpenses";
+import { useUser } from "@/lib/hooks/useUser";
 import { fromDbDate } from "@/lib/date";
-import Logo from "@/components/ui/Logo";
+import LandingPage from "./_components/LandingPage";
+import AddExpenseSection from "./_components/AddExpenseSection";
 
 export default function Home() {
-  const { data: expenses = [], isLoading } = useExpenses();
+  const user = useUser();
+  const { data: expenses = [], isLoading } = useExpenses({ enabled: !!user });
   const [monthView, setMonthView] = useState<boolean>(false);
   const [selectedYear, setSelectedYear] = useState<number>(0);
 
@@ -34,17 +36,31 @@ export default function Home() {
     setSelectedYear(year);
   }
 
+  if (user === undefined) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-slate-400 text-sm">Lädt...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center">
+        <main className="flex flex-col items-center justify-between w-full max-w-4xl gap-16">
+          <div className="mt-26">
+            <LandingPage />
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center">
       <main className="flex flex-col items-center justify-between w-full max-w-4xl gap-16">
-        {/* Header */}
-        <header className="mt-26 flex gap-4">
-          <Logo variant="full" color="light" className="w-64 lg:w-90 mx-auto" />
-        </header>
-
-        {/* Input container */}
-        <div className="mx-auto mt-4">
-          <InputContainer />
+        <div className="mx-auto mt-26">
+          <AddExpenseSection />
         </div>
 
         <div className="mx-auto w-full max-w-3xl">

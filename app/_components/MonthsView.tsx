@@ -11,12 +11,14 @@ type Props = {
     selected_year: number;
     spending: Spending[];
     onClose: () => void;
+    readOnly?: boolean;
 }
 
 export default function MonthsView({
     selected_year,
     spending,
     onClose,
+    readOnly = false,
 }: Props) {
     const [openMonths, setOpenMonths] = useState<Record<string, boolean>>({});
     const [editModal, setEditModal] = useState<boolean>(false);
@@ -103,20 +105,24 @@ export default function MonthsView({
                                                 <span className="text-slate-200 text-sm">
                                                     {formatCurrency(entry.amount)}
                                                 </span>
-                                                <button
-                                                    title="Bearbeiten"
-                                                    onClick={() => handleEditSpending(entry, "edit")}
-                                                    className="text-slate-400 hover:text-white transition"
-                                                >
-                                                    <PenIcon className="w-4 h-4" />
-                                                </button>
-                                                <button
-                                                    title="Eintrag löschen"
-                                                    onClick={() => handleEditSpending(entry, "delete")}
-                                                    className="text-slate-400 hover:text-red-400 transition"
-                                                >
-                                                    <X className="w-4 h-4" />
-                                                </button>
+                                                {!readOnly && (
+                                                    <>
+                                                        <button
+                                                            title="Bearbeiten"
+                                                            onClick={() => handleEditSpending(entry, "edit")}
+                                                            className="text-slate-400 hover:text-white transition"
+                                                        >
+                                                            <PenIcon className="w-4 h-4" />
+                                                        </button>
+                                                        <button
+                                                            title="Eintrag löschen"
+                                                            onClick={() => handleEditSpending(entry, "delete")}
+                                                            className="text-slate-400 hover:text-red-400 transition"
+                                                        >
+                                                            <X className="w-4 h-4" />
+                                                        </button>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
@@ -127,11 +133,11 @@ export default function MonthsView({
                 })}
             </div>
 
-            {editModal && (
+            {!readOnly && editModal && (
                 <EditModal spending={selectedSpending} onClose={() => setEditModal(false)} />
             )}
 
-            {deleteModal && (
+            {!readOnly && deleteModal && (
                 <DeleteModal spending={selectedSpending} onClose={() => setDeleteModal(false)} />
             )}
         </div>
