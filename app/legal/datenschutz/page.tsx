@@ -16,10 +16,16 @@ export default function DatenschutzPage() {
                     </Link>
                     <h1 className="text-white text-2xl font-semibold">Datenschutzerklärung</h1>
                 </div>
+                <div>
+                    <p>
+                        Diese Datenschutzerklärung gilt für die Nutzung der App „Kassenzettel", 
+                        mit der Nutzer ihre Lebensmittelausgaben erfassen und auswerten können.
+                    </p>
+                </div>
 
                 <article className="rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col gap-6 text-slate-200 leading-relaxed">
                     <p className="text-sm text-slate-400">
-                        Stand: 03. August 2026
+                        Stand: 04. September 2026
                     </p>
 
                     <section className="flex flex-col gap-2">
@@ -68,19 +74,36 @@ export default function DatenschutzPage() {
                     <section className="flex flex-col gap-2">
                         <h2 className="text-white font-semibold text-lg">4. Anmeldung über Google (OAuth)</h2>
                         <p>
-                            Wir bieten die Möglichkeit, sich mit einem bestehenden
-                            Google-Konto anzumelden. Anbieter ist Google Ireland Limited,
-                            Gordon House, Barrow Street, Dublin 4, Irland (bzw. Google LLC,
-                            1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, für
+                            Kassenzettel bietet die Möglichkeit, sich mit einem bestehenden 
+                            Google-Konto anzumelden. Anbieter ist Google Ireland Limited, 
+                            Gordon House, Barrow Street, Dublin 4, Irland (bzw. Google LLC, 
+                            1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, für 
                             außerhalb des EWR ansässige Nutzer).
                         </p>
                         <p>
-                            Bei der Anmeldung über Google übermittelt Google an uns die von
-                            Ihnen freigegebenen Kontoinformationen (in der Regel
-                            E-Mail-Adresse, Name und Profilbild). Es können hierbei Daten
-                            in die USA übertragen werden. Google hat sich den
-                            EU-Standardvertragsklauseln unterworfen bzw. bietet vergleichbare
-                            Garantien gemäß Art. 46 DSGVO. Weitere Informationen finden Sie
+                            Bei der Anmeldung über Google übermittelt Google an uns die von 
+                            Ihnen freigegebenen Kontoinformationen (E-Mail-Adresse, Name und 
+                            ggf. Profilbild). Diese Daten werden ausschließlich zur Erstellung 
+                            und Verwaltung Ihres Nutzerkontos sowie zur Personalisierung der 
+                            App-Oberfläche (z. B. Begrüßung mit Ihrem Namen) verwendet.
+                        </p>
+                        <p>
+                            Wir geben die über Google erhaltenen Daten nicht an Dritte weiter 
+                            und nutzen sie nicht für Werbezwecke.
+                        </p>
+                        <p>
+                            Sie können den Zugriff von Kassenzettel auf Ihr Google-Konto 
+                            jederzeit eigenständig widerrufen. Gehen Sie dazu zu Ihrem 
+                            Google-Konto unter myaccount.google.com/permissions und entfernen 
+                            Sie dort den Zugriff für Kassenzettel. Der Widerruf des 
+                            Google-Zugriffs führt nicht automatisch zur Löschung Ihres 
+                            Nutzerkontos bei uns; hierfür nutzen Sie bitte die 
+                            Löschfunktion in den Kontoeinstellungen (siehe Abschnitt 10).
+                        </p>
+                        <p>
+                            Es können hierbei Daten in die USA übertragen werden. Google hat 
+                            sich den EU-Standardvertragsklauseln unterworfen bzw. bietet 
+                            vergleichbare Garantien gemäß Art. 46 DSGVO. Weitere Informationen finden Sie
                             in der{" "}
                             <a
                                 href="https://policies.google.com/privacy"
