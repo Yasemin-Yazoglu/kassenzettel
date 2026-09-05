@@ -45,16 +45,3 @@ export function month_to_key(month: number): MonthKey {
         default: throw new Error("Invalid month input");
     }
 }
-
-export function translate_date_to_german(date_type: DateKey): string {
-    switch (date_type) {
-        case "year":
-            return "Jahr";
-        case "month":
-            return "Monat";
-        case "day":
-            return "Tag";
-        default:
-            throw new Error("Ungültige Eingabe");
-    }
-};

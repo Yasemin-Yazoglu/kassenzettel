@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import DateSelection from "./DateSelection";
-import { translate_date_to_german } from "../utility/function";
 import { DateKey } from "../utility/type";
 
 interface Props {
@@ -12,6 +12,8 @@ interface Props {
 }
 
 export default function DateComponent(props: Props) {
+    const t = useTranslations("DateSelection");
+    const tDate = useTranslations("DateComponent");
     const [selectDate, setSelectDate] = useState<boolean>(false);
     const [selDate, setSelDate] = useState<number>(props.today);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -64,7 +66,7 @@ export default function DateComponent(props: Props) {
             )}
             <button
                 ref={buttonRef}
-                title={`${translate_date_to_german(props.date_type)} wählen`}
+                title={tDate("selectDateTitle", { word: t(props.date_type) })}
                 type="button"
                 aria-haspopup="listbox"
                 aria-expanded={selectDate}

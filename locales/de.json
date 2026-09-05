@@ -188,5 +188,13 @@
         "logout": "Abmelden",
         "openMenuLabel": "Benutzermenü öffnen",
         "userMenuLabel": "Benutzermenü"
+    },
+    "DateSelection": {
+        "year": "Jahr",
+        "month": "Monat",
+        "day": "Tag"
+    },
+    "DateComponent": {
+        "selectDateTitle": "{word} wählen"
     }
 }
