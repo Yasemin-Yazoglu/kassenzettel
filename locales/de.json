@@ -115,5 +115,13 @@
         "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
         "currentPasswordRequired": "Bitte gib dein aktuelles Passwort ein.",
         "newPasswordMustDiffer": "Das neue Passwort muss sich vom aktuellen unterscheiden."
+    },
+    "LandingPage": {
+        "headlinePrefix": "Finde heraus, wie viel du",
+        "headlineHighlight": "tatsächlich ausgibst",
+        "badge": "Trage deine Einkäufe einfach ein und sieh, wie viel du für Lebensmittel ausgibst.",
+        "listViewAlt": "Monatsübersicht",
+        "analyticsAlt": "Analytics der Ausgaben",
+        "signupCta": "Jetzt registrieren"
     }
 }

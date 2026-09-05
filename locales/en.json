@@ -115,5 +115,13 @@
         "passwordsDoNotMatch": "The passwords do not match.",
         "currentPasswordRequired": "Please enter your current password.",
         "newPasswordMustDiffer": "The new password must be different from the current one."
+    },
+    "LandingPage": {
+        "headlinePrefix": "Find out how much you",
+        "headlineHighlight": "actually spend",
+        "badge": "Simply log your purchases and see how much you spend on groceries.",
+        "listViewAlt": "Monthly overview",
+        "analyticsAlt": "Spending analytics",
+        "signupCta": "Sign up now"
     }
 }
