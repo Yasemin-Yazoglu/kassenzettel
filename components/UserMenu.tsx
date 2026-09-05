@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/lib/services/auth";
 import Avatar from "@/components/ui/Avatar";
+import { useTranslations } from "next-intl";
 
 interface Props {
     email?: string | null;
@@ -11,16 +12,17 @@ interface Props {
     name?: string | null;
 }
 
-const MENU_ITEMS = [
-    { href: "/account", label: "Konto" },
-    { href: "/analytics", label: "Analytics" },
-] as const;
-
 export default function UserMenu({ email, avatar, name }: Props) {
+    const t = useTranslations("UserMenu");
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const displayName = name ?? email ?? "Guest";
+
+    const MENU_ITEMS = [
+        { href: "/account", label: t("account") },
+        { href: "/analytics", label: t("analytics") },
+    ] as const;
 
     useEffect(() => {
         if (!open) return;
@@ -54,7 +56,7 @@ export default function UserMenu({ email, avatar, name }: Props) {
                 onClick={() => setOpen((v) => !v)}
                 aria-haspopup="menu"
                 aria-expanded={open}
-                aria-label="Benutzermenü öffnen"
+                aria-label={t("openMenuLabel")}
             >
                 <Avatar src={avatar} fallbackText={displayName} size="md" />
             </button>
@@ -62,7 +64,7 @@ export default function UserMenu({ email, avatar, name }: Props) {
             {open && (
                 <div
                     role="menu"
-                    aria-label="Benutzermenü"
+                    aria-label={t("userMenuLabel")}
                     className="absolute right-0 mt-2 min-w-48 bg-white/5 border border-white/10 backdrop-blur-xs rounded-xl p-2 shadow-xl z-50"
                 >
                     <div className="px-3 py-2 text-xs text-white/50 border-b border-white/10">
@@ -87,7 +89,7 @@ export default function UserMenu({ email, avatar, name }: Props) {
                             role="menuitem"
                             className="w-full text-left px-3 py-2 text-sm text-red-300 hover:bg-white/10 rounded-lg"
                         >
-                            Logout
+                            {t("logout")}
                         </button>
                     </form>
                 </div>

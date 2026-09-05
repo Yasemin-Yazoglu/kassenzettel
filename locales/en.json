@@ -181,5 +181,12 @@
         "imprint": "Imprint",
         "privacyPolicy": "Privacy Policy",
         "termsOfUse": "Terms of Use"
+    },
+    "UserMenu": {
+        "account": "Account",
+        "analytics": "Analytics",
+        "logout": "Log out",
+        "openMenuLabel": "Open user menu",
+        "userMenuLabel": "User menu"
     }
 }
