@@ -7,8 +7,10 @@ import GreetingTitle from "./GreetingTitle";
 import ExpenseForm, { DraftExpense } from "./ExpenseForm";
 import CardsContainer from "./CardsContainer";
 import MonthsView from "./MonthsView";
+import { useTranslations } from "next-intl";
 
 export default function ExpenseFormDemo() {
+    const t = useTranslations("Expenses")
     const [entries, setEntries] = useState<DraftExpense[]>([]);
     const [monthView, setMonthView] = useState<boolean>(false);
     const [selectedYear, setSelectedYear] = useState<number>(0);
@@ -49,7 +51,7 @@ export default function ExpenseFormDemo() {
                 ) : spendings.length === 0 ? (
                     <>
                         <p className="text-slate-400 text-sm mx-4">
-                            Das ist eine Demo, Einträge werden beim Refresh gelöscht.
+                            {t("demo")}
                         </p>
                     </>
                 ) : (

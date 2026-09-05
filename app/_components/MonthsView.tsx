@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowLeft, ChevronDown, PenIcon, X } from "lucide-react";
-import { group_spendings, month_to_string } from "../utility/function";
+import { group_spendings, month_to_key } from "../utility/function";
 import { Spending } from "../utility/type";
 import { Date_Enum } from "../utility/enum";
 import { formatCurrency } from "@/lib/formatCurrency";
@@ -20,6 +21,8 @@ export default function MonthsView({
     onClose,
     readOnly = false,
 }: Props) {
+    const t = useTranslations("MonthsView");
+    const tMonths = useTranslations("Months");
     const [openMonths, setOpenMonths] = useState<Record<string, boolean>>({});
     const [editModal, setEditModal] = useState<boolean>(false);
     const [deleteModal, setDeleteModal] = useState<boolean>(false);
@@ -55,11 +58,11 @@ export default function MonthsView({
             <div className="flex items-center justify-between">
                 <button
                     onClick={onClose}
-                    aria-label="Zurück"
+                    aria-label={t("back")}
                     className="flex items-center gap-2 text-slate-300 hover:text-white transition"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    <span className="text-sm">Zurück</span>
+                    <span className="text-sm">{t("back")}</span>
                 </button>
                 <p className="font-semibold text-white">{selected_year}</p>
             </div>
@@ -75,11 +78,11 @@ export default function MonthsView({
                     return (
                         <div key={month} className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
                             <button
-                                title="Details anzeigen"
+                                title={t("showDetails")}
                                 onClick={() => handleViewDetails(month)}
                                 className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition"
                             >
-                                <span className="text-white">{month_to_string(month)}</span>
+                                <span className="text-white">{tMonths(month_to_key(month))}</span>
                                 <div className="flex items-center gap-3">
                                     <span className="text-indigo-400 font-medium">
                                         {formatCurrency(total / 100)}
@@ -108,14 +111,14 @@ export default function MonthsView({
                                                 {!readOnly && (
                                                     <>
                                                         <button
-                                                            title="Bearbeiten"
+                                                            title={t("edit")}
                                                             onClick={() => handleEditSpending(entry, "edit")}
                                                             className="text-slate-400 hover:text-white transition"
                                                         >
                                                             <PenIcon className="w-4 h-4" />
                                                         </button>
                                                         <button
-                                                            title="Eintrag löschen"
+                                                            title={t("delete")}
                                                             onClick={() => handleEditSpending(entry, "delete")}
                                                             className="text-slate-400 hover:text-red-400 transition"
                                                         >

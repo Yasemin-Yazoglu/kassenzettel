@@ -1,0 +1,200 @@
+{
+    "GreetingTitle": {
+        "morning": "Günaydın",
+        "afternoon": "İyi günler",
+        "evening": "İyi akşamlar",
+        "greetingWithName": "{greeting}, {name}",
+        "guest": "Misafir",
+        "subtitle": "Bugün ne kadar harcadın?"
+    },
+    "ExpenseForm": {
+        "storeTitle": "Nerede alışveriş yaptığını gir",
+        "storePlaceholder": "Market",
+        "amountTitle": "Tutarı gir",
+        "amountPlaceholder": "Tutar"
+    },
+    "Months": {
+        "january": "Ocak",
+        "february": "Şubat",
+        "march": "Mart",
+        "april": "Nisan",
+        "may": "Mayıs",
+        "june": "Haziran",
+        "july": "Temmuz",
+        "august": "Ağustos",
+        "september": "Eylül",
+        "october": "Ekim",
+        "november": "Kasım",
+        "december": "Aralık"
+    },
+    "CardsContainer": {
+        "yearSpendingTitle": "{year} yılında {amount} harcadın"
+    },
+    "MonthsView": {
+        "back": "Geri",
+        "showDetails": "Detayları göster",
+        "edit": "Düzenle",
+        "delete": "Kaydı sil"
+    },
+    "Expenses": {
+        "empty": "Henüz bir harcama girilmedi. İlk harcamanı ekle.",
+        "demo": "Bu bir demo, kayıtlar sayfa yenilendiğinde silinir."
+    },
+    "CredentialsForm": {
+        "emailLabel": "E-posta",
+        "emailPlaceholder": "sen@email.com",
+        "passwordLabel": "Şifre",
+        "passwordPlaceholder": "Şifre",
+        "forgotPassword": "Şifreni mi unuttun?"
+    },
+    "FormStateToggle": {
+        "login": "Giriş",
+        "signup": "Kayıt"
+    },
+    "LoginForm": {
+        "submit": "Giriş yap"
+    },
+    "SignupForm": {
+        "submit": "Hesap oluştur"
+    },
+    "LoginWithGoogle": {
+        "redirecting": "Yönlendiriliyor...",
+        "continueWithGoogle": "Google ile devam et"
+    },
+    "SubmitButton": {
+        "pending": "Lütfen bekleyin..."
+    },
+    "CheckEmailPage": {
+        "title": "E-posta adresini onayla",
+        "description": "Sana bir onay bağlantısı gönderdik. Hesabını etkinleştirmek için lütfen e-postadaki bağlantıya tıkla.",
+        "backToHome": "Ana sayfaya dön"
+    },
+    "LoginPage": {
+        "tagline": "Harcamalarını takip et ve analiz et",
+        "termsAgreement": "Uygulamayı kullanarak <link>Kullanım Koşullarımızı</link> kabul etmiş olursun."
+    },
+    "ResetPasswordPage": {
+        "description": "Şifreni sıfırlamak için e-posta adresini gir.",
+        "submit": "Sıfırlama bağlantısı gönder",
+        "backToLogin": "Girişe dön"
+    },
+    "UpdatePasswordPage": {
+        "description": "Hesabın için yeni bir şifre seç.",
+        "newPasswordLabel": "Yeni şifre",
+        "confirmPasswordLabel": "Şifreyi onayla",
+        "submit": "Şifreyi kaydet"
+    },
+    "AuthActions": {
+        "invalidInput": "Geçersiz giriş.",
+        "signupSuccess": "Neredeyse bitti! Lütfen sana gönderdiğimiz bağlantı üzerinden e-posta adresini onayla.",
+        "googleLoginFailed": "Google ile giriş başarısız oldu. Lütfen tekrar dene.",
+        "passwordResetSent": "Bu e-posta adresiyle bir hesap varsa, sana sıfırlama bağlantısı gönderdik."
+    },
+    "PasswordInput": {
+        "show": "Şifreyi göster",
+        "hide": "Şifreyi gizle"
+    },
+    "AuthErrors": {
+        "invalidCredentials": "E-posta veya şifre yanlış.",
+        "emailNotConfirmed": "Lütfen önce e-posta adresini onayla.",
+        "userAlreadyExists": "Bu e-posta adresiyle zaten bir hesap var.",
+        "currentPasswordRequired": "Yeni bir şifre belirlerken mevcut şifre gereklidir.",
+        "weakPassword": "Şifre çok zayıf. Lütfen daha güçlü bir şifre seç.",
+        "samePassword": "Yeni şifre mevcut şifreden farklı olmalıdır.",
+        "rateLimited": "Çok fazla istek. Lütfen tekrar denemeden önce biraz bekle.",
+        "otpExpired": "Bağlantının süresi doldu. Lütfen yeni bir tane iste.",
+        "genericError": "Bir şeyler ters gitti. Lütfen tekrar dene.",
+        "loginFailed": "Giriş başarısız oldu. Lütfen tekrar dene."
+    },
+    "Validation": {
+        "invalidEmail": "Lütfen geçerli bir e-posta adresi gir.",
+        "passwordTooShort": "Şifre en az 8 karakter olmalıdır.",
+        "passwordTooLong": "Şifre en fazla 72 karakter olabilir.",
+        "passwordNeedsUppercase": "Bir büyük harf içermelidir.",
+        "passwordNeedsLowercase": "Bir küçük harf içermelidir.",
+        "passwordsDoNotMatch": "Şifreler eşleşmiyor.",
+        "currentPasswordRequired": "Lütfen mevcut şifreni gir.",
+        "newPasswordMustDiffer": "Yeni şifre mevcut şifreden farklı olmalıdır."
+    },
+    "LandingPage": {
+        "headlinePrefix": "Gerçekte ne kadar",
+        "headlineHighlight": "harcadığını öğren",
+        "badge": "Alışverişlerini kolayca gir ve markete ne kadar harcadığını gör.",
+        "listViewAlt": "Aylık genel bakış",
+        "analyticsAlt": "Harcama analizleri",
+        "signupCta": "Şimdi kaydol"
+    },
+    "DeleteAccountModal": {
+        "title": "Hesabı sil",
+        "close": "Kapat",
+        "warning": "Bu işlem geri alınamaz. Harcamaların da dahil olmak üzere tüm verilerin kalıcı olarak silinecek.",
+        "confirmLabel": "Onaylamak için <strong>{word}</strong> yaz",
+        "confirmWord": "sil",
+        "cancel": "Vazgeç",
+        "deleting": "Siliniyor...",
+        "submit": "Hesabı kalıcı olarak sil"
+    },
+    "PasswordModal": {
+        "title": "Şifreyi değiştir",
+        "close": "Kapat",
+        "currentPasswordLabel": "Mevcut şifre",
+        "newPasswordLabel": "Yeni şifre",
+        "passwordHint": "En az 8 karakter, bir büyük ve bir küçük harf.",
+        "confirmPasswordLabel": "Şifreyi onayla",
+        "cancel": "Vazgeç",
+        "saving": "Kaydediliyor...",
+        "submit": "Kaydet"
+    },
+    "SettingsList": {
+        "settingsLabel": "Ayarlar",
+        "changePassword": "Şifreyi değiştir",
+        "logout": "Çıkış yap",
+        "deleteAccount": "Hesabı sil"
+    },
+    "AccountPage": {
+        "loading": "Yükleniyor...",
+        "backToHome": "Ana sayfaya dön",
+        "title": "Hesap",
+        "memberSince": "{date} tarihinden beri üye"
+    },
+    "AccountActions": {
+        "passwordChanged": "Şifre başarıyla değiştirildi.",
+        "deleteConfirmMismatch": "Onaylamak için \"{word}\" yaz.",
+        "notAuthenticated": "Oturum açılmamış. Lütfen tekrar giriş yap.",
+        "deleteFailed": "Hesap silinemedi. Lütfen tekrar dene."
+    },
+    "Metrics": {
+        "totalLabel": "EUR",
+        "countLabel": "Adet"
+    },
+    "Periods": {
+        "week": "Hafta",
+        "month": "Ay",
+        "year": "Yıl"
+    },
+    "TimeSeriesChart": {
+        "trend": "Zaman içindeki harcamalar",
+        "frequency": "Alışveriş sıklığı",
+        "graphEmptyMessage": "Bu dönemde henüz veri yok."
+    },
+    "LegalLinks": {
+        "imprint": "Yasal Bilgiler",
+        "privacyPolicy": "Gizlilik Politikası",
+        "termsOfUse": "Kullanım Koşulları"
+    },
+    "UserMenu": {
+        "account": "Hesap",
+        "analytics": "Analizler",
+        "logout": "Çıkış yap",
+        "openMenuLabel": "Kullanıcı menüsünü aç",
+        "userMenuLabel": "Kullanıcı menüsü"
+    },
+    "DateSelection": {
+        "year": "Yıl",
+        "month": "Ay",
+        "day": "Gün"
+    },
+    "DateComponent": {
+        "selectDateTitle": "{word} seç"
+    }
+}

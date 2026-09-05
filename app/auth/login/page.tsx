@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { LoginForm } from "./_components/LoginForm";
 import { SignupForm } from "./_components/SignupForm";
@@ -11,6 +12,7 @@ import { LoginError } from "./_components/LoginError";
 import Logo from "@/components/ui/Logo";
 
 function LoginPageContent() {
+    const t = useTranslations("LoginPage");
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -35,7 +37,7 @@ function LoginPageContent() {
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">
-                    Verfolge und analysiere Deine Ausgaben
+                    {t("tagline")}
                 </p>
 
                 <FormStateToggle value={formState} onChange={handleFormStateChange} />
@@ -51,14 +53,16 @@ function LoginPageContent() {
                 <LoginWithGoogle />
 
                 <p className="text-xs text-center text-white/40 mt-6">
-                    Mit der Nutzung stimmst du unseren{" "}
-                    <a
-                        href="/legal/nutzungsbedingungen"
-                        className="underline underline-offset-2 hover:text-white/60 transition"
-                    >
-                        Nutzungsbedingungen
-                    </a>{" "}
-                    zu.
+                    {t.rich("termsAgreement", {
+                        link: (chunks) => (
+                            <a
+                                href="/legal/nutzungsbedingungen"
+                                className="underline underline-offset-2 hover:text-white/60 transition"
+                            >
+                                {chunks}
+                            </a>
+                        ),
+                    })}
                 </p>
             </div>
         </div>

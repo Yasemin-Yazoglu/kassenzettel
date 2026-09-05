@@ -3,16 +3,16 @@ import { passwordSchema } from "./password";
 
 export const changePasswordSchema = z
     .object({
-        currentPassword: z.string().min(1, "Bitte gib dein aktuelles Passwort ein"),
+        currentPassword: z.string().min(1, "currentPasswordRequired"),
         newPassword: passwordSchema,
         confirmPassword: z.string(),
     })
     .refine((data) => data.newPassword === data.confirmPassword, {
-        message: "Die Passwörter stimmen nicht überein",
+        message: "passwordsDoNotMatch",
         path: ["confirmPassword"],
     })
     .refine((data) => data.newPassword !== data.currentPassword, {
-        message: "Das neue Passwort muss sich vom aktuellen unterscheiden",
+        message: "newPasswordMustDiffer",
         path: ["newPassword"],
     });
 

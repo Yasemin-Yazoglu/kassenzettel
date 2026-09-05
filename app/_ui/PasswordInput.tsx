@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Eye, EyeOff } from "lucide-react";
 
 type Variant = "dark" | "light";
@@ -32,6 +33,7 @@ export default function PasswordInput({
     minLength,
     maxLength,
 }: Props) {
+    const t = useTranslations("PasswordInput");
     const [visible, setVisible] = useState(false);
 
     const inputClass = variant === "dark" ? "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-indigo-400 transition" : "lightInput";
@@ -65,7 +67,7 @@ export default function PasswordInput({
                     type="button"
                     onClick={() => setVisible((v) => !v)}
                     tabIndex={-1}
-                    aria-label={visible ? "Passwort verbergen" : "Passwort anzeigen"}
+                    aria-label={visible ? t("hide") : t("show")}
                     className={toggleClass}
                 >
                     {visible ? <EyeOff className="w-[18px] h-[18px]" /> : <Eye className="w-[18px] h-[18px]" />}

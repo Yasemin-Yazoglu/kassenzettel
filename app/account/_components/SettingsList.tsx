@@ -1,4 +1,5 @@
 import type { User } from "@supabase/supabase-js";
+import { useTranslations } from "next-intl";
 
 interface Props {
     user: User;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function SettingsList({ user, onChangePassword, onDeleteAccount, onLogout }: Props) {
+    const t = useTranslations("SettingsList");
     const hasPasswordAuth = user.app_metadata?.providers?.includes("email") ?? false;
 
     return (
@@ -15,13 +17,13 @@ export default function SettingsList({ user, onChangePassword, onDeleteAccount, 
             {hasPasswordAuth && (
                 <>
                     <p className="text-xs font-medium tracking-wide uppercase text-slate-400">
-                        Einstellungen
+                        {t("settingsLabel")}
                     </p>
                     <button
                         onClick={onChangePassword}
                         className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition"
                     >
-                        <span>Passwort ändern</span>
+                        <span>{t("changePassword")}</span>
                     </button>
                 </>
             )}
@@ -30,7 +32,7 @@ export default function SettingsList({ user, onChangePassword, onDeleteAccount, 
                 onClick={onLogout}
                 className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white transition"
             >
-                <span>Abmelden</span>
+                <span>{t("logout")}</span>
             </button>
 
             <div className="h-px bg-white/10 my-2" />
@@ -39,7 +41,7 @@ export default function SettingsList({ user, onChangePassword, onDeleteAccount, 
                 onClick={onDeleteAccount}
                 className="w-full flex items-center justify-between px-4 py-3 rounded-xl border text-red-400 bg-red-400/5 border-red-400 hover:bg-red-400/10 transition"
             >
-                <span>Konto löschen</span>
+                <span>{t("deleteAccount")}</span>
             </button>
 
         </section>

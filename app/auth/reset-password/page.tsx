@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { requestPasswordReset } from "../login/actions";
 import { SubmitButton } from "../login/_components/SubmitButton";
@@ -10,6 +11,8 @@ import Logo from "@/components/ui/Logo";
 const initialState: FormState = { message: "" };
 
 export default function ResetPasswordPage() {
+    const t = useTranslations("ResetPasswordPage");
+    const tCredentials = useTranslations("CredentialsForm");
     const [state, formAction] = useActionState(requestPasswordReset, initialState);
 
     return (
@@ -21,7 +24,7 @@ export default function ResetPasswordPage() {
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">
-                    Gib deine Email-Adresse ein, um dein Passwort zurückzusetzen.
+                    {t("description")}
                 </p>
 
                 <form action={formAction} className="space-y-5">
@@ -39,24 +42,24 @@ export default function ResetPasswordPage() {
 
                     <div className="flex flex-col gap-1.5">
                         <label htmlFor="email" className="text-sm text-slate-300">
-                            Email
+                            {tCredentials("emailLabel")}
                         </label>
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="deine@email.com"
+                            placeholder={tCredentials("emailPlaceholder")}
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-indigo-400 transition"
                             required
                         />
                     </div>
 
-                    <SubmitButton label="Link zum Zurücksetzen senden" />
+                    <SubmitButton label={t("submit")} />
                 </form>
 
                 <p className="text-sm text-center text-white/50 mt-6">
                     <Link href="/auth/login" className="text-indigo-400 hover:text-indigo-300 transition">
-                        Zurück zur Anmeldung
+                        {t("backToLogin")}
                     </Link>
                 </p>
             </div>

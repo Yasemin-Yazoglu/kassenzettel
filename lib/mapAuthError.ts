@@ -1,33 +1,33 @@
 import { isAuthApiError } from "@supabase/supabase-js";
 
 const KNOWN_ERROR_CODES: Record<string, string> = {
-    invalid_credentials: "Email oder Passwort ist falsch.",
-    email_not_confirmed: "Bitte bestätige zuerst deine Email-Adresse.",
-    user_already_exists: "Für diese Email-Adresse existiert bereits ein Konto.",
-    current_password_required: "Aktuelles Passwort erforderlich beim Festlegen eines neuen Passworts.",
-    current_password_invalid: "Aktuelles Passwort erforderlich beim Festlegen eines neuen Passworts.",
-    weak_password: "Das Passwort ist zu schwach. Bitte wähle ein stärkeres Passwort.",
-    same_password: "Das neue Passwort muss sich vom aktuellen unterscheiden.",
-    over_email_send_rate_limit: "Zu viele Anfragen. Bitte warte kurz, bevor du es erneut versuchst.",
-    otp_expired: "Der Link ist abgelaufen. Bitte fordere einen neuen an.",
+    invalid_credentials: "invalidCredentials",
+    email_not_confirmed: "emailNotConfirmed",
+    user_already_exists: "userAlreadyExists",
+    current_password_required: "currentPasswordRequired",
+    current_password_invalid: "currentPasswordRequired",
+    weak_password: "weakPassword",
+    same_password: "samePassword",
+    over_email_send_rate_limit: "rateLimited",
+    otp_expired: "otpExpired",
 };
 
-const FALLBACK_MESSAGE = "Etwas ist schief gelaufen. Bitte versuche es erneut.";
+const FALLBACK_KEY = "genericError";
 
-export function mapErrorCode(code: string | null | undefined): string {
-    if (!code) return FALLBACK_MESSAGE;
+export function mapErrorCodeToKey(code: string | null | undefined): string {
+    if (!code) return FALLBACK_KEY;
 
-    const message = KNOWN_ERROR_CODES[code];
-    if (message) return message;
+    const key = KNOWN_ERROR_CODES[code];
+    if (key) return key;
 
     console.error("Unmapped Supabase auth error code:", code);
-    return FALLBACK_MESSAGE;
+    return FALLBACK_KEY;
 }
 
-export function mapAuthError(error: unknown): string {
+export function mapAuthErrorToKey(error: unknown): string {
     if (isAuthApiError(error) && error.code) {
-        return mapErrorCode(error.code);
+        return mapErrorCodeToKey(error.code);
     }
 
-    return FALLBACK_MESSAGE;
+    return FALLBACK_KEY;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import PasswordInput from "@/app/_ui/PasswordInput";
 import { SubmitButton } from "./SubmitButton";
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function CredentialsForm({ action, submitLabel, showForgotPassword }: Props) {
+    const t = useTranslations("CredentialsForm");
     const [state, formAction] = useActionState(action, initialState);
 
     return (
@@ -33,13 +35,13 @@ export default function CredentialsForm({ action, submitLabel, showForgotPasswor
 
             <div className="flex flex-col gap-1.5">
                 <label htmlFor="email" className="text-sm text-slate-300">
-                    Email
+                    {t("emailLabel")}
                 </label>
                 <input
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="deine@email.com"
+                    placeholder={t("emailPlaceholder")}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-indigo-400 transition"
                     required
                 />
@@ -48,8 +50,8 @@ export default function CredentialsForm({ action, submitLabel, showForgotPasswor
             <PasswordInput
                 id="password"
                 name="password"
-                label="Passwort"
-                placeholder="Passwort"
+                label={t("passwordLabel")}
+                placeholder={t("passwordPlaceholder")}
                 variant="dark"
                 required
                 minLength={8}
@@ -63,7 +65,7 @@ export default function CredentialsForm({ action, submitLabel, showForgotPasswor
                         href="/auth/reset-password"
                         className="text-sm text-indigo-400 hover:text-indigo-300 transition"
                     >
-                        Passwort vergessen?
+                        {t("forgotPassword")}
                     </Link>
                 </div>
             )}
