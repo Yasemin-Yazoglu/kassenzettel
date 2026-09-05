@@ -162,5 +162,19 @@
         "deleteConfirmMismatch": "Bitte gib „{word}\" ein, um zu bestätigen.",
         "notAuthenticated": "Nicht angemeldet. Bitte melde dich erneut an.",
         "deleteFailed": "Konto konnte nicht gelöscht werden. Bitte versuche es erneut."
+    },
+    "Metrics": {
+        "totalLabel": "EUR",
+        "countLabel": "Anzahl"
+    },
+    "Periods": {
+        "week": "Woche",
+        "month": "Monat",
+        "year": "Jahr"
+    },
+    "TimeSeriesChart": {
+        "trend": "Ausgaben im Verlauf",
+        "frequency": "Einkaufshäufigkeit",
+        "graphEmptyMessage": "Noch keine Daten in diesem Zeitraum."
     }
 }

@@ -1,12 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { Period } from "@/lib/aggregations/period";
-
-const periods: { value: Period; label: string }[] = [
-    { value: "week", label: "Woche" },
-    { value: "month", label: "Monat" },
-    { value: "year", label: "Jahr" },
-];
 
 interface Props {
     value: Period;
@@ -14,6 +9,13 @@ interface Props {
 }
 
 export default function PeriodToggle({ value, onChange }: Props) {
+    const t = useTranslations("Periods");
+
+    const periods: { value: Period; label: string }[] = [
+        { value: "week", label: t("week") },
+        { value: "month", label: t("month") },
+        { value: "year", label: t("year") },
+    ];
     return (
         <div className="inline-flex rounded-xl bg-white/5 border border-white/10 p-1">
             {periods.map((p) => (

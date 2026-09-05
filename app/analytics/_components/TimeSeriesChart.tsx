@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { groupWithinPeriod } from "@/lib/aggregations/groupWithinPeriod";
 import { getPeriodRange, shiftAnchor } from "@/lib/aggregations/dateRange";
 import { formatCurrency } from "@/lib/formatCurrency";
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export default function TimeSeriesChart({ expenses }: Props) {
+    const t = useTranslations("TimeSeriesChart");
     const [period, setPeriod] = useState<Period>("month");
     const [anchor, setAnchor] = useState<Date>(new Date());
     const [metric, setMetric] = useState<Metric>("total");
@@ -42,7 +44,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
         <div className="rounded-2xl bg-white/5 border border-white/10 p-5 flex flex-col gap-4">
             <div className="flex items-center justify-between flex-wrap gap-3">
                 <h3 className="text-white font-semibold">
-                    {metric === "total" ? "Ausgaben im Verlauf" : "Einkaufshäufigkeit"}
+                    {metric === "total" ? t("trend") : t("frequency")}
                 </h3>
                 <div className="flex items-center gap-3">
                     <MetricToggle value={metric} onChange={setMetric} />
@@ -68,7 +70,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
                 xKey="label"
                 yKey={metric}
                 valueFormatter={metric === "total" ? formatCurrency : undefined}
-                emptyMessage="Noch keine Daten in diesem Zeitraum."
+                emptyMessage={t("graphEmptyMessage")}
             />
         </div>
     );

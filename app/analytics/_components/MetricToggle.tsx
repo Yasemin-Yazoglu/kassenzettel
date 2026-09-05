@@ -1,11 +1,8 @@
 "use client";
 
-export type Metric = "total" | "count";
+import { useTranslations } from "next-intl";
 
-const metrics: { value: Metric; label: string }[] = [
-    { value: "total", label: "EUR" },
-    { value: "count", label: "Anzahl" },
-];
+export type Metric = "total" | "count";
 
 interface Props {
     value: Metric;
@@ -13,6 +10,12 @@ interface Props {
 }
 
 export default function MetricToggle({ value, onChange }: Props) {
+    const t = useTranslations("Metrics");
+    const metrics: { value: Metric; label: string }[] = [
+        { value: "total", label: t("totalLabel") },
+        { value: "count", label: t("countLabel") },
+    ];
+
     return (
         <div className="inline-flex rounded-xl bg-white/5 border border-white/10 p-1">
             {metrics.map((m) => (
