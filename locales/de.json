@@ -12,5 +12,32 @@
         "storePlaceholder": "Laden",
         "amountTitle": "Betrag eingeben",
         "amountPlaceholder": "Ausgabe"
+    },
+    "Months": {
+        "january": "Januar",
+        "february": "Februar",
+        "march": "März",
+        "april": "April",
+        "may": "Mai",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "August",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "Dezember"
+    },
+    "CardsContainer": {
+        "yearSpendingTitle": "{year} hast du {amount} ausgegeben"
+    },
+    "MonthsView": {
+        "back": "Zurück",
+        "showDetails": "Details anzeigen",
+        "edit": "Bearbeiten",
+        "delete": "Eintrag löschen"
+    },
+    "Expenses": {
+        "empty": "Noch keine Ausgaben erfasst. Trage deine erste Ausgabe ein.",
+        "demo": "Das ist eine Demo, Einträge werden beim Refresh gelöscht."
     }
 }

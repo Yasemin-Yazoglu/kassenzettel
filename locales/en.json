@@ -12,5 +12,32 @@
         "storePlaceholder": "Store",
         "amountTitle": "Enter the amount",
         "amountPlaceholder": "Amount"
+    },
+    "Months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+    },
+    "CardsContainer": {
+        "yearSpendingTitle": "In {year} you spent {amount}"
+    },
+    "MonthsView": {
+        "back": "Back",
+        "showDetails": "Show details",
+        "edit": "Edit",
+        "delete": "Delete entry"
+    },
+    "Expenses": {
+        "empty": "No expenses recorded yet. Enter your first expense.",
+        "demo": "This is a demo; entries are deleted upon refresh."
     }
 }

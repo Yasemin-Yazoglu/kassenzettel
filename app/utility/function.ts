@@ -24,36 +24,27 @@ export function group_spendings(type: DateKey, spendings: Spending[], order_by: 
     }
 };
 
-export function month_to_string(month: number): string {
-    switch(month) {
-        case 1:
-            return "Januar";
-        case 2:
-            return "Februar";
-        case 3:
-            return "März";
-        case 4:
-            return "April";
-        case 5:
-            return "Mai";
-        case 6:
-            return "Juni";
-        case 7:
-            return "Juli";
-        case 8:
-            return "August";
-        case 9:
-            return "September";
-        case 10:
-            return "Oktober";
-        case 11:
-            return "November";
-        case 12:
-            return "Dezember";
-        default:
-            throw new Error("Ungültige Eingabe");
+export type MonthKey =
+    | "january" | "february" | "march" | "april" | "may" | "june"
+    | "july" | "august" | "september" | "october" | "november" | "december";
+
+export function month_to_key(month: number): MonthKey {
+    switch (month) {
+        case 1: return "january";
+        case 2: return "february";
+        case 3: return "march";
+        case 4: return "april";
+        case 5: return "may";
+        case 6: return "june";
+        case 7: return "july";
+        case 8: return "august";
+        case 9: return "september";
+        case 10: return "october";
+        case 11: return "november";
+        case 12: return "december";
+        default: throw new Error("Invalid month input");
     }
-};
+}
 
 export function translate_date_to_german(date_type: DateKey): string {
     switch (date_type) {

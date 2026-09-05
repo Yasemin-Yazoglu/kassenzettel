@@ -10,8 +10,10 @@ import { useUser } from "@/lib/hooks/useUser";
 import { fromDbDate } from "@/lib/date";
 import LandingPage from "./_components/LandingPage";
 import AddExpenseSection from "./_components/AddExpenseSection";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("Expenses");
   const user = useUser();
   const { data: expenses = [], isLoading } = useExpenses({ enabled: !!user });
   const [monthView, setMonthView] = useState<boolean>(false);
@@ -74,7 +76,7 @@ export default function Home() {
             />
           ) : spendings.length === 0 ? (
             <p className="text-slate-400 text-sm mx-4">
-              Noch keine Ausgaben erfasst. Trage deine erste Ausgabe ein.
+              {t("empty")}
             </p>
           ) : (
             <CardsContainer
