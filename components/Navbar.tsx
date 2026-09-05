@@ -15,7 +15,7 @@ export default async function Navbar() {
                 <Logo variant="full" color="light" className="hidden w-36 sm:block" />
                 <Logo variant="mark" color="light" className="w-9 sm:hidden" />
             </Link>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
                 <LanguageSwitcher />
                 {claims ? (
                     <UserMenu
