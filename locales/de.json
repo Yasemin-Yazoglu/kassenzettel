@@ -176,5 +176,10 @@
         "trend": "Ausgaben im Verlauf",
         "frequency": "Einkaufshäufigkeit",
         "graphEmptyMessage": "Noch keine Daten in diesem Zeitraum."
+    },
+    "LegalLinks": {
+        "imprint": "Impressum",
+        "privacyPolicy": "Datenschutz",
+        "termsOfUse": "Nutzungsbedingungen"
     }
 }

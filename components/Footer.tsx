@@ -1,13 +1,15 @@
 import Link from "next/link";
+import { getTranslations } from 'next-intl/server';
 
-const LEGAL_LINKS = [
-    { href: "/legal/impressum", label: "Impressum" },
-    { href: "/legal/datenschutz", label: "Datenschutz" },
-    { href: "/legal/nutzungsbedingungen", label: "Nutzungsbedingungen" },
-] as const;
-
-export default function Footer() {
+export default async function Footer() {
+    const t = await getTranslations("LegalLinks");
     const currentYear = new Date().getFullYear();
+
+    const LEGAL_LINKS = [
+        { href: "/legal/impressum", label: t("imprint") },
+        { href: "/legal/datenschutz", label: t("privacyPolicy") },
+        { href: "/legal/nutzungsbedingungen", label: t("termsOfUse") },
+    ] as const;
 
     return (
         <footer className="flex flex-col items-center gap-2 text-sm text-slate-400 mt-16 py-8">

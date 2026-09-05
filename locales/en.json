@@ -176,5 +176,10 @@
         "trend": "Expenditure over time",
         "frequency": "Purchase frequency",
         "graphEmptyMessage": "No data for this period yet."
+    },
+    "LegalLinks": {
+        "imprint": "Imprint",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfUse": "Terms of Use"
     }
 }
