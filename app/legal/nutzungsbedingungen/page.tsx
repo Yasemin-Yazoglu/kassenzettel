@@ -26,14 +26,14 @@ export default function NutzungsbedingungenPage() {
                         <h2 className="text-white font-semibold text-lg">1. Geltungsbereich</h2>
                         <p>
                             Diese Nutzungsbedingungen gelten für die Nutzung der Anwendung
-                            „Kassenzettel" (nachfolgend „App"), bereitgestellt von:
+                            &bdquo;Kassenzettel&ldquo; (nachfolgend &bdquo;App&ldquo;), bereitgestellt von:
                         </p>
                         <p>
                             Yasemin Yazoglu<br />
                             Victor-Andersen-Weg 10, 25436 Uetersen<br />
                             info@my-semmy.com
                         </p>
-                        <p>(nachfolgend „Anbieter").</p>
+                        <p>(nachfolgend &bdquo;Anbieter&ldquo;).</p>
                         <p>
                             Mit der Erstellung eines Nutzerkontos und/oder der Nutzung der App
                             erklärt sich der Nutzer mit diesen Nutzungsbedingungen einverstanden.
@@ -74,7 +74,7 @@ export default function NutzungsbedingungenPage() {
                         </p>
                         <p>
                             3.3 Die Nutzung der App ist Personen ab{" "}
-                            16 Jahren gestattet.
+                            14 Jahren gestattet.
                         </p>
                     </section>
 

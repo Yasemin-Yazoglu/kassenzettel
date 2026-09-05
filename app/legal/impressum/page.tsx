@@ -71,7 +71,7 @@ export default function ImpressumPage() {
                             >
                                 https://ec.europa.eu/consumers/odr/
                             </a>
-                            . Unsere E-Mail-Adresse finden Sie oben unter „Kontakt".
+                            . Unsere E-Mail-Adresse finden Sie oben unter &bdquo;Kontakt&ldquo;.
                         </p>
                     </section>
 
