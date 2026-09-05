@@ -1,9 +1,10 @@
 "use client";
 
-import { getGreeting } from "@/lib/getGreeting";
 import { getName } from "@/lib/getName";
 import { useUser } from "@/lib/hooks/useUser";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
+import { useTranslations } from "next-intl";
+import { getGreetingKey } from "@/lib/getGreeting";
 
 const TYPE_SPEED = 60;
 const DELETE_SPEED = 35;
@@ -12,6 +13,7 @@ const HOLD_BEFORE_DELETE = 1400;
 type Phase = "typing1" | "pausing" | "deleting" | "typing2" | "idle";
 
 export default function GreetingTitle() {
+    const t = useTranslations("GreetingTitle");
     const user = useUser();
     const [displayed, setDisplayed] = useState("");
     const [phase, setPhase] = useState<Phase>("typing1");
@@ -27,8 +29,17 @@ export default function GreetingTitle() {
         return () => window.removeEventListener("resize", updateSize);
     }, []);
 
-    const line1 = user && !isSmallPhone ? `${getGreeting()}, ${getName(user)}` : getGreeting();
-    const line2 = "Was hast du heute ausgegeben?";
+    const line1 = useMemo(() => {
+        const greetingText = t(getGreetingKey());
+
+        if (user && !isSmallPhone) {
+            const name = getName(user) ?? t("guest");
+            return t("greetingWithName", { greeting: greetingText, name });
+        }
+
+        return greetingText;
+    }, [user, isSmallPhone, t]);
+    const line2 = t("subtitle");
     const loading = user === undefined;
 
     const prevLine1 = useRef(line1);
