@@ -1,0 +1,10 @@
+{
+    "GreetingTitle": {
+        "morning": "Guten Morgen",
+        "afternoon": "Guten Tag",
+        "evening": "Guten Abend",
+        "greetingWithName": "{greeting}, {name}",
+        "guest": "Gast",
+        "subtitle": "Was hast du heute ausgegeben?"
+    }
+}

@@ -1,13 +1,13 @@
 import { User } from "@supabase/supabase-js";
 
-export function getName(user: User | null | undefined): string {
+export function getName(user: User | null | undefined): string | null {
     if (!user) {
-        return "Gast";
+        return null;
     }
 
     const metadata = user.user_metadata ?? {};
 
-    const name = 
+    const name =
         metadata.full_name ??
         metadata.name ??
         metadata.user_name ??
@@ -21,5 +21,5 @@ export function getName(user: User | null | undefined): string {
         return user.email.split("@")[0];
     }
 
-    return "Gast";
+    return null;
 }
