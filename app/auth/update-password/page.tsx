@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import PasswordInput from "@/app/_ui/PasswordInput";
 import { updatePassword } from "../login/actions";
@@ -11,6 +12,7 @@ import Logo from "@/components/ui/Logo";
 const initialState: FormState = { message: "" };
 
 export default function UpdatePasswordPage() {
+    const t = useTranslations("UpdatePasswordPage");
     const [state, formAction] = useActionState(updatePassword, initialState);
 
     return (
@@ -22,7 +24,7 @@ export default function UpdatePasswordPage() {
                     </Link>
                 </div>
                 <p className="text-sm text-white/60 my-4 text-center">
-                    Wähle ein neues Passwort für dein Konto.
+                    {t("description")}
                 </p>
 
                 <form action={formAction} className="space-y-5">
@@ -41,8 +43,8 @@ export default function UpdatePasswordPage() {
                     <PasswordInput
                         id="password"
                         name="password"
-                        label="Neues Passwort"
-                        placeholder="Neues Passwort"
+                        label={t("newPasswordLabel")}
+                        placeholder={t("newPasswordLabel")}
                         variant="dark"
                         required
                         minLength={8}
@@ -53,14 +55,14 @@ export default function UpdatePasswordPage() {
                     <PasswordInput
                         id="confirmPassword"
                         name="confirmPassword"
-                        label="Passwort bestätigen"
-                        placeholder="Passwort bestätigen"
+                        label={t("confirmPasswordLabel")}
+                        placeholder={t("confirmPasswordLabel")}
                         variant="dark"
                         required
                         autoComplete="new-password"
                     />
 
-                    <SubmitButton label="Passwort speichern" />
+                    <SubmitButton label={t("submit")} />
                 </form>
             </div>
         </div>

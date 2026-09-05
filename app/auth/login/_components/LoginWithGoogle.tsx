@@ -1,9 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { loginWithGoogle } from "../actions";
 
 export function LoginWithGoogle() {
+    const t = useTranslations("LoginWithGoogle");
     const [isPending, startTransition] = useTransition();
 
     return (
@@ -31,7 +33,7 @@ export function LoginWithGoogle() {
                     d="M43.611 20.083H42V20H24v8h11.303a12.046 12.046 0 01-4.084 5.57h.003l6.19 5.238C36.971 38.482 44 33 44 24c0-1.341-.138-2.651-.389-3.917z"
                 />
             </svg>
-            {isPending ? "Weiterleiten..." : "Mit Google fortfahren"}
+            {isPending ? t("redirecting") : t("continueWithGoogle")}
         </button>
     );
 }

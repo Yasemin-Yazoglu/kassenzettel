@@ -1,5 +1,6 @@
-import { mapErrorCode } from "@/lib/mapAuthError";
+import { mapErrorCodeToKey } from "@/lib/mapAuthError";
 import { createClient } from "@/lib/supabase/server";
+import { getTranslations } from "next-intl/server";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -27,13 +28,15 @@ export async function GET(request: Request) {
         }
     }
 
+    const tErrors = await getTranslations("AuthErrors");
+
     if (errorCode) {
         return NextResponse.redirect(
-            `${origin}/auth/login?error=${encodeURIComponent(mapErrorCode(errorCode))}`
+            `${origin}/auth/login?error=${encodeURIComponent(tErrors(mapErrorCodeToKey(errorCode)))}`
         );
     }
 
     return NextResponse.redirect(
-        `${origin}/auth/login?error=${encodeURIComponent("Anmeldung fehlgeschlagen. Bitte versuche es erneut.")}`
+        `${origin}/auth/login?error=${encodeURIComponent(tErrors("loginFailed"))}`
     );
 }

@@ -39,5 +39,81 @@
     "Expenses": {
         "empty": "No expenses recorded yet. Enter your first expense.",
         "demo": "This is a demo; entries are deleted upon refresh."
+    },
+    "CredentialsForm": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "your@email.com",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Password",
+        "forgotPassword": "Forgot password?"
+    },
+    "FormStateToggle": {
+        "login": "Sign in",
+        "signup": "Sign up"
+    },
+    "LoginForm": {
+        "submit": "Sign in"
+    },
+    "SignupForm": {
+        "submit": "Create account"
+    },
+    "LoginWithGoogle": {
+        "redirecting": "Redirecting...",
+        "continueWithGoogle": "Continue with Google"
+    },
+    "SubmitButton": {
+        "pending": "Please wait..."
+    },
+    "CheckEmailPage": {
+        "title": "Confirm your email address",
+        "description": "We've sent you a confirmation link. Please click the link in the email to activate your account.",
+        "backToHome": "Back to homepage"
+    },
+    "LoginPage": {
+        "tagline": "Track and analyze your expenses",
+        "termsAgreement": "By using this app you agree to our <link>Terms of Service</link>."
+    },
+    "ResetPasswordPage": {
+        "description": "Enter your email address to reset your password.",
+        "submit": "Send reset link",
+        "backToLogin": "Back to login"
+    },
+    "UpdatePasswordPage": {
+        "description": "Choose a new password for your account.",
+        "newPasswordLabel": "New password",
+        "confirmPasswordLabel": "Confirm password",
+        "submit": "Save password"
+    },
+    "AuthActions": {
+        "invalidInput": "Invalid input.",
+        "signupSuccess": "Almost there! Please confirm your email address via the link we sent you.",
+        "googleLoginFailed": "Google sign-in failed. Please try again.",
+        "passwordResetSent": "If an account with this email exists, we've sent you a reset link."
+    },
+    "PasswordInput": {
+        "show": "Show password",
+        "hide": "Hide password"
+    },
+    "AuthErrors": {
+        "invalidCredentials": "Email or password is incorrect.",
+        "emailNotConfirmed": "Please confirm your email address first.",
+        "userAlreadyExists": "An account with this email address already exists.",
+        "currentPasswordRequired": "Current password required when setting a new password.",
+        "weakPassword": "The password is too weak. Please choose a stronger password.",
+        "samePassword": "The new password must be different from the current one.",
+        "rateLimited": "Too many requests. Please wait a moment before trying again.",
+        "otpExpired": "The link has expired. Please request a new one.",
+        "genericError": "Something went wrong. Please try again.",
+        "loginFailed": "Sign-in failed. Please try again."
+    },
+    "Validation": {
+        "invalidEmail": "Please enter a valid email address.",
+        "passwordTooShort": "The password must be at least 8 characters long.",
+        "passwordTooLong": "The password must be at most 72 characters long.",
+        "passwordNeedsUppercase": "It must contain an uppercase letter.",
+        "passwordNeedsLowercase": "It must contain a lowercase letter.",
+        "passwordsDoNotMatch": "The passwords do not match.",
+        "currentPasswordRequired": "Please enter your current password.",
+        "newPasswordMustDiffer": "The new password must be different from the current one."
     }
 }
