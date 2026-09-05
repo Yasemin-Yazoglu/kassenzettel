@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Date_Enum } from "../utility/enum";
 import DateComponent from "./DateComponent";
 
@@ -17,6 +18,7 @@ interface ExpenseFormProps {
 }
 
 export default function ExpenseForm({ onSubmit }: ExpenseFormProps) {
+    const t = useTranslations("ExpenseForm");
     const today_date = new Date();
     const [draft, setDraft] = useState<DraftExpense>({
         year: today_date.getFullYear(),
@@ -48,17 +50,17 @@ export default function ExpenseForm({ onSubmit }: ExpenseFormProps) {
                 </div>
             </div>
             <input
-                title="Eingeben in welchem Laden eingekauft wurde"
+                title={t("storeTitle")}
                 name="store"
                 required
                 value={draft.store}
                 onChange={(e) => setDraft({ ...draft, store: e.target.value })}
                 className="input-item text-3xl focus:outline focus:outline-indigo-400 w-2xs"
                 type="text"
-                placeholder="Laden"
+                placeholder={t("storePlaceholder")}
             />
             <input
-                title="Betrag eingeben"
+                title={t("amountTitle")}
                 name="amount"
                 required
                 value={draft.amount === 0 ? "" : draft.amount}
@@ -66,7 +68,7 @@ export default function ExpenseForm({ onSubmit }: ExpenseFormProps) {
                 className="input-item text-3xl focus:outline focus:outline-indigo-400 w-48"
                 type="number"
                 step="any"
-                placeholder="Ausgabe"
+                placeholder={t("amountPlaceholder")}
             />
             <button type="submit" hidden />
         </form>

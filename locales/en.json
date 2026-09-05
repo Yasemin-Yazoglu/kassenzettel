@@ -6,5 +6,11 @@
         "greetingWithName": "{greeting}, {name}",
         "guest": "Guest",
         "subtitle": "What did you spend today?"
+    },
+    "ExpenseForm": {
+        "storeTitle": "Enter which store you shopped at",
+        "storePlaceholder": "Store",
+        "amountTitle": "Enter the amount",
+        "amountPlaceholder": "Amount"
     }
 }
