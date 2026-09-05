@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { useTranslations } from "next-intl";
 import { changePassword } from "../actions";
 import type { FormState } from "@/lib/types";
 import PasswordInput from "@/app/_ui/PasswordInput";
@@ -13,14 +14,15 @@ interface Props {
 }
 
 export default function PasswordModal({ onClose }: Props) {
+    const t = useTranslations("PasswordModal");
     const [state, formAction, pending] = useActionState(changePassword, initialState);
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center px-4 z-50">
             <div className="w-full max-w-lg rounded-2xl bg-white p-6 flex flex-col gap-5 shadow-xl">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-slate-900 font-semibold text-lg">Passwort ändern</h2>
-                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition" title="Schließen">
+                    <h2 className="text-slate-900 font-semibold text-lg">{t("title")}</h2>
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition" title={t("close")}>
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -29,8 +31,8 @@ export default function PasswordModal({ onClose }: Props) {
                     <PasswordInput
                         id="currentPassword"
                         name="currentPassword"
-                        label="Aktuelles Passwort"
-                        placeholder="Aktuelles Passwort"
+                        label={t("currentPasswordLabel")}
+                        placeholder={t("currentPasswordLabel")}
                         autoComplete="current-password"
                         variant="light"
                         required
@@ -39,8 +41,8 @@ export default function PasswordModal({ onClose }: Props) {
                     <PasswordInput
                         id="newPassword"
                         name="newPassword"
-                        label="Neues Passwort"
-                        placeholder="Neues Passwort"
+                        label={t("newPasswordLabel")}
+                        placeholder={t("newPasswordLabel")}
                         autoComplete="new-password"
                         variant="light"
                         required
@@ -48,14 +50,14 @@ export default function PasswordModal({ onClose }: Props) {
                         maxLength={72}
                     />
                     <p className="text-xs text-slate-400 -mt-2">
-                        Mindestens 8 Zeichen, ein Groß- und ein Kleinbuchstabe.
+                        {t("passwordHint")}
                     </p>
 
                     <PasswordInput
                         id="confirmPassword"
                         name="confirmPassword"
-                        label="Passwort bestätigen"
-                        placeholder="Passwort bestätigen"
+                        label={t("confirmPasswordLabel")}
+                        placeholder={t("confirmPasswordLabel")}
                         autoComplete="new-password"
                         variant="light"
                         required
@@ -73,14 +75,14 @@ export default function PasswordModal({ onClose }: Props) {
                             onClick={onClose}
                             className="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 transition"
                         >
-                            Abbrechen
+                            {t("cancel")}
                         </button>
                         <button
                             type="submit"
                             disabled={pending}
                             className="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-400 disabled:opacity-40 disabled:cursor-not-allowed text-white font-medium transition"
                         >
-                            {pending ? "Speichert..." : "Speichern"}
+                            {pending ? t("saving") : t("submit")}
                         </button>
                     </div>
                 </form>

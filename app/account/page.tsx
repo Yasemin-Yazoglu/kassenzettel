@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import AccountHeader from "./_components/AccountHeader";
@@ -13,6 +14,8 @@ import { formatMemberSince } from "@/lib/formatMemberSince";
 import DeleteAccountModal from "./_components/DeleteAccountModal";
 
 export default function AccountPage() {
+  const t = useTranslations("AccountPage");
+  const locale = useLocale();
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +38,7 @@ export default function AccountPage() {
   if (loading || !user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-slate-400">Lädt...</p>
+        <p className="text-slate-400">{t("loading")}</p>
       </div>
     );
   }
@@ -47,19 +50,19 @@ export default function AccountPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              aria-label="Zurück zur Startseite"
-              title="Zurück zur Startseite"
+              aria-label={t("backToHome")}
+              title={t("backToHome")}
               className="flex items-center justify-center w-9 h-9 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
 
-            <h1 className="text-white text-2xl font-semibold">Konto</h1>
+            <h1 className="text-white text-2xl font-semibold">{t("title")}</h1>
           </div>
 
           {user.created_at && (
             <p className="text-xs text-slate-500">
-              Mitglied seit {formatMemberSince(user.created_at)}
+              {t("memberSince", { date: formatMemberSince(user.created_at, locale) })}
             </p>
           )}
 

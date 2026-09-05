@@ -123,5 +123,44 @@
         "listViewAlt": "Monatsübersicht",
         "analyticsAlt": "Analytics der Ausgaben",
         "signupCta": "Jetzt registrieren"
+    },
+    "DeleteAccountModal": {
+        "title": "Konto löschen",
+        "close": "Schließen",
+        "warning": "Diese Aktion kann nicht rückgängig gemacht werden. Alle deine Daten, einschließlich deiner Ausgaben, werden dauerhaft gelöscht.",
+        "confirmLabel": "Gib <strong>{word}</strong> ein, um zu bestätigen",
+        "confirmWord": "löschen",
+        "cancel": "Abbrechen",
+        "deleting": "Löscht...",
+        "submit": "Konto endgültig löschen"
+    },
+    "PasswordModal": {
+        "title": "Passwort ändern",
+        "close": "Schließen",
+        "currentPasswordLabel": "Aktuelles Passwort",
+        "newPasswordLabel": "Neues Passwort",
+        "passwordHint": "Mindestens 8 Zeichen, ein Groß- und ein Kleinbuchstabe.",
+        "confirmPasswordLabel": "Passwort bestätigen",
+        "cancel": "Abbrechen",
+        "saving": "Speichert...",
+        "submit": "Speichern"
+    },
+    "SettingsList": {
+        "settingsLabel": "Einstellungen",
+        "changePassword": "Passwort ändern",
+        "logout": "Abmelden",
+        "deleteAccount": "Konto löschen"
+    },
+    "AccountPage": {
+        "loading": "Lädt...",
+        "backToHome": "Zurück zur Startseite",
+        "title": "Konto",
+        "memberSince": "Mitglied seit {date}"
+    },
+    "AccountActions": {
+        "passwordChanged": "Passwort erfolgreich geändert.",
+        "deleteConfirmMismatch": "Bitte gib „{word}\" ein, um zu bestätigen.",
+        "notAuthenticated": "Nicht angemeldet. Bitte melde dich erneut an.",
+        "deleteFailed": "Konto konnte nicht gelöscht werden. Bitte versuche es erneut."
     }
 }

@@ -123,5 +123,44 @@
         "listViewAlt": "Monthly overview",
         "analyticsAlt": "Spending analytics",
         "signupCta": "Sign up now"
+    },
+    "DeleteAccountModal": {
+        "title": "Delete account",
+        "close": "Close",
+        "warning": "This action cannot be undone. All your data, including your expenses, will be permanently deleted.",
+        "confirmLabel": "Type <strong>{word}</strong> to confirm",
+        "confirmWord": "delete",
+        "cancel": "Cancel",
+        "deleting": "Deleting...",
+        "submit": "Delete account permanently"
+    },
+    "PasswordModal": {
+        "title": "Change password",
+        "close": "Close",
+        "currentPasswordLabel": "Current password",
+        "newPasswordLabel": "New password",
+        "passwordHint": "At least 8 characters, one uppercase and one lowercase letter.",
+        "confirmPasswordLabel": "Confirm password",
+        "cancel": "Cancel",
+        "saving": "Saving...",
+        "submit": "Save"
+    },
+    "SettingsList": {
+        "settingsLabel": "Settings",
+        "changePassword": "Change password",
+        "logout": "Log out",
+        "deleteAccount": "Delete account"
+    },
+    "AccountPage": {
+        "loading": "Loading...",
+        "backToHome": "Back to homepage",
+        "title": "Account",
+        "memberSince": "Member since {date}"
+    },
+    "AccountActions": {
+        "passwordChanged": "Password changed successfully.",
+        "deleteConfirmMismatch": "Please type \"{word}\" to confirm.",
+        "notAuthenticated": "Not signed in. Please sign in again.",
+        "deleteFailed": "Account could not be deleted. Please try again."
     }
 }

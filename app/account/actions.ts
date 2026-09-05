@@ -5,12 +5,17 @@ import { createClient } from "@/lib/supabase/server";
 import type { FormState } from "@/lib/types";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
-import { mapAuthError } from "@/lib/mapAuthError";
+import { getTranslations } from "next-intl/server";
+import { mapAuthErrorToKey } from "@/lib/mapAuthError";
 
 export async function changePassword(
     prevState: FormState,
     formData: FormData
 ): Promise<FormState> {
+    const tValidation = await getTranslations("Validation");
+    const tErrors = await getTranslations("AuthErrors");
+    const tActions = await getTranslations("AccountActions");
+
     const result = changePasswordSchema.safeParse({
         currentPassword: formData.get("currentPassword"),
         newPassword: formData.get("newPassword"),
@@ -18,7 +23,8 @@ export async function changePassword(
     });
 
     if (!result.success) {
-        return { message: result.error.issues[0].message, type: "error" };
+        const key = result.error.issues[0].message;
+        return { message: tValidation.has(key) ? tValidation(key) : tValidation("currentPasswordRequired"), type: "error" };
     }
 
     const supabase = await createClient();
@@ -29,36 +35,40 @@ export async function changePassword(
     });
 
     if (error) {
-        return { message: mapAuthError(error), type: "error" };
+        return { message: tErrors(mapAuthErrorToKey(error)), type: "error" };
     }
 
-    return { message: "Passwort erfolgreich geändert.", type: "success" };
+    return { message: tActions("passwordChanged"), type: "success" };
 }
 
 export async function deleteAccount(
     prevState: FormState,
     formData: FormData
 ): Promise<FormState> {
+    const t = await getTranslations("AccountActions");
+    const tModal = await getTranslations("DeleteAccountModal");
+    const confirmWord = tModal("confirmWord");
+
     const confirmText = formData.get("confirmText");
-  
-    if (typeof confirmText !== "string" || confirmText.trim().toLowerCase() !== "löschen") {
-      return { message: `Bitte gib „löschen" ein, um zu bestätigen.`, type: "error" };
+
+    if (typeof confirmText !== "string" || confirmText.trim().toLowerCase() !== confirmWord.toLowerCase()) {
+      return { message: t("deleteConfirmMismatch", { word: confirmWord }), type: "error" };
     }
-  
+
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
-  
+
     if (!user) {
-      return { message: "Nicht angemeldet. Bitte melde dich erneut an.", type: "error" };
+      return { message: t("notAuthenticated"), type: "error" };
     }
-  
+
     const adminClient = createAdminClient();
     const { error } = await adminClient.auth.admin.deleteUser(user.id);
-  
+
     if (error) {
-      return { message: "Konto konnte nicht gelöscht werden. Bitte versuche es erneut.", type: "error" };
+      return { message: t("deleteFailed"), type: "error" };
     }
-  
+
     await supabase.auth.signOut();
     redirect("/");
 }
