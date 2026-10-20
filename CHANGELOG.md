@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.0.1] - 20-10-2026
+### Changed
+
+**Money handling**
+- Expense amounts are now stored as integer cents instead of decimal euros, so sums are exact and free of floating-point rounding errors
+- Analytics totals are summed in cents and converted to euros only when displayed
+- The UI still shows and accepts amounts in euros
+
+**Database**
+- Added the `amount_cents` column to `expense`, kept in sync with the legacy `amount` column by a trigger; `amount` will be removed in a later release
+
+**Code structure**
+- Separate types for database rows and UI data (`ExpenseDB`, `ExpenseFrontend`), a mapper between them, and one place for money conversion (`lib/money.ts`)
+- Expense queries select explicit columns instead of `*`
+
 ## [2.0.0] - 16-08-2026
 ### Added
 
