@@ -12,7 +12,7 @@ export default function AddExpenseSection() {
     function handleSubmit(item: DraftExpense) {
         addExpense({
             store: item.store,
-            amount_cents: eurosToCents(item.amount),
+            amount_cents: eurosToCents(item.amountDecimal),
             spend_at: toDbDate(item.day, item.month, item.year),
         });
     }

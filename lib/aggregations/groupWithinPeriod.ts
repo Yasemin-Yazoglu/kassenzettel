@@ -1,9 +1,9 @@
-import type { Expense } from "@/lib/types";
+import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { toDbDate } from "@/lib/date";
 import { getPeriodBucket, type Period, type PeriodDataPoint } from "./period";
 import { getPeriodRange } from "./dateRange";
 
-export function groupWithinPeriod(expenses: Expense[], period: Period, anchor: Date): PeriodDataPoint[] {
+export function groupWithinPeriod(expenses: ExpenseDB[], period: Period, anchor: Date): PeriodDataPoint[] {
     const { start, end } = getPeriodRange(period, anchor);
     const buckets = buildEmptyBuckets(period, start, end);
 
@@ -14,7 +14,7 @@ export function groupWithinPeriod(expenses: Expense[], period: Period, anchor: D
         const key = getBucketKey(period, date);
         const bucket = buckets.get(key);
         if (bucket) {
-            bucket.total += expense.amount;
+            bucket.total += expense.amount_cents;
             bucket.count += 1;
         }
     }

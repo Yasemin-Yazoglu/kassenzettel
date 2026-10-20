@@ -10,7 +10,7 @@ export interface DraftExpense {
     month: number;
     day: number;
     store: string;
-    amount: number;
+    amountDecimal: number;
 }
 
 interface ExpenseFormProps {
@@ -25,12 +25,12 @@ export default function ExpenseForm({ onSubmit }: ExpenseFormProps) {
         month: today_date.getMonth() + 1,
         day: today_date.getDate(),
         store: "",
-        amount: 0.0,
+        amountDecimal: 0.0,
     });
 
     function handleSubmit(item: DraftExpense) {
         onSubmit(item);
-        setDraft((prev) => ({ ...prev, store: "", amount: 0.0 }));
+        setDraft((prev) => ({ ...prev, store: "", amountDecimal: 0.0 }));
     }
 
     return (
@@ -63,8 +63,8 @@ export default function ExpenseForm({ onSubmit }: ExpenseFormProps) {
                 title={t("amountTitle")}
                 name="amount"
                 required
-                value={draft.amount === 0 ? "" : draft.amount}
-                onChange={(e) => setDraft({ ...draft, amount: Number(e.target.value) })}
+                value={draft.amountDecimal === 0 ? "" : draft.amountDecimal}
+                onChange={(e) => setDraft({ ...draft, amountDecimal: Number(e.target.value) })}
                 className="input-item text-3xl focus:outline focus:outline-indigo-400 w-48"
                 type="number"
                 step="any"

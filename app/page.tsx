@@ -3,14 +3,13 @@
 import { useMemo, useState } from "react";
 import CardsContainer from "./_components/CardsContainer";
 import MonthsView from "./_components/MonthsView";
-import { Spending } from "./utility/type";
 import { Date_Enum } from "./utility/enum";
 import { useExpenses } from "@/lib/hooks/useExpenses";
 import { useUser } from "@/lib/hooks/useUser";
-import { fromDbDate } from "@/lib/date";
 import LandingPage from "./_components/LandingPage";
 import AddExpenseSection from "./_components/AddExpenseSection";
 import { useTranslations } from "next-intl";
+import { toExpenseFrontend } from "@/lib/mappers/expense";
 
 export default function Home() {
   const t = useTranslations("Expenses");
@@ -19,19 +18,7 @@ export default function Home() {
   const [monthView, setMonthView] = useState<boolean>(false);
   const [selectedYear, setSelectedYear] = useState<number>(0);
 
-  const spendings: Spending[] = useMemo(() => {
-    return expenses.map((expense) => {
-      const { year, month, day } = fromDbDate(expense.spend_at);
-      return {
-        id: expense.id,
-        year,
-        month,
-        day,
-        store: expense.store,
-        amount: expense.amount,
-      };
-    });
-  }, [expenses]);
+  const spendings = useMemo(() => expenses.map(toExpenseFrontend), [expenses]);
 
   const handleSelection = (year: number) => {
     setMonthView(true);

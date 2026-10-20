@@ -1,7 +1,7 @@
-import type { Expense } from "@/lib/types";
+import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { getPeriodBucket, type Period, type PeriodDataPoint } from "./period";
 
-export function groupByPeriod(expenses: Expense[], period: Period): PeriodDataPoint[] {
+export function groupByPeriod(expenses: ExpenseDB[], period: Period): PeriodDataPoint[] {
     const buckets = new Map<string, PeriodDataPoint>();
 
     for (const expense of expenses) {
@@ -9,10 +9,10 @@ export function groupByPeriod(expenses: Expense[], period: Period): PeriodDataPo
         const existing = buckets.get(key);
 
         if (existing) {
-            existing.total += expense.amount;
+            existing.total += expense.amount_cents;
             existing.count += 1;
         } else {
-            buckets.set(key, { key, label, range, total: expense.amount, count: 1 });
+            buckets.set(key, { key, label, range, total: expense.amount_cents, count: 1 });
         }
     }
 

@@ -1,6 +1,7 @@
-import { DateKey, Sort, Spending } from "./type";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
+import { DateKey, Sort } from "./type";
 
-export function group_spendings(type: DateKey, spendings: Spending[], order_by: Sort): [number, number][] {
+export function group_spendings(type: DateKey, spendings: ExpenseFrontend[], order_by: Sort): [number, number][] {
     const grouped = new Map<number, number>();
 
     for(const entry of spendings) {
@@ -8,7 +9,7 @@ export function group_spendings(type: DateKey, spendings: Spending[], order_by: 
 
         grouped.set(
             key,
-            (((grouped.get(key)) || 0) + (entry.amount * 100))
+            (((grouped.get(key)) || 0) + (entry.amountCents))
         );
     }
 
