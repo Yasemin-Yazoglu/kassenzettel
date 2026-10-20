@@ -1,13 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase/client'
-import type { Expense } from '@/lib/types'
+import type { ExpenseDB, NewExpenseDB } from '@/lib/types/expense/ExpenseDB'
 
-type UpdateExpenseInput = {
-    id: string
-    store?: string
-    amount?: number
-    spend_at?: string
-}
+type UpdateExpenseInput = { id: string } & Partial<NewExpenseDB>
 
 export function useUpdateExpense() {
     const queryClient = useQueryClient()
@@ -22,14 +17,14 @@ export function useUpdateExpense() {
             .single()
 
         if (error) throw error
-        return data as Expense
+        return data as ExpenseDB
         },
 
         onMutate: async ({ id, ...changes }) => {
             await queryClient.cancelQueries({ queryKey: ['expenses'] })
-            const previous = queryClient.getQueryData<Expense[]>(['expenses'])
+            const previous = queryClient.getQueryData<ExpenseDB[]>(['expenses'])
 
-            queryClient.setQueryData<Expense[]>(['expenses'], (old = []) =>
+            queryClient.setQueryData<ExpenseDB[]>(['expenses'], (old = []) =>
                 old.map((expense) =>
                 expense.id === id ? { ...expense, ...changes } : expense
                 )

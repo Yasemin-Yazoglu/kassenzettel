@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase/client'
-import type { Expense, NewExpense } from '@/lib/types'
+import type { ExpenseDB, NewExpenseDB } from '@/lib/types/expense/ExpenseDB'
 
 export function useAddExpense() {
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: async (input: NewExpense) => {
+        mutationFn: async (input: NewExpenseDB) => {
         const { data, error } = await supabase
             .from('expense')
             .insert(input)
@@ -14,14 +14,14 @@ export function useAddExpense() {
             .single()
 
         if (error) throw error
-            return data as Expense
+            return data as ExpenseDB
         },
 
         onMutate: async (input) => {
             await queryClient.cancelQueries({ queryKey: ['expenses'] })
-            const previous = queryClient.getQueryData<Expense[]>(['expenses'])
+            const previous = queryClient.getQueryData<ExpenseDB[]>(['expenses'])
 
-            const optimisticExpense: Expense = {
+            const optimisticExpense: ExpenseDB = {
                 id: crypto.randomUUID(),
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString(),
@@ -29,7 +29,7 @@ export function useAddExpense() {
                 ...input,
             }
 
-            queryClient.setQueryData<Expense[]>(['expenses'], (old = []) =>
+            queryClient.setQueryData<ExpenseDB[]>(['expenses'], (old = []) =>
                 [optimisticExpense, ...old].sort((a, b) => b.spend_at.localeCompare(a.spend_at))
             )
 
