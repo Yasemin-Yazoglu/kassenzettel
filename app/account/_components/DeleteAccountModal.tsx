@@ -3,8 +3,8 @@
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 import { deleteAccount } from "../actions";
-import type { FormState } from "@/lib/types";
 import { X } from "lucide-react";
+import type { FormState } from "@/lib/types/form";
 
 const initialState: FormState = { message: "" };
 
