@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { Date_Enum } from "../utility/enum";
-import { Spending } from "../utility/type";
 import GreetingTitle from "./GreetingTitle";
 import ExpenseForm, { DraftExpense } from "./ExpenseForm";
 import CardsContainer from "./CardsContainer";
 import MonthsView from "./MonthsView";
 import { useTranslations } from "next-intl";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
+import { eurosToCents } from "@/lib/money";
 
 export default function ExpenseFormDemo() {
     const t = useTranslations("Expenses")
@@ -19,14 +20,14 @@ export default function ExpenseFormDemo() {
         setEntries((prev) => [...prev, item]);
     }
 
-    const spendings: Spending[] = useMemo(() => {
+    const spendings: ExpenseFrontend[] = useMemo(() => {
         return entries.map((entry, index) => ({
             id: String(index),
             year: entry.year,
             month: entry.month,
             day: entry.day,
             store: entry.store,
-            amount: entry.amount,
+            amountCents: eurosToCents(entry.amountDecimal),
         }));
     }, [entries]);
 

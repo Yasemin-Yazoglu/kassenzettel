@@ -2,11 +2,11 @@
 
 import { changePasswordSchema } from "@/lib/validation/changePassword";
 import { createClient } from "@/lib/supabase/server";
-import type { FormState } from "@/lib/types";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { mapAuthErrorToKey } from "@/lib/mapAuthError";
+import type { FormState } from "@/lib/types/form";
 
 export async function changePassword(
     prevState: FormState,

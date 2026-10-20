@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase/client'
-import type { Expense } from '@/lib/types'
+import type { ExpenseDB } from '@/lib/types/expense/ExpenseDB'
 
 export function useDeleteExpense() {
     const queryClient = useQueryClient()
@@ -18,9 +18,9 @@ export function useDeleteExpense() {
 
         onMutate: async (id: string) => {
             await queryClient.cancelQueries({ queryKey: ['expenses'] })
-            const previous = queryClient.getQueryData<Expense[]>(['expenses'])
+            const previous = queryClient.getQueryData<ExpenseDB[]>(['expenses'])
 
-            queryClient.setQueryData<Expense[]>(['expenses'], (old = []) =>
+            queryClient.setQueryData<ExpenseDB[]>(['expenses'], (old = []) =>
                 old.filter((expense) => expense.id !== id)
             )
 

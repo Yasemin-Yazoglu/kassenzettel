@@ -1,7 +1,7 @@
-import type { Expense } from "@/lib/types";
+import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { normalizeStoreKey } from "./normalizeStore";
 
-export function getDistinctStores(expenses: Expense[]): string[] {
+export function getDistinctStores(expenses: ExpenseDB[]): string[] {
     const seen = new Map<string, string>();
 
     for (const expense of expenses) {

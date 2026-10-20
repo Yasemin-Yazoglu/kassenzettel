@@ -1,11 +1,12 @@
-import { formatCurrency } from "@/lib/formatCurrency";
 import { group_spendings } from "../utility/function";
-import { DateKey, Spending } from "../utility/type";
+import { DateKey } from "../utility/type";
 import { useTranslations } from "next-intl";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
+import { formatCurrencyFromCents } from "@/lib/money";
 
 interface Props {
     type: DateKey;
-    spendings: Spending[];
+    spendings: ExpenseFrontend[];
     onSelect: (year: number) => void;
 }
 
@@ -22,13 +23,13 @@ export default function CardsContainer({
             {sorted.map(([year, total]) => (
                 <button
                     key={year}
-                    title={t("yearSpendingTitle", { year, amount: formatCurrency(total / 100) })}
+                    title={t("yearSpendingTitle", { year, amount: formatCurrencyFromCents(total) })}
                     onClick={() => onSelect(year)}
                     className="w-full flex flex-col text-left gap-3 justify-between px-5 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-indigo-400/40 transition"
                 >
                     <span className="text-white/90 font-semibold text-4xl">{year}</span>
                     <span className="text-indigo-400 font-medium">
-                        {formatCurrency(total/ 100)}
+                        {formatCurrencyFromCents(total)}
                     </span>
                 </button>
             ))}

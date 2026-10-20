@@ -1,9 +1,10 @@
 import { X } from "lucide-react";
-import { Spending } from "../utility/type";
 import { useDeleteExpense } from "@/lib/hooks/useDeleteExpense";
+import { formatCurrencyFromCents } from "@/lib/money";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
 
 interface Props {
-    spending: Spending;
+    spending: ExpenseFrontend;
     onClose: () => void;
 }
 
@@ -34,7 +35,7 @@ export default function DeleteModal({
 
                 <p className="text-sm text-slate-600">
                     Möchtest du wirklich die Ausgabe vom {spending.day}.{spending.month}.{spending.year}{" "}
-                    bei {spending.store} in Höhe von {spending.amount}&euro; löschen?
+                    bei {spending.store} in Höhe von {formatCurrencyFromCents(spending.amountCents)} löschen?
                 </p>
 
                 <div className="flex gap-3 justify-end pt-1">

@@ -5,8 +5,7 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
 import { credentialsSchema, requestPasswordResetSchema, updatePasswordSchema } from '@/lib/validation/auth';
-import { FormState } from './types';
-
+import type { FormState } from '@/lib/types/form';
 import { z } from "zod";
 import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';

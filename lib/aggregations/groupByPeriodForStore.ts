@@ -1,9 +1,9 @@
-import type { Expense } from "@/lib/types";
+import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { getPeriodBucket, type Period, type PeriodDataPoint } from "./period";
 import { normalizeStoreKey } from "./normalizeStore";
 
 export function groupByPeriodForStore(
-    expenses: Expense[],
+    expenses: ExpenseDB[],
     period: Period,
     store: string
 ): PeriodDataPoint[] {
@@ -17,10 +17,10 @@ export function groupByPeriodForStore(
         const existing = buckets.get(key);
 
         if (existing) {
-            existing.total += expense.amount;
+            existing.total += expense.amount_cents;
             existing.count += 1;
         } else {
-            buckets.set(key, { key, label, range, total: expense.amount, count: 1 });
+            buckets.set(key, { key, label, range, total: expense.amount_cents, count: 1 });
         }
     }
 

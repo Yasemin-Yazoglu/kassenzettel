@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
-import { Spending } from "../utility/type";
+import { useState } from "react";
 import { useUpdateExpense } from "@/lib/hooks/useUpdateExpense";
 import { X } from "lucide-react";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
+import type { DraftExpense } from "./ExpenseForm";
+import { centsToEuros, eurosToCents } from "@/lib/money";
+
+type EditDraft = Pick<DraftExpense, "store" | "amountDecimal">;
 
 interface Props {
-    spending: Spending;
+    spending: ExpenseFrontend;
     onClose: () => void;
 }
 
 export default function EditModal({ spending, onClose }: Props) {
-    const [costItem, setCostItem] = useState<Spending>(spending);
-    const [isDisabled, setIsDisabled] = useState<boolean>(true);
+    const [draft, setDraft] = useState<EditDraft>({
+        store: spending.store,
+        amountDecimal: centsToEuros(spending.amountCents),
+    });
     const { mutate: updateExpense } = useUpdateExpense();
-
-    useEffect(() => {
-        if (costItem.store !== spending.store || costItem.amount !== spending.amount) {
-            setIsDisabled(false);
-        } else {
-            setIsDisabled(true);
-        }
-    }, [costItem]);
+    
+    const isDisabled =
+        draft.store === spending.store &&
+        eurosToCents(draft.amountDecimal) === spending.amountCents;
 
     function saveChanges() {
         updateExpense({
-            id: costItem.id,
-            store: costItem.store,
-            amount: costItem.amount,
+            id: spending.id,
+            store: draft.store,
+            amount_cents: eurosToCents(draft.amountDecimal),
         });
 
         onClose();
@@ -57,7 +59,7 @@ export default function EditModal({ spending, onClose }: Props) {
                             defaultValue={spending.store}
                             placeholder="Laden"
                             title="Laden bearbeiten"
-                            onChange={(e) => setCostItem({ ...costItem, store: e.target.value })}
+                            onChange={(e) => setDraft({ ...draft, store: e.target.value })}
                             className="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 placeholder:text-slate-400 outline-none focus:border-indigo-400 transition"
                         />
                     </div>
@@ -71,10 +73,10 @@ export default function EditModal({ spending, onClose }: Props) {
                             name="ausgabe"
                             type="number"
                             step="any"
-                            defaultValue={spending.amount}
+                            defaultValue={spending.amountCents / 100}
                             placeholder="Ausgabe"
                             title="Ausgabe bearbeiten"
-                            onChange={(e) => setCostItem({ ...costItem, amount: Number(e.target.value) })}
+                            onChange={(e) => setDraft({ ...draft, amountDecimal: Number(e.target.value) })}
                             className="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-900 placeholder:text-slate-400 outline-none focus:border-indigo-400 transition"
                         />
                     </div>

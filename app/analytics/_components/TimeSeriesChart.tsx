@@ -4,16 +4,16 @@ import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { groupWithinPeriod } from "@/lib/aggregations/groupWithinPeriod";
 import { getPeriodRange, shiftAnchor } from "@/lib/aggregations/dateRange";
-import { formatCurrency } from "@/lib/formatCurrency";
-import type { Expense } from "@/lib/types";
 import type { Period } from "@/lib/aggregations/period";
 import Graph from "./Graph";
 import PeriodToggle from "./PeriodToggle";
 import PeriodNavigator from "./PeriodNavigator";
 import MetricToggle, { type Metric } from "./MetricToggle";
+import { formatCurrencyFromCents } from "@/lib/money";
+import { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 
 interface Props {
-    expenses: Expense[];
+    expenses: ExpenseDB[];
 }
 
 export default function TimeSeriesChart({ expenses }: Props) {
@@ -60,7 +60,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
                     canGoNext={canGoNext}
                 />
                 <p className="text-2xl font-semibold text-white">
-                    {metric === "total" ? formatCurrency(periodSum) : periodSum}
+                    {metric === "total" ? formatCurrencyFromCents(periodSum) : periodSum}
                 </p>
             </div>
 
@@ -69,7 +69,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
                 data={data}
                 xKey="label"
                 yKey={metric}
-                valueFormatter={metric === "total" ? formatCurrency : undefined}
+                valueFormatter={metric === "total" ? formatCurrencyFromCents : undefined}
                 emptyMessage={t("graphEmptyMessage")}
             />
         </div>

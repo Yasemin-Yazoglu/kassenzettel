@@ -4,6 +4,7 @@ import { useAddExpense } from "@/lib/hooks/useAddExpense";
 import { toDbDate } from "@/lib/date";
 import GreetingTitle from "./GreetingTitle";
 import ExpenseForm, { DraftExpense } from "./ExpenseForm";
+import { eurosToCents } from "@/lib/money";
 
 export default function AddExpenseSection() {
     const { mutate: addExpense } = useAddExpense();
@@ -11,7 +12,7 @@ export default function AddExpenseSection() {
     function handleSubmit(item: DraftExpense) {
         addExpense({
             store: item.store,
-            amount: item.amount,
+            amount_cents: eurosToCents(item.amountDecimal),
             spend_at: toDbDate(item.day, item.month, item.year),
         });
     }

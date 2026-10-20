@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowLeft, ChevronDown, PenIcon, X } from "lucide-react";
 import { group_spendings, month_to_key } from "../utility/function";
-import { Spending } from "../utility/type";
 import { Date_Enum } from "../utility/enum";
-import { formatCurrency } from "@/lib/formatCurrency";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import { ExpenseFrontend } from "@/lib/types/expense/ExpenseFrontend";
+import { formatCurrencyFromCents } from "@/lib/money";
 
 type Props = {
     selected_year: number;
-    spending: Spending[];
+    spending: ExpenseFrontend[];
     onClose: () => void;
     readOnly?: boolean;
 }
@@ -26,13 +26,13 @@ export default function MonthsView({
     const [openMonths, setOpenMonths] = useState<Record<string, boolean>>({});
     const [editModal, setEditModal] = useState<boolean>(false);
     const [deleteModal, setDeleteModal] = useState<boolean>(false);
-    const [selectedSpending, setSelectedSpending] = useState<Spending>({
+    const [selectedSpending, setSelectedSpending] = useState<ExpenseFrontend>({
         id: "",
         year: 0,
         month: 0,
         day: 0,
         store: "",
-        amount: 0,
+        amountCents: 0,
     });
 
     const sorted = group_spendings(Date_Enum.MONTH, spending, "desc");
@@ -44,7 +44,7 @@ export default function MonthsView({
         }));
     }
 
-    function handleEditSpending(spending: Spending, action: "edit" | "delete") {
+    function handleEditSpending(spending: ExpenseFrontend, action: "edit" | "delete") {
         setSelectedSpending(spending);
         if (action === "edit") {
             setEditModal(true);
@@ -85,7 +85,7 @@ export default function MonthsView({
                                 <span className="text-white">{tMonths(month_to_key(month))}</span>
                                 <div className="flex items-center gap-3">
                                     <span className="text-indigo-400 font-medium">
-                                        {formatCurrency(total / 100)}
+                                        {formatCurrencyFromCents(total)}
                                     </span>
                                     <ChevronDown
                                         className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
@@ -106,7 +106,7 @@ export default function MonthsView({
                                             </div>
                                             <div className="flex items-center gap-3 shrink-0">
                                                 <span className="text-slate-200 text-sm">
-                                                    {formatCurrency(entry.amount)}
+                                                    {formatCurrencyFromCents(entry.amountCents)}
                                                 </span>
                                                 {!readOnly && (
                                                     <>

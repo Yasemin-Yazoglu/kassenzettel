@@ -1,4 +1,4 @@
-import type { Expense } from "@/lib/types";
+import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { toDbDate } from "@/lib/date";
 import { getPeriodBucket, type Period } from "./period";
 import { normalizeStoreKey } from "./normalizeStore";
@@ -9,7 +9,7 @@ export type StoreDataPoint = {
     count: number;
 };
 
-export function groupByStore(expenses: Expense[], period: Period): StoreDataPoint[] {
+export function groupByStore(expenses: ExpenseDB[], period: Period): StoreDataPoint[] {
     const today = new Date();
     const todayIso = toDbDate(today.getDate(), today.getMonth() + 1, today.getFullYear());
     const currentBucketKey = getPeriodBucket(todayIso, period).key;
@@ -25,10 +25,10 @@ export function groupByStore(expenses: Expense[], period: Period): StoreDataPoin
         const existing = buckets.get(normKey);
 
         if (existing) {
-            existing.total += expense.amount;
+            existing.total += expense.amount_cents;
             existing.count += 1;
         } else {
-            buckets.set(normKey, { store: expense.store.trim(), total: expense.amount, count: 1 });
+            buckets.set(normKey, { store: expense.store.trim(), total: expense.amount_cents, count: 1 });
         }
     }
 

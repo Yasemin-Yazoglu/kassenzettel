@@ -3,9 +3,9 @@
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
 import { changePassword } from "../actions";
-import type { FormState } from "@/lib/types";
 import PasswordInput from "@/app/_ui/PasswordInput";
 import { X } from "lucide-react";
+import type { FormState } from "@/lib/types/form";
 
 const initialState: FormState = { message: "" };
 
