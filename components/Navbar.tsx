@@ -1,13 +1,10 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
 import UserMenu from "./UserMenu";
 import Logo from "./ui/Logo";
 import LanguageSwitcher from "./ui/LanguageSwitcher";
+import type { User } from "@supabase/supabase-js";
 
-export default async function Navbar() {
-    const supabase = await createClient();
-    const { data } = await supabase.auth.getClaims();
-    const claims = data?.claims;
+export default function Navbar({ user }: { user: User | null }) {
 
     return (
         <nav className="flex flex-row justify-between py-4 px-4 sm:px-8">
@@ -17,11 +14,11 @@ export default async function Navbar() {
             </Link>
             <div className="flex gap-4 items-center">
                 <LanguageSwitcher />
-                {claims ? (
+                {user ? (
                     <UserMenu
-                        email={claims.email as string}
-                        avatar={claims.user_metadata?.avatar_url as string | undefined}
-                        name={claims.user_metadata?.full_name as string | undefined}
+                        email={user.email ?? ""}
+                        avatar={user.user_metadata?.avatar_url as string | undefined}
+                        name={user.user_metadata?.full_name as string | undefined}
                     />
                 ) : (
                     <Link

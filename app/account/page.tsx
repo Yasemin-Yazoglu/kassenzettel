@@ -1,33 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase/client";
-import type { User } from "@supabase/supabase-js";
 import AccountHeader from "./_components/AccountHeader";
 import PasswordModal from "./_components/PasswordModal";
 import { ArrowLeft } from "lucide-react";
 import SettingsList from "./_components/SettingsList";
 import { formatMemberSince } from "@/lib/formatMemberSince";
 import DeleteAccountModal from "./_components/DeleteAccountModal";
+import { useUser } from "@/lib/hooks/useUser";
 
 export default function AccountPage() {
   const t = useTranslations("AccountPage");
   const locale = useLocale();
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const user = useUser();
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user);
-      setLoading(false);
-    });
-  }, []);
 
   async function handleLogout() {
     await supabase.auth.signOut();
@@ -35,7 +27,7 @@ export default function AccountPage() {
     router.refresh();
   }
 
-  if (loading || !user) {
+  if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-slate-400">{t("loading")}</p>
