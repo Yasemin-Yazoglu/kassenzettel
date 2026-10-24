@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Providers } from "./providers";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "kassenzettel",
@@ -20,6 +21,8 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   return (
     <html lang={locale}>
@@ -29,7 +32,7 @@ export default async function RootLayout({
           <div>
             <Navbar />
           </div>
-          <Providers>{children}</Providers>
+          <Providers user={user}>{children}</Providers>
           {/* Footer Section */}
           <div className="text-center pb-8">
             <Footer />
