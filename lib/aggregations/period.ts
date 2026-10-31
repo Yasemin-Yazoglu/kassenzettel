@@ -3,7 +3,6 @@ export type Period = "week" | "month" | "year";
 export type PeriodDataPoint = {
     key: string;
     label: string;
-    range: string;
     total: number;
     count: number;
 };

@@ -1,8 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { groupWithinPeriod } from "@/lib/aggregations/groupWithinPeriod";
+import {
+    formatDaysAgo,
+    formatFullDate,
+    formatShortDate,
+    isWeekStart,
+} from "@/lib/aggregations/formatDayLabel";
 import { getPeriodRange, shiftAnchor } from "@/lib/aggregations/dateRange";
 import type { Period } from "@/lib/aggregations/period";
 import Graph from "./Graph";
@@ -18,6 +24,7 @@ interface Props {
 
 export default function TimeSeriesChart({ expenses }: Props) {
     const t = useTranslations("TimeSeriesChart");
+    const locale = useLocale();
     const [period, setPeriod] = useState<Period>("month");
     const [anchor, setAnchor] = useState<Date>(new Date());
     const [metric, setMetric] = useState<Metric>("total");
@@ -29,6 +36,12 @@ export default function TimeSeriesChart({ expenses }: Props) {
 
     const data = useMemo(() => groupWithinPeriod(expenses, period, anchor), [expenses, period, anchor]);
     const range = useMemo(() => getPeriodRange(period, anchor), [period, anchor]);
+
+    // Month view: one anchor per week (Mondays) instead of a label per day.
+    const weekStartTicks = useMemo(
+        () => (period === "month" ? data.filter((p) => isWeekStart(p.key)).map((p) => p.label) : undefined),
+        [data, period]
+    );
 
     const periodSum = useMemo(
         () => data.reduce((sum, point) => sum + point[metric], 0),
@@ -65,12 +78,16 @@ export default function TimeSeriesChart({ expenses }: Props) {
             </div>
 
             <Graph
-                type="line"
+                type="area"
                 data={data}
                 xKey="label"
                 yKey={metric}
                 valueFormatter={metric === "total" ? formatCurrencyFromCents : undefined}
                 emptyMessage={t("graphEmptyMessage")}
+                tooltipLabel={period === "month" ? (point) => formatFullDate(point.key, locale) : undefined}
+                xTicks={weekStartTicks}
+                xTickLabel={period === "month" ? (point) => formatShortDate(point.key, locale) : undefined}
+                hoverNote={period === "month" ? (point) => formatDaysAgo(point.key, locale) : undefined}
             />
         </div>
     );
