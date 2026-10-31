@@ -158,7 +158,7 @@ export default function Graph({
                     }}
                 />
                 <Area
-                    type="monotone"
+                    type="linear"
                     dataKey={yKey}
                     stroke={ACCENT_COLOR}
                     strokeWidth={2}
