@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import {
-    LineChart,
-    Line,
+    AreaChart,
+    Area,
     BarChart,
     Bar,
     XAxis,
@@ -56,6 +56,7 @@ export default function Graph({
     hoverNote,
 }: Props) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const gradientId = `gradient-${useId().replace(/:/g, "")}`;
 
     if (data.length === 0) {
         return (
@@ -126,14 +127,20 @@ export default function Graph({
     return (
         <ResponsiveContainer width="100%" height={256}>
         {type === "line" ? (
-            <LineChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} {...hoverHandlers}>
-            <CartesianGrid stroke={GRID_COLOR} vertical={false} />
-            {xAxis}
-            <YAxis
-                stroke={AXIS_COLOR}
-                tick={{ fontSize: 12 }}
-                tickFormatter={valueFormatter}
-            />
+            <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} {...hoverHandlers}>
+                <defs>
+                    <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor={ACCENT_COLOR} stopOpacity={0.4} />
+                        <stop offset="100%" stopColor={ACCENT_COLOR} stopOpacity={0} />
+                    </linearGradient>
+                </defs>
+                <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+                {xAxis}
+                <YAxis
+                    stroke={AXIS_COLOR}
+                    tick={{ fontSize: 12 }}
+                    tickFormatter={valueFormatter}
+                />
                 <Tooltip
                     labelFormatter={(_label, payload) => {
                         const point = payload?.[0]?.payload;
@@ -150,14 +157,15 @@ export default function Graph({
                         color: "white",
                     }}
                 />
-            <Line
-                type="monotone"
-                dataKey={yKey}
-                stroke={ACCENT_COLOR}
-                strokeWidth={2}
-                dot={false}
-            />
-            </LineChart>
+                <Area
+                    type="monotone"
+                    dataKey={yKey}
+                    stroke={ACCENT_COLOR}
+                    strokeWidth={2}
+                    fill={`url(#${gradientId})`}
+                    dot={false}
+                />
+            </AreaChart>
         ) : (
             <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} {...hoverHandlers}>
             <CartesianGrid stroke={GRID_COLOR} vertical={false} />
