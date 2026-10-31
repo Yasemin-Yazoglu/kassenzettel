@@ -155,7 +155,7 @@ export default function Graph({
                 dataKey={yKey}
                 stroke={ACCENT_COLOR}
                 strokeWidth={2}
-                dot={{ r: 3, fill: ACCENT_COLOR }}
+                dot={false}
             />
             </LineChart>
         ) : (
