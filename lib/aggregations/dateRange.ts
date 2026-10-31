@@ -29,9 +29,10 @@ export function getPeriodRange(period: Period, anchor: Date): PeriodRange {
 }
 
 export function shiftAnchor(period: Period, anchor: Date, direction: 1 | -1): Date {
+    if (period === "month") return new Date(anchor.getFullYear(), anchor.getMonth() + direction, 1);
+
     const next = new Date(anchor);
     if (period === "week") next.setDate(next.getDate() + 7 * direction);
-    if (period === "month") next.setMonth(next.getMonth() + direction);
     if (period === "year") next.setFullYear(next.getFullYear() + direction);
     return next;
 }
