@@ -78,7 +78,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
             </div>
 
             <Graph
-                type="line"
+                type="area"
                 data={data}
                 xKey="label"
                 yKey={metric}

@@ -13,7 +13,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 
-type GraphType = "line" | "bar";
+type GraphType = "area" | "bar";
 type Point = Record<string, any>;
 
 interface Props {
@@ -126,7 +126,7 @@ export default function Graph({
 
     return (
         <ResponsiveContainer width="100%" height={256}>
-        {type === "line" ? (
+        {type === "area" ? (
             <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} {...hoverHandlers}>
                 <defs>
                     <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
