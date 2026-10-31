@@ -1,6 +1,6 @@
 import type { ExpenseDB } from "@/lib/types/expense/ExpenseDB";
 import { toDbDate } from "@/lib/date";
-import { getPeriodBucket, type Period, type PeriodDataPoint } from "./period";
+import type { Period, PeriodDataPoint } from "./period";
 import { getPeriodRange } from "./dateRange";
 
 export function groupWithinPeriod(expenses: ExpenseDB[], period: Period, anchor: Date): PeriodDataPoint[] {
@@ -31,13 +31,14 @@ function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, 
             const d = new Date(start);
             d.setDate(d.getDate() + i);
             const key = toIsoDate(d);
-            buckets.set(key, { key, label: dayLabels[i], range: dayLabels[i], total: 0, count: 0 });
+            buckets.set(key, { key, label: dayLabels[i], total: 0, count: 0 });
         }
     } else if (period === "month") {
         const cursor = new Date(start);
         while (cursor <= end) {
-            const { key, label, range } = getPeriodBucket(toIsoDate(cursor), "week");
-            if (!buckets.has(key)) buckets.set(key, { key, label, range, total: 0, count: 0 });
+            const key = toIsoDate(cursor);
+            const label = String(cursor.getDate());
+            buckets.set(key, { key, label, total: 0, count: 0 });
             cursor.setDate(cursor.getDate() + 1);
         }
     } else {
@@ -46,7 +47,7 @@ function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, 
             const d = new Date(start.getFullYear(), m, 1);
             const key = `${start.getFullYear()}-${String(m + 1).padStart(2, "0")}`;
             const label = monthLabel.format(d);
-            buckets.set(key, { key, label, range: label, total: 0, count: 0 });
+            buckets.set(key, { key, label, total: 0, count: 0 });
         }
     }
 
@@ -54,8 +55,7 @@ function buildEmptyBuckets(period: Period, start: Date, end: Date): Map<string, 
 }
 
 function getBucketKey(period: Period, date: Date): string {
-    if (period === "week") return toIsoDate(date);
-    if (period === "month") return getPeriodBucket(toIsoDate(date), "week").key;
+    if (period === "week" || period === "month") return toIsoDate(date);
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
 }
 
