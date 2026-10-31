@@ -5,14 +5,14 @@ export function groupByPeriod(expenses: ExpenseDB[], period: Period): PeriodData
     const buckets = new Map<string, PeriodDataPoint>();
 
     for (const expense of expenses) {
-        const { key, label, range } = getPeriodBucket(expense.spend_at, period);
+        const { key, label } = getPeriodBucket(expense.spend_at, period);
         const existing = buckets.get(key);
 
         if (existing) {
             existing.total += expense.amount_cents;
             existing.count += 1;
         } else {
-            buckets.set(key, { key, label, range, total: expense.amount_cents, count: 1 });
+            buckets.set(key, { key, label, total: expense.amount_cents, count: 1 });
         }
     }
 
