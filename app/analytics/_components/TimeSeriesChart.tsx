@@ -6,6 +6,7 @@ import { groupWithinPeriod } from "@/lib/aggregations/groupWithinPeriod";
 import {
     formatDaysAgo,
     formatFullDate,
+    formatMonthYear,
     formatShortDate,
     isWeekStart,
 } from "@/lib/aggregations/formatDayLabel";
@@ -84,7 +85,7 @@ export default function TimeSeriesChart({ expenses }: Props) {
                 yKey={metric}
                 valueFormatter={metric === "total" ? formatCurrencyFromCents : undefined}
                 emptyMessage={t("graphEmptyMessage")}
-                tooltipLabel={period === "month" ? (point) => formatFullDate(point.key, locale) : undefined}
+                tooltipLabel={period === "year" ? (point) => formatMonthYear(`${point.key}-01`, locale) : (point) => formatFullDate(point.key, locale)}
                 xTicks={weekStartTicks}
                 xTickLabel={period === "month" ? (point) => formatShortDate(point.key, locale) : undefined}
                 hoverNote={period === "month" ? (point) => formatDaysAgo(point.key, locale) : undefined}

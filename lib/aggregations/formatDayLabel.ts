@@ -14,6 +14,11 @@ export function formatFullDate(isoDate: string, locale: string): string {
     }).format(parseIso(isoDate));
 }
 
+/** Month and year, e.g. "Okt. 2026" (for the year view tooltip) */
+export function formatMonthYear(isoDate: string, locale: string): string {
+    return new Intl.DateTimeFormat(locale, {month: "short", year: "numeric"}).format(parseIso(isoDate));
+}
+
 /** Short date for x-axis anchors, e.g. "12. Okt." */
 export function formatShortDate(isoDate: string, locale: string): string {
     return new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" }).format(parseIso(isoDate));
