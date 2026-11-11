@@ -24,6 +24,11 @@ function firstIssueMessage(
     return key && t.has(key) ? t(key) : t("passwordTooShort"); // Fallback, siehe Hinweis unten
 }
 
+function getCaptchaToken(formData: FormData): string | undefined {
+    const token = formData.get('cf-turnstile-response');
+    return typeof token === 'string' && token.length > 0 ? token : undefined;
+}
+
 export async function login(prevState: FormState, formData: FormData): Promise<FormState> {
     const tValidation = await getTranslations('Validation');
     const tErrors = await getTranslations('AuthErrors');
@@ -38,7 +43,10 @@ export async function login(prevState: FormState, formData: FormData): Promise<F
         return { message: firstIssueMessage(result.error, tValidation), type: 'error' };
     }
 
-    const { error } = await supabase.auth.signInWithPassword(result.data);
+    const { error } = await supabase.auth.signInWithPassword({
+        ...result.data,
+        options: { captchaToken: getCaptchaToken(formData) },
+    });
 
     if (error) {
         return { message: tErrors(mapAuthErrorToKey(error)), type: 'error' };
@@ -62,7 +70,10 @@ export async function signup(prevState: FormState, formData: FormData): Promise<
         return { message: firstIssueMessage(result.error, tValidation), type: 'error' };
     }
 
-    const { error } = await supabase.auth.signUp(result.data);
+    const { error } = await supabase.auth.signUp({
+        ...result.data,
+        options: { captchaToken: getCaptchaToken(formData) },
+    });
 
     if (error) {
         return { message: tErrors(mapAuthErrorToKey(error)), type: 'error' };
@@ -119,6 +130,7 @@ export async function requestPasswordReset(
 
     const { error } = await supabase.auth.resetPasswordForEmail(result.data.email, {
         redirectTo: `${origin}/auth/callback?next=/auth/update-password`,
+        captchaToken: getCaptchaToken(formData),
     });
 
     if (error) {

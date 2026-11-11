@@ -1,11 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import PasswordInput from "@/app/_ui/PasswordInput";
 import { SubmitButton } from "./SubmitButton";
 import type { FormState } from "../types";
+import { CaptchaWidget } from "./CaptchaWidget";
+import { TurnstileInstance } from "@marsidev/react-turnstile";
 
 const initialState: FormState = { message: "" };
 
@@ -18,6 +20,11 @@ interface Props {
 export default function CredentialsForm({ action, submitLabel, showForgotPassword }: Props) {
     const t = useTranslations("CredentialsForm");
     const [state, formAction] = useActionState(action, initialState);
+    const captchaRef = useRef<TurnstileInstance>(null);
+
+    useEffect(() => {
+        if (state?.message) captchaRef.current?.reset();
+    }, [state]);
 
     return (
         <form action={formAction} className="space-y-5">
@@ -69,6 +76,8 @@ export default function CredentialsForm({ action, submitLabel, showForgotPasswor
                     </Link>
                 </div>
             )}
+
+            <CaptchaWidget ref={captchaRef} />
 
             <SubmitButton label={submitLabel} />
         </form>
