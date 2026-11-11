@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0] - 11-11-2026
+### Added
+
+**Security**
+- Cloudflare Turnstile CAPTCHA on login, signup and password reset to prevent bot signups
+
+
 ## [2.0.1] - 20-10-2026
 ### Changed
 
