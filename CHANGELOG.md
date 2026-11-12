@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1] - 12-11-2026
+### Fixed
+- Password reset form was missing the CAPTCHA check, which caused reset requests to be rejected
+
+### Changed
+- Turnstile widget now uses the light theme
+
 ## [2.1.0] - 11-11-2026
 ### Added
 
