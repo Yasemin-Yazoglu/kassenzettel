@@ -1,12 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { requestPasswordReset } from "../login/actions";
 import { SubmitButton } from "../login/_components/SubmitButton";
 import type { FormState } from "../login/types";
 import Logo from "@/components/ui/Logo";
+import { TurnstileInstance } from "@marsidev/react-turnstile";
+import { CaptchaWidget } from "../login/_components/CaptchaWidget";
 
 const initialState: FormState = { message: "" };
 
@@ -14,6 +16,11 @@ export default function ResetPasswordPage() {
     const t = useTranslations("ResetPasswordPage");
     const tCredentials = useTranslations("CredentialsForm");
     const [state, formAction] = useActionState(requestPasswordReset, initialState);
+    const captchaRef = useRef<TurnstileInstance>(null);
+
+    useEffect(() => {
+        if (state?.message) captchaRef.current?.reset();
+    }, [state]);
 
     return (
         <div className="min-h-screen flex justify-center items-start pt-24">
@@ -53,6 +60,8 @@ export default function ResetPasswordPage() {
                             required
                         />
                     </div>
+
+                    <CaptchaWidget ref={captchaRef} />
 
                     <SubmitButton label={t("submit")} />
                 </form>
