@@ -8,7 +8,7 @@ export function CaptchaWidget({ ref }: { ref?: Ref<TurnstileInstance> }) {
         <Turnstile
             ref={ref}
             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-            options={{ theme: "dark" }}
+            options={{ theme: "light" }}
         />
     );
 }
